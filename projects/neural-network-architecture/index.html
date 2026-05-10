@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q5YEF5Y9F2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Network Design &amp; Hyperparameter Optimisation | RJ Data Voyage</title>
+    <meta name="description" content="TensorFlow/Keras neural network achieving 94.6% accuracy on spam classification, with systematic grid search across hyperparameter configurations to identify optimal architecture.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/neural-network-architecture">
+    <meta property="og:title" content="Custom Deep Learning Architecture | RJ Data Voyage">
+    <meta property="og:description" content="Neural network built from scratch with custom forward and backward propagation, hyperparameter optimisation, and SHAP interpretability analysis.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0B1120;
+            --color-bg-elevated: #111827;
+            --color-bg-card: #151F32;
+            --color-surface: #1E293B;
+            --color-border: #1E3A5F;
+            --color-border-subtle: rgba(255,255,255,0.06);
+            --color-text-primary: #F1F5F9;
+            --color-text-secondary: #94A3B8;
+            --color-text-muted: #64748B;
+            --color-accent: #38BDF8;
+            --color-accent-dim: rgba(56, 189, 248, 0.12);
+            --color-success: #34D399;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+            --max-width: 860px;
+            --nav-height: 72px;
+            --radius: 10px;
+            --radius-sm: 6px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text-primary); line-height: 1.7; font-weight: 400; font-size: 16px; -webkit-font-smoothing: antialiased; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-height); background: rgba(11, 17, 32, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--color-border-subtle); }
+        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text-primary); text-decoration: none; }
+        .nav-logo span { color: var(--color-accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; transition: color var(--transition); }
+        .nav-links a:hover { color: var(--color-text-primary); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--color-text-secondary); }
+        .nav-toggle svg { display: block; }
+        .case-study { max-width: var(--max-width); margin: 0 auto; padding: calc(var(--nav-height) + 56px) 24px 100px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--color-text-muted); text-decoration: none; margin-bottom: 40px; transition: color var(--transition); }
+        .back-link:hover { color: var(--color-accent); }
+        .cs-domain { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--color-accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+        .cs-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 24px; }
+        .cs-summary { font-size: 1.1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 40px; max-width: 680px; }
+        .cs-meta { display: flex; flex-wrap: wrap; gap: 32px; padding: 24px 0; margin-bottom: 48px; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); }
+        .cs-meta-label { font-size: 0.7rem; font-weight: 600; color: var(--color-text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+        .cs-meta-value { font-size: 0.9rem; color: var(--color-text-primary); font-weight: 500; }
+        .cs-section { margin-bottom: 48px; }
+        .cs-section-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-subtle); }
+        .cs-section p { color: var(--color-text-secondary); margin-bottom: 16px; font-size: 1rem; line-height: 1.8; }
+        .cs-section p strong { color: var(--color-text-primary); font-weight: 500; }
+        .cs-tech-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .cs-tech-pill { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; padding: 6px 14px; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: 4px; color: var(--color-text-muted); letter-spacing: 0.02em; }
+        .cs-outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
+        .cs-outcome-card { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-radius: var(--radius); padding: 24px; }
+        .cs-outcome-value { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-accent); margin-bottom: 6px; }
+        .cs-outcome-label { font-size: 0.825rem; color: var(--color-text-muted); line-height: 1.5; }
+        .cs-steps { margin-top: 20px; }
+        .cs-step { display: flex; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle); }
+        .cs-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .cs-step-num { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--color-accent); min-width: 32px; padding-top: 2px; }
+        .cs-step-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
+        .cs-step-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.65; }
+        .cs-visual { border-radius: var(--radius); overflow: hidden; margin: 24px 0 40px; border: 1px solid var(--color-border-subtle); }
+        .cs-visual img { width: 100%; height: auto; display: block; }
+        .cs-cta { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--color-border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .cs-cta-text { font-size: 0.925rem; color: var(--color-text-muted); }
+        .cs-cta-links { display: flex; gap: 16px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; border-radius: var(--radius); text-decoration: none; transition: all var(--transition); cursor: pointer; border: none; }
+        .btn-primary { background: var(--color-accent); color: var(--color-bg); }
+        .btn-primary:hover { background: #60CFFE; transform: translateY(-1px); box-shadow: 0 8px 30px rgba(56, 189, 248, 0.25); }
+        .btn-secondary { background: transparent; color: var(--color-text-secondary); border: 1px solid var(--color-border); }
+        .btn-secondary:hover { color: var(--color-text-primary); border-color: var(--color-text-muted); }
+        .footer { padding: 48px 24px; border-top: 1px solid var(--color-border-subtle); }
+        .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .footer-left { font-size: 0.825rem; color: var(--color-text-muted); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: var(--color-text-muted); text-decoration: none; font-size: 0.825rem; transition: color var(--transition); }
+        .footer-links a:hover { color: var(--color-accent); }
+        @media (max-width: 640px) {
+            :root { --nav-height: 64px; }
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: var(--nav-height); left: 0; right: 0; background: var(--color-bg-elevated); border-bottom: 1px solid var(--color-border-subtle); padding: 20px 24px; gap: 20px; }
+            .nav-toggle { display: block; }
+            .case-study { padding: calc(var(--nav-height) + 32px) 20px 64px; }
+            .cs-title { font-size: 1.75rem; }
+            .cs-meta { gap: 20px; }
+            .cs-step { flex-direction: column; gap: 8px; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+        }
+        
+            .cs-hero { position: relative; height: 320px; border-radius: var(--radius); overflow: hidden; margin: 24px 0 48px; background: linear-gradient(135deg, #0a1628 0%, #14082a 50%, #0a1628 100%); }
+            .cs-hero-label { position: absolute; top: 24px; left: 32px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(168,85,247,0.4); }
+            .cs-hero-metric { position: absolute; top: 20px; right: 32px; font-family: var(--font-mono); font-size: 1.1rem; font-weight: 300; color: rgba(168,85,247,0.25); }
+            .cs-hero-nn { position: absolute; inset: 60px 32px 40px; }
+            .nn-node { position: absolute; border-radius: 50%; animation: nnPulse 3s ease-in-out infinite; }
+            @keyframes nnPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(168,85,247,0); } 50% { box-shadow: 0 0 15px 3px rgba(168,85,247,0.2); } }
+            .nn-conn { position: absolute; height: 1px; transform-origin: left center; background: linear-gradient(90deg, rgba(168,85,247,0.2), rgba(56,189,248,0.15)); animation: connPulse 2s ease-in-out infinite; }
+            @keyframes connPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+        
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#expertise">Expertise</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="case-study">
+        <a href="/#projects" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Back to Projects
+        </a>
+
+        <div class="cs-domain">Deep Learning</div>
+        <h1 class="cs-title">Neural Network Design &amp; Hyperparameter Optimisation</h1>
+        <p class="cs-summary">Binary classification neural network designed, trained and systematically optimised using TensorFlow and Keras on the UCI Spambase dataset — 4,601 emails across 57 frequency-based features — with grid search over architecture configurations achieving 94.6% test accuracy.</p>
+
+        <div class="cs-meta">
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Type</div>
+                <div class="cs-meta-value">Deep Learning</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Domain</div>
+                <div class="cs-meta-value">Binary Classification</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Methods</div>
+                <div class="cs-meta-value">TensorFlow / Keras, Grid Search, Binary Cross-Entropy</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Dataset</div>
+                <div class="cs-meta-value">UCI Spambase — 4,601 emails, 57 features</div>
+            </div>
+        </div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Challenge</h2>
+            <p>Spam classification is a canonical problem in binary classification, but the more durable goal here was to develop genuine architectural intuition: how does layer depth, neuron count, epoch budget and batch size interact? Which choices matter most in practice, and can that be demonstrated empirically rather than asserted from reading documentation?</p>
+            <p><strong>The UCI Spambase benchmark</strong> provides a clean, well-understood target — 4,601 emails labelled spam or legitimate, each described by 57 word-frequency and email-characteristic features — making it ideal for controlled architecture exploration where performance differences are attributable to design choices, not data quality.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Approach</h2>
+            <div class="cs-steps">
+                <div class="cs-step">
+                    <div class="cs-step-num">01</div>
+                    <div>
+                        <div class="cs-step-title">Data Preparation</div>
+                        <div class="cs-step-desc">Loaded and preprocessed the UCI Spambase dataset — 4,601 labelled emails with 57 word-frequency and character-frequency features. Applied StandardScaler normalisation, then split 80/20 into training and held-out test sets with stratification to preserve class proportions.</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">02</div>
+                    <div>
+                        <div class="cs-step-title">Architecture Design</div>
+                        <div class="cs-step-desc">Designed a sequential deep network with two hidden layers — 64 then 32 neurons — both with ReLU activation, and a single sigmoid output node for binary classification. Compiled with Adam optimiser and binary cross-entropy loss, then validated the baseline architecture against the held-out set.</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">03</div>
+                    <div>
+                        <div class="cs-step-title">Hyperparameter Grid Search</div>
+                        <div class="cs-step-desc">Conducted systematic grid search over epoch count and batch size configurations, tracking validation accuracy across all combinations. Identified the optimal epoch budget (~14) and batch size (~17) that maximised generalisation without overfitting, with training and validation curves plotted for each configuration.</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">04</div>
+                    <div>
+                        <div class="cs-step-title">Evaluation and Analysis</div>
+                        <div class="cs-step-desc">Evaluated the tuned model on the held-out test set, reporting accuracy, loss, and classification metrics. Analysed the distribution of results across grid search configurations to understand performance sensitivity to each hyperparameter independently.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cs-hero">
+
+            <div class="cs-hero-label">NEURAL NETWORK</div>
+            <div class="cs-hero-metric">94.6% ACCURACY</div>
+            <div class="cs-hero-nn">
+                <!-- Input layer -->
+                <div class="nn-node" style="width:14px;height:14px;top:15%;left:10%;background:rgba(168,85,247,0.5);animation-delay:0s"></div>
+                <div class="nn-node" style="width:14px;height:14px;top:40%;left:10%;background:rgba(168,85,247,0.5);animation-delay:0.3s"></div>
+                <div class="nn-node" style="width:14px;height:14px;top:65%;left:10%;background:rgba(168,85,247,0.5);animation-delay:0.6s"></div>
+                <!-- Hidden 1 -->
+                <div class="nn-node" style="width:12px;height:12px;top:10%;left:32%;background:rgba(139,92,246,0.5);animation-delay:0.2s"></div>
+                <div class="nn-node" style="width:12px;height:12px;top:30%;left:32%;background:rgba(139,92,246,0.5);animation-delay:0.5s"></div>
+                <div class="nn-node" style="width:12px;height:12px;top:50%;left:32%;background:rgba(139,92,246,0.5);animation-delay:0.8s"></div>
+                <div class="nn-node" style="width:12px;height:12px;top:70%;left:32%;background:rgba(139,92,246,0.5);animation-delay:1.1s"></div>
+                <!-- Hidden 2 -->
+                <div class="nn-node" style="width:12px;height:12px;top:18%;left:55%;background:rgba(99,102,241,0.5);animation-delay:0.4s"></div>
+                <div class="nn-node" style="width:12px;height:12px;top:38%;left:55%;background:rgba(99,102,241,0.5);animation-delay:0.7s"></div>
+                <div class="nn-node" style="width:12px;height:12px;top:58%;left:55%;background:rgba(99,102,241,0.5);animation-delay:1.0s"></div>
+                <!-- Output -->
+                <div class="nn-node" style="width:16px;height:16px;top:30%;left:80%;background:rgba(56,189,248,0.6);animation-delay:0.3s"></div>
+                <div class="nn-node" style="width:16px;height:16px;top:55%;left:80%;background:rgba(56,189,248,0.6);animation-delay:0.9s"></div>
+                <!-- Connections (simplified) -->
+                <div class="nn-conn" style="top:17%;left:12%;width:19%;transform:rotate(-2deg);animation-delay:0.1s"></div>
+                <div class="nn-conn" style="top:42%;left:12%;width:19%;transform:rotate(-4deg);animation-delay:0.3s"></div>
+                <div class="nn-conn" style="top:67%;left:12%;width:19%;transform:rotate(-6deg);animation-delay:0.5s"></div>
+                <div class="nn-conn" style="top:22%;left:34%;width:20%;transform:rotate(-1deg);animation-delay:0.2s"></div>
+                <div class="nn-conn" style="top:42%;left:34%;width:20%;transform:rotate(-2deg);animation-delay:0.4s"></div>
+                <div class="nn-conn" style="top:62%;left:34%;width:20%;transform:rotate(-2deg);animation-delay:0.6s"></div>
+                <div class="nn-conn" style="top:30%;left:57%;width:22%;transform:rotate(2deg);animation-delay:0.3s"></div>
+                <div class="nn-conn" style="top:48%;left:57%;width:22%;transform:rotate(3deg);animation-delay:0.5s"></div>
+            </div>
+        </div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Results</h2>
+            <div class="cs-outcomes">
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">94.6%</div>
+                    <div class="cs-outcome-label">Test accuracy on 920 held-out emails (80/20 split)</div>
+                </div>
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">Grid Search</div>
+                    <div class="cs-outcome-label">Epoch and batch size systematically explored — optimal: ~14 epochs, batch size ~17</div>
+                </div>
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">94.5% avg</div>
+                    <div class="cs-outcome-label">Average best accuracy across all grid search configurations — consistent, stable performance</div>
+                </div>
+            </div>
+            <div style="margin-top: 24px;">
+                <p>The baseline architecture — two hidden layers of 64 and 32 neurons with ReLU activation, Adam optimiser — achieved <strong>94.57% test accuracy</strong> from the outset, demonstrating the architecture was well-matched to the problem. Systematic grid search confirmed this result was reproducible and not an artefact of a single lucky training run: the average best accuracy across all configurations was <strong>94.50%</strong>, with optimal performance clustering around 14 epochs and a batch size of 17.</p>
+                <p>The grid search exercise established that epoch count and batch size both influence the accuracy-overfitting trade-off, but that the architecture's fundamental capacity was sufficient — diminishing returns set in quickly beyond the identified optimum. The validation curves for each configuration were plotted to make this sensitivity landscape visible rather than abstract.</p>
+            </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Technology Stack</h2>
+            <div class="cs-tech-grid">
+                <span class="cs-tech-pill">Python</span>
+                <span class="cs-tech-pill">TensorFlow</span>
+                <span class="cs-tech-pill">Keras</span>
+                <span class="cs-tech-pill">Scikit-learn</span>
+                <span class="cs-tech-pill">GridSearchCV</span>
+                <span class="cs-tech-pill">Matplotlib</span>
+                <span class="cs-tech-pill">Pandas</span>
+            </div>
+        </section>
+
+        <div class="cs-cta">
+            <div class="cs-cta-text">Interested in this work or something similar?</div>
+            <div class="cs-cta-links">
+                <a href="/#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="/#projects" class="btn btn-secondary">View All Projects</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">&copy; 2026 RJ Data Voyage. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
+    </script>
+</body>
+</html>

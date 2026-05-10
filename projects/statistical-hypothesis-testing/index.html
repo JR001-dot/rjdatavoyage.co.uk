@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q5YEF5Y9F2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical Hypothesis Testing Framework | RJ Data Voyage</title>
+    <meta name="description" content="Rigorous statistical hypothesis testing applied to organisational data, distinguishing correlation from causation with parametric and non-parametric methods.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/statistical-hypothesis-testing">
+    <meta property="og:title" content="Statistical Hypothesis Testing Framework | RJ Data Voyage">
+    <meta property="og:description" content="Rigorous statistical hypothesis testing applied to organisational data, distinguishing correlation from causation with parametric and non-parametric methods.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0B1120;
+            --color-bg-elevated: #111827;
+            --color-bg-card: #151F32;
+            --color-surface: #1E293B;
+            --color-border: #1E3A5F;
+            --color-border-subtle: rgba(255,255,255,0.06);
+            --color-text-primary: #F1F5F9;
+            --color-text-secondary: #94A3B8;
+            --color-text-muted: #64748B;
+            --color-accent: #38BDF8;
+            --color-accent-dim: rgba(56, 189, 248, 0.12);
+            --color-success: #34D399;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+            --max-width: 860px;
+            --nav-height: 72px;
+            --radius: 10px;
+            --radius-sm: 6px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text-primary); line-height: 1.7; font-weight: 400; font-size: 16px; -webkit-font-smoothing: antialiased; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-height); background: rgba(11, 17, 32, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--color-border-subtle); }
+        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text-primary); text-decoration: none; }
+        .nav-logo span { color: var(--color-accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; transition: color var(--transition); }
+        .nav-links a:hover { color: var(--color-text-primary); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--color-text-secondary); }
+        .nav-toggle svg { display: block; }
+        .case-study { max-width: var(--max-width); margin: 0 auto; padding: calc(var(--nav-height) + 56px) 24px 100px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--color-text-muted); text-decoration: none; margin-bottom: 40px; transition: color var(--transition); }
+        .back-link:hover { color: var(--color-accent); }
+        .cs-domain { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--color-accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+        .cs-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 24px; }
+        .cs-summary { font-size: 1.1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 40px; max-width: 680px; }
+        .cs-meta { display: flex; flex-wrap: wrap; gap: 32px; padding: 24px 0; margin-bottom: 48px; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); }
+        .cs-meta-label { font-size: 0.7rem; font-weight: 600; color: var(--color-text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+        .cs-meta-value { font-size: 0.9rem; color: var(--color-text-primary); font-weight: 500; }
+        .cs-section { margin-bottom: 48px; }
+        .cs-section-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-subtle); }
+        .cs-section p { color: var(--color-text-secondary); margin-bottom: 16px; font-size: 1rem; line-height: 1.8; }
+        .cs-section p strong { color: var(--color-text-primary); font-weight: 500; }
+        .cs-tech-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .cs-tech-pill { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; padding: 6px 14px; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: 4px; color: var(--color-text-muted); letter-spacing: 0.02em; }
+        .cs-outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
+        .cs-outcome-card { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-radius: var(--radius); padding: 24px; }
+        .cs-outcome-value { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-accent); margin-bottom: 6px; }
+        .cs-outcome-label { font-size: 0.825rem; color: var(--color-text-muted); line-height: 1.5; }
+        .cs-steps { margin-top: 20px; }
+        .cs-step { display: flex; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle); }
+        .cs-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .cs-step-num { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--color-accent); min-width: 32px; padding-top: 2px; }
+        .cs-step-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
+        .cs-step-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.65; }
+        .cs-visual { border-radius: var(--radius); overflow: hidden; margin: 24px 0 40px; border: 1px solid var(--color-border-subtle); }
+        .cs-visual img { width: 100%; height: auto; display: block; }
+        .cs-cta { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--color-border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .cs-cta-text { font-size: 0.925rem; color: var(--color-text-muted); }
+        .cs-cta-links { display: flex; gap: 16px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; border-radius: var(--radius); text-decoration: none; transition: all var(--transition); cursor: pointer; border: none; }
+        .btn-primary { background: var(--color-accent); color: var(--color-bg); }
+        .btn-primary:hover { background: #60CFFE; transform: translateY(-1px); box-shadow: 0 8px 30px rgba(56, 189, 248, 0.25); }
+        .btn-secondary { background: transparent; color: var(--color-text-secondary); border: 1px solid var(--color-border); }
+        .btn-secondary:hover { color: var(--color-text-primary); border-color: var(--color-text-muted); }
+        .footer { padding: 48px 24px; border-top: 1px solid var(--color-border-subtle); }
+        .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .footer-left { font-size: 0.825rem; color: var(--color-text-muted); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: var(--color-text-muted); text-decoration: none; font-size: 0.825rem; transition: color var(--transition); }
+        .footer-links a:hover { color: var(--color-accent); }
+        @media (max-width: 640px) {
+            :root { --nav-height: 64px; }
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: var(--nav-height); left: 0; right: 0; background: var(--color-bg-elevated); border-bottom: 1px solid var(--color-border-subtle); padding: 20px 24px; gap: 20px; }
+            .nav-toggle { display: block; }
+            .case-study { padding: calc(var(--nav-height) + 32px) 20px 64px; }
+            .cs-title { font-size: 1.75rem; }
+            .cs-meta { gap: 20px; }
+            .cs-step { flex-direction: column; gap: 8px; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+        }
+        
+            .cs-hero { position: relative; height: 320px; border-radius: var(--radius); overflow: hidden; margin: 24px 0 48px; background: linear-gradient(135deg, #0a1628 0%, #0a1020 50%, #0a1628 100%); }
+            .cs-hero-label { position: absolute; top: 24px; left: 32px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(139,92,246,0.4); }
+            .cs-hero-metric { position: absolute; top: 20px; right: 32px; font-family: var(--font-mono); font-size: 1.1rem; font-weight: 300; color: rgba(139,92,246,0.25); }
+            .cs-hero-curve { position: absolute; bottom: 50px; left: 0; right: 0; height: 200px; }
+            .cs-hero-curve svg { width: 100%; height: 100%; }
+            .curve-fill { fill: rgba(139,92,246,0.08); }
+            .curve-line { fill: none; stroke: rgba(139,92,246,0.4); stroke-width: 2; }
+            .curve-reject { fill: rgba(239,68,68,0.12); }
+            .curve-alpha { fill: none; stroke: rgba(239,68,68,0.4); stroke-width: 1; stroke-dasharray: 4 3; }
+            .cs-hero-h0 { position: absolute; bottom: 45px; left: 48%; font-family: var(--font-mono); font-size: 0.6rem; color: rgba(139,92,246,0.35); }
+        
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#expertise">Expertise</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="case-study">
+        <a href="/#projects" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Back to Projects
+        </a>
+
+        <div class="cs-domain">Statistical Analysis</div>
+        <h1 class="cs-title">Statistical Hypothesis Testing Framework</h1>
+        <p class="cs-summary">A rigorous statistical analysis framework demonstrating the application of parametric and non-parametric hypothesis tests to real organisational data, with particular focus on the critical distinction between correlation and causation.</p>
+
+        <div class="cs-meta">
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Type</div>
+                <div class="cs-meta-value">Statistical Analysis</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Domain</div>
+                <div class="cs-meta-value">Organisational Data</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Methods</div>
+                <div class="cs-meta-value">Parametric &amp; Non-Parametric</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Status</div>
+                <div class="cs-meta-value">Completed</div>
+            </div>
+        </div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Challenge</h2>
+            <p>Organisations routinely misinterpret data by conflating correlation with causation, leading to flawed strategic decisions. A marketing team might attribute a sales increase to a recent campaign when seasonal effects or external factors were the actual drivers.</p>
+            <p><strong>Without rigorous statistical validation, data-driven decisions are built on sand.</strong> Hypothesis testing provides the framework to distinguish genuine effects from noise, correlation from causation, and significant findings from statistical artefacts.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Approach</h2>
+            <div class="cs-steps">
+                <div class="cs-step">
+                    <div class="cs-step-num">01</div>
+                    <div>
+                        <div class="cs-step-title">Problem Framing</div>
+                        <div class="cs-step-desc">Defined clear null and alternative hypotheses for each organisational data scenario, ensuring the statistical questions were well-specified before any analysis began.</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">02</div>
+                    <div>
+                        <div class="cs-step-title">Test Selection</div>
+                        <div class="cs-step-desc">Selected appropriate statistical tests based on data characteristics: normality, sample size, variance homogeneity, and measurement scale. Applied both parametric (t-tests, ANOVA) and non-parametric alternatives (Mann-Whitney, Kruskal-Wallis).</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">03</div>
+                    <div>
+                        <div class="cs-step-title">Analysis and Interpretation</div>
+                        <div class="cs-step-desc">Executed tests with proper significance levels, effect size calculations, and power analysis. Interpreted results in context, distinguishing statistical significance from practical significance.</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">04</div>
+                    <div>
+                        <div class="cs-step-title">Reporting</div>
+                        <div class="cs-step-desc">Produced clear, accessible reports translating statistical findings into business language, with explicit discussion of limitations and the correlation-causation distinction.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cs-hero">
+
+            <div class="cs-hero-label">HYPOTHESIS TESTING</div>
+            <div class="cs-hero-metric">p &lt; 0.05</div>
+            <div class="cs-hero-curve">
+                <svg viewBox="0 0 800 200" preserveAspectRatio="none">
+                    <path class="curve-fill" d="M100,180 C200,178 280,150 340,100 C370,75 390,40 400,20 C410,40 430,75 460,100 C520,150 600,178 700,180 Z"/>
+                    <path class="curve-line" d="M100,180 C200,178 280,150 340,100 C370,75 390,40 400,20 C410,40 430,75 460,100 C520,150 600,178 700,180"/>
+                    <path class="curve-reject" d="M620,180 C640,179 660,177 680,174 L700,180 Z"/>
+                    <path class="curve-reject" d="M100,180 C120,179 140,177 160,174 L100,180 Z"/>
+                    <path class="curve-alpha" d="M620,0 L620,180"/>
+                    <path class="curve-alpha" d="M180,0 L180,180"/>
+                </svg>
+            </div>
+            <div class="cs-hero-h0" style="left:46%">H₀</div>
+        </div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Results</h2>
+            <div class="cs-outcomes">
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">6 Hypotheses</div>
+                    <div class="cs-outcome-label">Tested across distinct organisational scenarios — commission, pricing, productivity, social media behaviour, quality control, and revenue</div>
+                </div>
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">Effect Size</div>
+                    <div class="cs-outcome-label">Cohen's d applied — statistical vs practical significance distinguished</div>
+                </div>
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">2 Non-parametric</div>
+                    <div class="cs-outcome-label">Normality violations detected via Shapiro-Wilk (p &lt; 0.001) — Mann-Whitney and Wilcoxon applied in place of parametric alternatives</div>
+                </div>
+            </div>
+            <div style="margin-top: 24px;">
+                <p>Applied across <strong>6 distinct organisational hypotheses</strong>, the framework correctly identified cases where apparent relationships did not survive rigorous testing — including a pricing comparison where the null was retained (p = 0.15) and a marketing engagement analysis where Shapiro-Wilk tests (p &lt; 0.001 for both groups) ruled out parametric methods entirely, triggering Mann-Whitney U and Wilcoxon signed-rank alternatives. Where nulls were rejected, effect sizes were calculated to assess practical significance alongside statistical significance.</p>
+                <p>Power analysis was conducted prospectively for the key tests, confirming adequate sample sizes to detect effects of the minimum practically meaningful magnitude. This matters because underpowered tests that fail to reject the null prove nothing — they are as misleading as spurious significant results, and far more common in practice.</p>
+            </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Technology Stack</h2>
+            <div class="cs-tech-grid">
+                <span class="cs-tech-pill">Python</span>
+                <span class="cs-tech-pill">SciPy</span>
+                <span class="cs-tech-pill">Statsmodels</span>
+                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">Matplotlib</span>
+                <span class="cs-tech-pill">Seaborn</span>
+            </div>
+        </section>
+
+        <div class="cs-cta">
+            <div class="cs-cta-text">Interested in this work or something similar?</div>
+            <div class="cs-cta-links">
+                <a href="/#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="/#projects" class="btn btn-secondary">View All Projects</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">&copy; 2026 RJ Data Voyage. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
+    </script>
+</body>
+</html>

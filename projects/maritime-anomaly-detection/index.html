@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q5YEF5Y9F2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maritime Engine Anomaly Detection System | RJ Data Voyage</title>
+    <meta name="description" content="Isolation Forest and PCA-based anomaly detection across 19,535 sensor readings from 6 operational channels, identifying 977 anomalous episodes before threshold alerts.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/maritime-anomaly-detection">
+    <meta property="og:title" content="Maritime Engine Anomaly Detection System | RJ Data Voyage">
+    <meta property="og:description" content="Isolation Forest and PCA-based anomaly detection across 19,535 sensor readings from 6 operational channels, identifying 977 anomalous episodes before threshold alerts.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0B1120;
+            --color-bg-elevated: #111827;
+            --color-bg-card: #151F32;
+            --color-surface: #1E293B;
+            --color-border: #1E3A5F;
+            --color-border-subtle: rgba(255,255,255,0.06);
+            --color-text-primary: #F1F5F9;
+            --color-text-secondary: #94A3B8;
+            --color-text-muted: #64748B;
+            --color-accent: #38BDF8;
+            --color-accent-dim: rgba(56, 189, 248, 0.12);
+            --color-success: #34D399;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+            --max-width: 860px;
+            --nav-height: 72px;
+            --radius: 10px;
+            --radius-sm: 6px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text-primary); line-height: 1.7; font-weight: 400; font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-height); background: rgba(11, 17, 32, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--color-border-subtle); }
+        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text-primary); text-decoration: none; }
+        .nav-logo span { color: var(--color-accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; transition: color var(--transition); }
+        .nav-links a:hover { color: var(--color-text-primary); }
+        .nav-toggle { display: none; background: none; border: none; color: var(--color-text-secondary); cursor: pointer; padding: 8px; }
+
+        /* Case study layout */
+        .case-study { max-width: var(--max-width); margin: 0 auto; padding: calc(var(--nav-height) + 48px) 24px 80px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 500; color: var(--color-text-muted); text-decoration: none; margin-bottom: 32px; transition: color var(--transition); }
+        .back-link:hover { color: var(--color-accent); }
+        .cs-domain { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--color-accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+        .cs-title { font-family: var(--font-display); font-size: 2.4rem; line-height: 1.2; margin-bottom: 20px; }
+        .cs-summary { font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 32px; max-width: 680px; }
+        .cs-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; padding: 24px 0; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); margin-bottom: 40px; }
+        .cs-meta-item { }
+        .cs-meta-label { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; color: var(--color-text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+        .cs-meta-value { font-size: 0.9rem; color: var(--color-text-primary); font-weight: 500; }
+
+        /* Sections */
+        .cs-section { margin-bottom: 48px; }
+        .cs-section-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-subtle); }
+        .cs-section p { color: var(--color-text-secondary); margin-bottom: 16px; font-size: 1rem; line-height: 1.8; }
+        .cs-section p strong { color: var(--color-text-primary); font-weight: 500; }
+
+        /* Tech pills */
+        .cs-tech-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .cs-tech-pill { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; padding: 6px 14px; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: 4px; color: var(--color-text-muted); letter-spacing: 0.02em; }
+
+        /* Outcome cards */
+        .cs-outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
+        .cs-outcome-card { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-radius: var(--radius); padding: 24px; }
+        .cs-outcome-value { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-accent); margin-bottom: 6px; }
+        .cs-outcome-label { font-size: 0.825rem; color: var(--color-text-muted); line-height: 1.5; }
+
+        /* Methodology steps */
+        .cs-steps { margin-top: 20px; }
+        .cs-step { display: flex; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle); }
+        .cs-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .cs-step-num { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--color-accent); min-width: 32px; padding-top: 2px; }
+        .cs-step-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
+        .cs-step-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.65; }
+
+        /* Hero */
+        .cs-hero { position: relative; width: 100%; height: 280px; border-radius: var(--radius); overflow: hidden; margin-bottom: 48px; background: linear-gradient(135deg, #0a1628 0%, #0a192f 50%, #0d1f3c 100%); }
+        .cs-hero-label { position: absolute; top: 24px; left: 32px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(56,189,248,0.4); }
+        .cs-hero-metric { position: absolute; top: 20px; right: 32px; font-family: var(--font-mono); font-size: 1.1rem; font-weight: 300; color: rgba(56,189,248,0.25); }
+        .cs-signal-line { position: absolute; bottom: 40%; left: 5%; right: 5%; height: 2px; background: rgba(56,189,248,0.15); }
+        .cs-signal-pulse { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: rgba(239,68,68,0.6); box-shadow: 0 0 12px rgba(239,68,68,0.4); animation: pulseDot 3s ease-in-out infinite; }
+        @keyframes pulseDot { 0%, 100% { opacity: 0.4; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        /* CTA */
+        .cs-cta { text-align: center; padding: 48px 0; border-top: 1px solid var(--color-border-subtle); margin-top: 48px; }
+        .cs-cta-text { font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 20px; }
+        .cs-cta-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; padding: 12px 28px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.875rem; text-decoration: none; transition: all var(--transition); }
+        .btn-primary { background: var(--color-accent); color: var(--color-bg); }
+        .btn-primary:hover { background: #7DD3FC; }
+        .btn-secondary { background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border-subtle); }
+        .btn-secondary:hover { color: var(--color-text-primary); border-color: var(--color-text-muted); }
+
+        /* Footer */
+        .site-footer { border-top: 1px solid var(--color-border-subtle); padding: 32px 24px; text-align: center; }
+        .site-footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .site-footer p { font-size: 0.8rem; color: var(--color-text-muted); }
+        .site-footer-links { display: flex; gap: 20px; }
+        .site-footer-links a { font-size: 0.8rem; color: var(--color-text-muted); text-decoration: none; transition: color var(--transition); }
+        .site-footer-links a:hover { color: var(--color-text-primary); }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: var(--nav-height); left: 0; right: 0; flex-direction: column; background: rgba(11, 17, 32, 0.95); padding: 16px 24px; gap: 16px; border-bottom: 1px solid var(--color-border-subtle); }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+            .cs-title { font-size: 1.8rem; }
+            .cs-meta { grid-template-columns: repeat(2, 1fr); }
+            .cs-outcomes { grid-template-columns: 1fr; }
+            .cs-hero { height: 220px; }
+            .site-footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#expertise">Expertise</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="case-study">
+        <a href="/#projects" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Back to Projects
+        </a>
+
+        <div class="cs-domain">Anomaly Detection / Operations</div>
+        <h1 class="cs-title">Maritime Engine Anomaly Detection System</h1>
+        <p class="cs-summary">An intelligent monitoring system that detects subtle degradation patterns in ship engine operational data before conventional rule-based alerts would fire, reducing the risk of costly unplanned downtime.</p>
+
+        <div class="cs-meta">
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Type</div>
+                <div class="cs-meta-value">Anomaly Detection</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Domain</div>
+                <div class="cs-meta-value">Maritime Operations</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Methods</div>
+                <div class="cs-meta-value">Isolation Forest, PCA</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Status</div>
+                <div class="cs-meta-value">Completed</div>
+            </div>
+        </div>
+
+        <div class="cs-hero">
+            <div class="cs-hero-label">ANOMALY DETECTION</div>
+            <div class="cs-hero-metric">ISOLATION FOREST</div>
+            <div class="cs-signal-line"></div>
+            <div class="cs-signal-pulse" style="top:35%;left:25%;animation-delay:0s"></div>
+            <div class="cs-signal-pulse" style="top:42%;left:55%;animation-delay:1s"></div>
+            <div class="cs-signal-pulse" style="top:38%;left:78%;animation-delay:2s"></div>
+        </div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Challenge</h2>
+            <p>Maritime engine systems generate continuous streams of operational data across dozens of sensors. Conventional monitoring relies on static thresholds, triggering alerts only when individual readings exceed pre-set limits.</p>
+            <p>Threshold-based monitoring misses gradual degradation. A slow drift in the relationship between sensor readings can indicate developing problems long before any single metric breaches a hard limit. By the time a threshold alert fires, the damage is often significant.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Approach</h2>
+            <div class="cs-steps">
+                <div class="cs-step">
+                    <div class="cs-step-num">01</div>
+                    <div>
+                        <div class="cs-step-title">Multivariate Data Exploration</div>
+                        <div class="cs-step-desc">Explored the sensor dataset to understand normal operational patterns, inter-variable correlations, and natural variation ranges under healthy operating conditions.</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">02</div>
+                    <div>
+                        <div class="cs-step-title">Feature Engineering</div>
+                        <div class="cs-step-desc">Engineered features capturing temporal dynamics and cross-sensor relationships. Applied normalisation and PCA to create a compact representation preserving anomalous variance.</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">03</div>
+                    <div>
+                        <div class="cs-step-title">Anomaly Detection Modelling</div>
+                        <div class="cs-step-desc">Applied Isolation Forest as the primary detection method, complemented with statistical methods for interpretable cross-validation of findings.</div>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">04</div>
+                    <div>
+                        <div class="cs-step-title">Analysis and Reporting</div>
+                        <div class="cs-step-desc">Produced a detailed analytical report characterising detected anomalies, mapping them to potential operational causes, and recommending monitoring improvements.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Results</h2>
+            <div class="cs-outcomes">
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">977</div>
+                    <div class="cs-outcome-label">Anomalous episodes detected across the operational dataset</div>
+                </div>
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">19,535</div>
+                    <div class="cs-outcome-label">Sensor readings analysed across 6 operational channels</div>
+                </div>
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">6 &rarr; 2</div>
+                    <div class="cs-outcome-label">PCA dimensionality reduction while preserving anomalous variance</div>
+                </div>
+            </div>
+            <div style="margin-top: 24px;">
+                <p>Analysed <strong>19,535 sensor readings</strong> across six operational channels, applying PCA to reduce the feature space from <strong>6 dimensions to 2</strong> while preserving the variance most indicative of anomalous behaviour. Isolation Forest then identified <strong>977 anomalous episodes</strong> - subtle multi-sensor degradation patterns that single-threshold monitoring systems miss entirely.</p>
+                <p>By analysing cross-sensor relationships rather than individual channel limits, the system detects anomalous behaviour during the gradual drift phase - before individual readings breach hard limits. In operational environments where unplanned engine failure carries significant cost and safety consequences, the difference between threshold-based alerts and pattern-based early detection is the difference between reactive repair and planned intervention.</p>
+                <p>The system was designed for interpretability: detected anomalies were mapped to potential operational causes with supporting analytical evidence, enabling engineering teams to investigate and act rather than simply receive opaque alerts.</p>
+            </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Technology Stack</h2>
+            <div class="cs-tech-grid">
+                <span class="cs-tech-pill">Python</span>
+                <span class="cs-tech-pill">Isolation Forest</span>
+                <span class="cs-tech-pill">PCA</span>
+                <span class="cs-tech-pill">Scikit-learn</span>
+                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">Matplotlib</span>
+                <span class="cs-tech-pill">Seaborn</span>
+            </div>
+        </section>
+
+        <div class="cs-cta">
+            <div class="cs-cta-text">Interested in this work or something similar?</div>
+            <div class="cs-cta-links">
+                <a href="/#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="/#projects" class="btn btn-secondary">View All Projects</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p>&copy; 2026 RJ Data Voyage. All rights reserved.</p>
+            <div class="site-footer-links">
+                <a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
