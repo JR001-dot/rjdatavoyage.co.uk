@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJ Data Voyage | Data Science &amp; Analytics Consulting - London</title>
+    <meta name="description" content="Data science consulting specialising in machine learning, NLP, and financial analytics. Turning complex data into strategic insight. Based in London, UK.">
+    <meta name="keywords" content="data scientist London, machine learning consultant, NLP specialist, financial analytics, Python ML engineer">
+    <meta name="author" content="RJ Data Voyage">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="RJ Data Voyage | Data Science &amp; Analytics Consulting">
+    <meta property="og:description" content="Machine learning, NLP, and financial analytics consulting. Turning complex data into strategic insight.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rjdatavoyage.co.uk/">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RJ Data Voyage | Data Science &amp; Analytics Consulting">
+    <meta name="twitter:description" content="Machine learning, NLP, and financial analytics consulting based in London.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://rjdatavoyage.co.uk/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           CSS VARIABLES & RESET
+           ======================================== */
+        :root {
+            --color-bg: #0B1120;
+            --color-bg-elevated: #111827;
+            --color-bg-card: #151F32;
+            --color-bg-card-hover: #1A2540;
+            --color-surface: #1E293B;
+            --color-border: #1E3A5F;
+            --color-border-subtle: rgba(255,255,255,0.06);
+            --color-text-primary: #F1F5F9;
+            --color-text-secondary: #94A3B8;
+            --color-text-muted: #64748B;
+            --color-accent: #38BDF8;
+            --color-accent-dim: rgba(56, 189, 248, 0.12);
+            --color-accent-glow: rgba(56, 189, 248, 0.08);
+            --color-success: #34D399;
+            --color-warm: #F59E0B;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+            --max-width: 1120px;
+            --nav-height: 72px;
+            --radius: 10px;
+            --radius-sm: 6px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--nav-height) + 24px);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: 1.7;
+            font-weight: 400;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: var(--nav-height);
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border-subtle);
+            transition: background var(--transition);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-logo span { color: var(--color-accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--color-accent);
+            transition: width var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--color-text-primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--color-text-secondary);
+        }
+
+        .nav-toggle svg { display: block; }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: calc(var(--nav-height) + 48px) 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.2s forwards;
+        }
+
+        .hero-label::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--color-accent);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            max-width: 720px;
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.35s forwards;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--color-accent);
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            max-width: 560px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.5s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.65s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover {
+            background: #60CFFE;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            color: var(--color-text-primary);
+            border-color: var(--color-text-muted);
+            background: var(--color-bg-elevated);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 64px;
+            padding-top: 40px;
+            border-top: 1px solid var(--color-border-subtle);
+            opacity: 0;
+            animation: fadeUp 0.8s 0.8s forwards;
+        }
+
+        .hero-stat-value {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            color: var(--color-text-primary);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-top: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ========================================
+           SECTIONS - GENERAL
+           ======================================== */
+        .section {
+            padding: 100px 24px;
+            position: relative;
+        }
+
+        .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+            margin-top: 16px;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* Divider between sections */
+        .section + .section::before {
+            content: '';
+            display: block;
+            width: 100%;
+            max-width: var(--max-width);
+            height: 1px;
+            background: var(--color-border-subtle);
+            margin: 0 auto;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* ========================================
+           ABOUT SECTION
+           ======================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.025rem;
+        }
+
+        .about-text p strong {
+            color: var(--color-text-primary);
+            font-weight: 500;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .about-highlight-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: all var(--transition);
+        }
+
+        .about-highlight-card:hover {
+            border-color: var(--color-border);
+            background: var(--color-bg-card-hover);
+        }
+
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--color-accent-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            color: var(--color-accent);
+        }
+
+        .highlight-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .highlight-desc {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           FEATURED PROJECTS
+           ======================================== */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all var(--transition);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-border);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-domain {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .project-problem {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-outcome {
+            font-size: 0.875rem;
+            color: var(--color-success);
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-outcome svg {
+            flex-shrink: 0;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: 4px;
+            color: var(--color-text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: gap var(--transition);
+        }
+
+        .project-link:hover { gap: 10px; }
+
+        .project-visual {
+            background: var(--color-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 320px;
+            overflow: hidden;
+        }
+
+        /* Abstract geometric visuals per project */
+        .project-visual-inner {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0;
+        }
+
+        .pv-finance {
+            background:
+                linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                var(--color-surface);
+        }
+
+        .pv-finance::before {
+            content: '';
+            position: absolute;
+            inset: 40px;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: var(--radius);
+        }
+
+        .pv-finance::after {
+            content: 'G-SIB RISK ASSESSMENT';
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: rgba(56, 189, 248, 0.3);
+            position: absolute;
+            top: 56px;
+            left: 56px;
+        }
+
+        .pv-nlp {
+            background:
+                linear-gradient(135deg, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
+                var(--color-surface);
+        }
+
+        .pv-nlp::before {
+            content: '';
+            position: absolute;
+            inset: 40px;
+            border: 1px solid rgba(52, 211, 153, 0.12);
+            border-radius: var(--radius);
+        }
+
+        .pv-nlp::after {
+            content: 'SENTIMENT CLASSIFICATION';
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: rgba(52, 211, 153, 0.3);
+            position: absolute;
+            top: 56px;
+            left: 56px;
+        }
+
+        .pv-cluster {
+            background:
+                linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                var(--color-surface);
+        }
+
+        .pv-cluster::before {
+            content: '';
+            position: absolute;
+            inset: 40px;
+            border: 1px solid rgba(245, 158, 11, 0.12);
+            border-radius: var(--radius);
+        }
+
+        .pv-cluster::after {
+            content: 'CUSTOMER SEGMENTATION';
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: rgba(245, 158, 11, 0.3);
+            position: absolute;
+            top: 56px;
+            left: 56px;
+        }
+
+        .pv-anomaly {
+            background:
+                linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, transparent 50%),
+                var(--color-surface);
+        }
+
+        .pv-anomaly::before {
+            content: '';
+            position: absolute;
+            inset: 40px;
+            border: 1px solid rgba(239, 68, 68, 0.12);
+            border-radius: var(--radius);
+        }
+
+        .pv-anomaly::after {
+            content: 'ANOMALY DETECTION';
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: rgba(239, 68, 68, 0.3);
+            position: absolute;
+            top: 56px;
+            left: 56px;
+        }
+
+        /* Decorative data dots */
+        .data-dots {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            display: grid;
+            grid-template-columns: repeat(6, 8px);
+            gap: 6px;
+        }
+
+        .data-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            opacity: 0.25;
+        }
+
+        /* ========================================
+           ADDITIONAL PROJECTS (COMPACT GRID)
+           ======================================== */
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+        }
+
+        .additional-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .additional-card:hover {
+            border-color: var(--color-border);
+            background: var(--color-bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .additional-card-domain {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .additional-card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .additional-card-desc {
+            font-size: 0.825rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           EXPERTISE SECTION
+           ======================================== */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .expertise-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: all var(--transition);
+        }
+
+        .expertise-card:hover {
+            border-color: var(--color-border);
+        }
+
+        .expertise-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 1.2rem;
+        }
+
+        .expertise-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .expertise-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            line-height: 1.65;
+        }
+
+        .ei-ml { background: var(--color-accent-dim); color: var(--color-accent); }
+        .ei-nlp { background: rgba(52, 211, 153, 0.12); color: #34D399; }
+        .ei-ts { background: rgba(245, 158, 11, 0.12); color: #F59E0B; }
+        .ei-viz { background: rgba(168, 85, 247, 0.12); color: #A855F7; }
+        .ei-stats { background: rgba(239, 68, 68, 0.12); color: #EF4444; }
+        .ei-ops { background: rgba(20, 184, 166, 0.12); color: #14B8A6; }
+
+        /* ========================================
+           CONTACT SECTION
+           ======================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .contact-text p {
+            color: var(--color-text-secondary);
+            margin-bottom: 28px;
+            font-size: 1.025rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            transition: color var(--transition);
+        }
+
+        .contact-link-item:hover {
+            color: var(--color-accent);
+        }
+
+        .contact-link-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            flex-shrink: 0;
+            transition: all var(--transition);
+        }
+
+        .contact-link-item:hover .contact-link-icon {
+            background: var(--color-accent-dim);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .contact-form {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius);
+            padding: 36px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.825rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-sm);
+            color: var(--color-text-primary);
+            transition: border-color var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            padding: 48px 24px;
+            border-top: 1px solid var(--color-border-subtle);
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            font-size: 0.825rem;
+            color: var(--color-text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.825rem;
+            transition: color var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 900px) {
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-visual {
+                min-height: 200px;
+                order: -1;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .additional-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-stats {
+                gap: 32px;
+            }
+        }
+
+
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+        }
+        .project-card:hover .project-visual img {
+            opacity: 1;
+        }
+        .project-visual .pv-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(11,17,32,0.3) 0%, rgba(11,17,32,0.1) 100%);
+            z-index: 1;
+        }
+        .project-visual .data-dots {
+            z-index: 2;
+        }
+
+
+        /* Metric badges on project cards */
+        .project-metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.03em;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            color: rgba(56, 189, 248, 0.85);
+            margin-bottom: 12px;
+        }
+        .project-metric .metric-value {
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: #38BDF8;
+        }
+        .project-metric .metric-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.4);
+        }
+
+        /* Additional card metric */
+        .additional-metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: rgba(56, 189, 248, 0.7);
+            margin-top: 8px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(56, 189, 248, 0.06);
+            border: 1px solid rgba(56, 189, 248, 0.1);
+        }
+        .additional-metric strong {
+            color: #38BDF8;
+            font-weight: 600;
+        }
+
+        /* Scroll counter section */
+        .impact-counters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+            padding-top: 48px;
+            border-top: 1px solid var(--color-border-subtle);
+        }
+        .impact-counter {
+            text-align: center;
+        }
+        .impact-counter-value {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #38BDF8 0%, #34D399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+        .impact-counter-label {
+            font-size: 0.82rem;
+            color: var(--color-text-muted);
+            margin-top: 6px;
+            line-height: 1.3;
+        }
+        @media (max-width: 768px) {
+            .impact-counters {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px 16px;
+            }
+            .impact-counter-value {
+                font-size: 2rem;
+            }
+        }
+
+
+        @media (max-width: 640px) {
+            :root {
+                --nav-height: 64px;
+            }
+
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: var(--color-bg-elevated);
+                border-bottom: 1px solid var(--color-border-subtle);
+                padding: 20px 24px;
+                gap: 20px;
+            }
+            .nav-toggle { display: block; }
+
+            .hero {
+                min-height: auto;
+                padding: calc(var(--nav-height) + 40px) 20px 60px;
+            }
+
+            .hero h1 { font-size: 2rem; }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-stat {
+                display: flex;
+                align-items: baseline;
+                gap: 12px;
+            }
+
+            .section {
+                padding: 64px 20px;
+            }
+
+            .project-content {
+                padding: 28px;
+            }
+
+            .expertise-grid,
+            .additional-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========================================
+           PRINT STYLES
+           ======================================== */
+        @media print {
+            .nav, .hero::before, .hero::after { display: none; }
+            body { background: white; color: black; }
+        }
+    </style>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q5YEF5Y9F2');
+    </script>
+</head>
+
+<body>
+
+    <!-- ==========================================
+         NAVIGATION
+         ========================================== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         HERO
+         ========================================== -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-label">Data Science &amp; Analytics Consulting</div>
+            <h1>Turning complex data into <em>strategic insight</em></h1>
+            <p class="hero-description">
+                I build machine learning systems, NLP pipelines, and analytical tools that help organisations make better decisions. Specialising in financial analytics, risk assessment, and applied AI.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">
+                    View Projects
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7M5 5h7v7"/></svg>
+                </a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">14+</div>
+                    <div class="hero-stat-label">Years in Technology</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">Cambridge</div>
+                    <div class="hero-stat-label">Level 7 Data Science (2025)</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">London</div>
+                    <div class="hero-stat-label">Based in the UK</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         ABOUT
+         ========================================== -->
+    <section id="about" class="section fade-in">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">About</div>
+                <h2 class="section-title">Data science built on industry experience</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        <strong>I spent over 14 years as a Senior Test and QA Leader at Sky</strong>, where I led cross-functional teams, optimised complex technical processes, and delivered a 25% reduction in resource demand through systematic quality engineering.
+                    </p>
+                    <p>
+                        That experience taught me how large organisations actually work, where data gets lost, where decisions get made on instinct rather than evidence, and where machine learning can genuinely move the needle.
+                    </p>
+                    <p>
+                        In 2025, I completed the <strong>University of Cambridge Data Science Career Accelerator</strong> (Level 7 Masters-level certificate), formalising the analytical and engineering skills I now apply through RJ Data Voyage. My capstone project, a prototype G-SIB Risk Assessment System, combined advanced NLP with financial metrics extraction to demonstrate how AI can support regulatory analysis at scale.
+                    </p>
+                    <p>
+                        I work with organisations that need practical, production-ready data solutions rather than slide decks and theory. If the problem involves unstructured text, complex classification, time-series forecasting, or turning messy data into clear strategic insight, I can help.
+                    </p>
+                </div>
+                <div class="about-highlights">
+                    <div class="about-highlight-card">
+                        <div class="highlight-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </div>
+                        <div class="highlight-title">Industry-Tested Approach</div>
+                        <div class="highlight-desc">14+ years leading technical teams at Sky, delivering under real-world constraints with measurable outcomes.</div>
+                    </div>
+                    <div class="about-highlight-card">
+                        <div class="highlight-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        </div>
+                        <div class="highlight-title">Cambridge-Qualified</div>
+                        <div class="highlight-desc">Level 7 Data Science certificate from the University of Cambridge (2025). Rigorous academic foundation in ML, NLP, and statistical methods.</div>
+                    </div>
+                    <div class="about-highlight-card">
+                        <div class="highlight-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="highlight-title">Full-Stack Data Science</div>
+                        <div class="highlight-desc">From data ingestion and NLP to model deployment and interactive dashboards. End-to-end delivery, not just notebooks.</div>
+                    </div>
+                </div>
+            </div>
+                <!-- Impact counters -->
+                <div class="impact-counters">
+                    <div class="impact-counter">
+                        <div class="impact-counter-value" data-target="25" data-suffix="%">0%</div>
+                        <div class="impact-counter-label">Resource demand reduction at Sky</div>
+                    </div>
+                    <div class="impact-counter">
+                        <div class="impact-counter-value" data-target="81" data-suffix="">0</div>
+                        <div class="impact-counter-label">Quarterly reports analysed (G-SIB capstone)</div>
+                    </div>
+                    <div class="impact-counter">
+                        <div class="impact-counter-value" data-target="12" data-suffix="">0</div>
+                        <div class="impact-counter-label">End-to-end data science projects</div>
+                    </div>
+                    <div class="impact-counter">
+                        <div class="impact-counter-value" data-target="14" data-suffix="+">0</div>
+                        <div class="impact-counter-label">Years in technology leadership</div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FEATURED PROJECTS
+         ========================================== -->
+    <section id="projects" class="section fade-in">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">Featured Work</div>
+                <h2 class="section-title">Selected projects</h2>
+                <p class="section-subtitle">
+                    Each project addresses a genuine business or regulatory challenge, built to production-ready standards with measurable outcomes.
+                </p>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- PROJECT 1: G-SIB Risk Assessment -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <div class="project-domain">Financial Regulation / NLP</div>
+                        <h3 class="project-title">G-SIB Risk Assessment System</h3>
+                        <div class="project-metric"><span class="metric-value">81</span> quarterly reports analysed <span class="metric-dot"></span> <span class="metric-value">3</span> G-SIBs</div>
+                        <p class="project-problem">
+                            Regulators face a growing challenge: monitoring systemic bank risks at scale when the primary data sources are unstructured financial reports and earnings transcripts. Manual analysis is slow, inconsistent, and prone to oversight.
+                        </p>
+                        <div class="project-outcome">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                            Analysed 81 quarterly reports across 3 G-SIBs (2023-2025) with automated NLP pipeline
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">FinBERT</span>
+                            <span class="tech-tag">BERTopic</span>
+                            <span class="tech-tag">ARIMA</span>
+                            <span class="tech-tag">VADER</span>
+                            <span class="tech-tag">GPT-2</span>
+                        </div>
+                        <a href="/projects/gsib-risk-assessment" class="project-link">
+                            View Case Study
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7M5 5h7v7"/></svg>
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=80" alt="Financial data analysis and risk assessment">
+                        <div class="pv-overlay"></div>
+                        <div class="data-dots">
+                            <span style="background:#38BDF8"></span><span style="background:#38BDF8"></span><span style="background:#1E293B"></span><span style="background:#38BDF8"></span><span style="background:#1E293B"></span><span style="background:#38BDF8"></span>
+                            <span style="background:#1E293B"></span><span style="background:#38BDF8"></span><span style="background:#38BDF8"></span><span style="background:#1E293B"></span><span style="background:#38BDF8"></span><span style="background:#1E293B"></span>
+                            <span style="background:#38BDF8"></span><span style="background:#1E293B"></span><span style="background:#38BDF8"></span><span style="background:#38BDF8"></span><span style="background:#38BDF8"></span><span style="background:#1E293B"></span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 2: NLP Sentiment Analysis -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <div class="project-domain">Natural Language Processing</div>
+                        <h3 class="project-title">Customer Sentiment Classification Engine</h3>
+                        <div class="project-metric"><span class="metric-value">27,586</span> reviews analysed <span class="metric-dot"></span> <span class="metric-value">92%</span> accuracy</div>
+                        <p class="project-problem">
+                            A wellness centre was drowning in unstructured customer feedback with no systematic way to identify service improvement opportunities. Critical signals were buried in free-text reviews, unread and unanalysed.
+                        </p>
+                        <div class="project-outcome">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                            92% classification accuracy with BERT-based model, surfacing actionable service insights
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">BERT</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">NLTK</span>
+                            <span class="tech-tag">Transformers</span>
+                        </div>
+                        <a href="/projects/sentiment-analysis" class="project-link">
+                            View Case Study
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7M5 5h7v7"/></svg>
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&q=80" alt="Natural language processing and text analysis">
+                        <div class="pv-overlay"></div>
+                        <div class="data-dots">
+                            <span style="background:#34D399"></span><span style="background:#1E293B"></span><span style="background:#34D399"></span><span style="background:#34D399"></span><span style="background:#1E293B"></span><span style="background:#34D399"></span>
+                            <span style="background:#34D399"></span><span style="background:#34D399"></span><span style="background:#1E293B"></span><span style="background:#34D399"></span><span style="background:#34D399"></span><span style="background:#1E293B"></span>
+                            <span style="background:#1E293B"></span><span style="background:#34D399"></span><span style="background:#34D399"></span><span style="background:#1E293B"></span><span style="background:#34D399"></span><span style="background:#34D399"></span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 3: Customer Segmentation -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <div class="project-domain">Business Analytics / ML</div>
+                        <h3 class="project-title">Customer Behavioural Segmentation System</h3>
+                        <div class="project-metric"><span class="metric-value">5</span> distinct clusters <span class="metric-dot"></span> K-Means + PCA</div>
+                        <p class="project-problem">
+                            Without data-driven segmentation, marketing teams rely on intuition to target customers. This leads to wasted budget, generic campaigns, and missed engagement opportunities across distinct customer clusters.
+                        </p>
+                        <div class="project-outcome">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                            Identified distinct behavioural clusters enabling targeted marketing strategies
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">K-Means</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">PCA</span>
+                        </div>
+                        <a href="/projects/customer-segmentation" class="project-link">
+                            View Case Study
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7M5 5h7v7"/></svg>
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80" alt="Data-driven customer segmentation analytics">
+                        <div class="pv-overlay"></div>
+                        <div class="data-dots">
+                            <span style="background:#F59E0B"></span><span style="background:#F59E0B"></span><span style="background:#1E293B"></span><span style="background:#1E293B"></span><span style="background:#F59E0B"></span><span style="background:#1E293B"></span>
+                            <span style="background:#1E293B"></span><span style="background:#F59E0B"></span><span style="background:#F59E0B"></span><span style="background:#F59E0B"></span><span style="background:#1E293B"></span><span style="background:#F59E0B"></span>
+                            <span style="background:#F59E0B"></span><span style="background:#1E293B"></span><span style="background:#1E293B"></span><span style="background:#F59E0B"></span><span style="background:#F59E0B"></span><span style="background:#1E293B"></span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 4: Anomaly Detection -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <div class="project-domain">Anomaly Detection / Operations</div>
+                        <h3 class="project-title">Maritime Engine Anomaly Detection System</h3>
+                        <div class="project-metric"><span class="metric-value">6</span> sensor channels <span class="metric-dot"></span> Isolation Forest + PCA</div>
+                        <p class="project-problem">
+                            Conventional monitoring systems miss subtle degradation patterns in operational machinery. By the time rule-based alerts fire, the damage is often already costly. Early, intelligent detection is the gap.
+                        </p>
+                        <div class="project-outcome">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                            Automated detection of anomalous engine behaviour using statistical and ML methods
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Isolation Forest</span>
+                            <span class="tech-tag">PCA</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                        <a href="/projects/maritime-anomaly-detection" class="project-link">
+                            View Case Study
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7M5 5h7v7"/></svg>
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <img src="https://images.unsplash.com/photo-1645620073695-70bedb97066b?w=800&h=600&fit=crop&q=80" alt="Maritime vessel engine monitoring and anomaly detection">
+                        <div class="pv-overlay"></div>
+                        <div class="data-dots">
+                            <span style="background:#EF4444"></span><span style="background:#1E293B"></span><span style="background:#1E293B"></span><span style="background:#EF4444"></span><span style="background:#1E293B"></span><span style="background:#1E293B"></span>
+                            <span style="background:#1E293B"></span><span style="background:#1E293B"></span><span style="background:#EF4444"></span><span style="background:#1E293B"></span><span style="background:#1E293B"></span><span style="background:#EF4444"></span>
+                            <span style="background:#1E293B"></span><span style="background:#EF4444"></span><span style="background:#1E293B"></span><span style="background:#1E293B"></span><span style="background:#EF4444"></span><span style="background:#1E293B"></span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Additional Projects (compact) -->
+            <div style="margin-top: 72px;">
+                <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 8px;">Additional Projects</h3>
+                <p style="color: var(--color-text-muted); font-size: 0.925rem; margin-bottom: 0;">Further work spanning forecasting, deep learning, predictive analytics, and QA engineering.</p>
+            </div>
+            <div class="additional-grid">
+                <a href="/projects/private-document-ai" class="additional-card">
+                    <div class="additional-card-domain">Applied AI / RAG / Privacy</div>
+                    <div class="additional-card-title">Private Local Documents AI</div>
+                    <div class="additional-card-desc">Privacy-first document analysis system running a local LLM on GPU, with three-tier query engine, RAG semantic search, and six specialised analytical routes. Delivered to client with full documentation.</div>
+                    <div class="additional-metric"><strong>25+</strong> file formats &bull; zero cloud exposure</div>
+                </a>
+                <a href="/projects/time-series-forecasting" class="additional-card">
+                    <div class="additional-card-domain">Forecasting</div>
+                    <div class="additional-card-title">Demand Forecasting with ARIMA and Prophet</div>
+                    <div class="additional-card-desc">Achieved 15% improvement in forecast accuracy over baseline, giving retail operations a tighter planning window for inventory and staffing decisions.</div>
+                    <div class="additional-metric"><strong>+15%</strong> forecast accuracy</div>
+                </a>
+                <a href="/projects/student-dropout-prediction" class="additional-card">
+                    <div class="additional-card-domain">Predictive Analytics</div>
+                    <div class="additional-card-title">Student Retention Prediction System</div>
+                    <div class="additional-card-desc">XGBoost model with SHAP explainability identified the specific factors driving dropout risk, enabling institutions to target interventions at the students most likely to benefit.</div>
+                    <div class="additional-metric"><strong>XGBoost</strong> + SHAP explainability</div>
+                </a>
+                <a href="/projects/crime-forecasting" class="additional-card">
+                    <div class="additional-card-domain">Time Series / Public Safety</div>
+                    <div class="additional-card-title">Baltimore Crime Pattern Forecasting</div>
+                    <div class="additional-card-desc">SARIMA model identified temporal and geographic patterns in incident data, supporting evidence-based resource allocation over reactive deployment.</div>
+                    <div class="additional-metric"><strong>SARIMA</strong> time series model</div>
+                </a>
+                <a href="/projects/bank-churn-prediction" class="additional-card">
+                    <div class="additional-card-domain">Financial Services</div>
+                    <div class="additional-card-title">Bank Customer Churn Prediction</div>
+                    <div class="additional-card-desc">Classification models across 10,000+ customer records surfaced the behavioural signals that precede account closure, enabling proactive retention outreach before customers disengage.</div>
+                    <div class="additional-metric"><strong>10,000+</strong> customer records</div>
+                </a>
+                <a href="/projects/statistical-hypothesis-testing" class="additional-card">
+                    <div class="additional-card-domain">Statistical Analysis</div>
+                    <div class="additional-card-title">Statistical Hypothesis Testing Framework</div>
+                    <div class="additional-card-desc">Rigorous testing framework that distinguishes genuine effects from noise, applied to organisational data where confident decision-making depends on statistical validity.</div>
+                    <div class="additional-metric"><strong>p &lt; 0.05</strong> significance testing</div>
+                </a>
+                <a href="/projects/neural-network-architecture" class="additional-card">
+                    <div class="additional-card-domain">Deep Learning</div>
+                    <div class="additional-card-title">Neural Network Design &amp; Hyperparameter Optimisation</div>
+                    <div class="additional-card-desc">TensorFlow/Keras neural network trained on the UCI Spambase benchmark (4,601 emails, 57 features), with systematic grid search over epoch and batch-size configurations achieving 94.6% test accuracy.</div>
+                    <div class="additional-metric"><strong>94.6%</strong> test accuracy</div>
+                </a>
+                <a href="/projects/pdf-test-harness" class="additional-card">
+                    <div class="additional-card-domain">QA Engineering / Test Automation</div>
+                    <div class="additional-card-title">Automated PDF Compliance Test Harness</div>
+                    <div class="additional-card-desc">Multi-layer validation framework that programmatically tests 300 PDF documents against structural and content compliance rules — 100% true positive and true negative rates across a controlled ground-truth corpus, with per-file failure diagnosis and Excel reporting.</div>
+                    <div class="additional-metric"><strong>100%</strong> true positive &amp; negative rate</div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         EXPERTISE
+         ========================================== -->
+    <section id="expertise" class="section fade-in">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">Expertise</div>
+                <h2 class="section-title">Core competencies</h2>
+                <p class="section-subtitle">
+                    Six areas where I deliver the most value, each backed by project work and production experience.
+                </p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon ei-ml">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="3"/><path d="M11 2v4M11 16v4M2 11h4M16 11h4M4.93 4.93l2.83 2.83M14.24 14.24l2.83 2.83M4.93 17.07l2.83-2.83M14.24 7.76l2.83-2.83"/></svg>
+                    </div>
+                    <h3>Machine Learning</h3>
+                    <p>Supervised and unsupervised methods including XGBoost, Random Forests, SVM, ensemble techniques, and clustering (K-Means, DBSCAN, HDBSCAN). End-to-end pipeline development.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon ei-nlp">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    </div>
+                    <h3>Natural Language Processing</h3>
+                    <p>Transformer-based models (FinBERT, BERT, GPT-2), topic modelling (BERTopic), sentiment analysis, text classification, and domain-specific NLP for financial and customer data.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon ei-ts">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l4-4 4 4 4-8 4 4"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+                    </div>
+                    <h3>Forecasting and Time Series</h3>
+                    <p>ARIMA/SARIMA, Prophet, LSTM networks, and decomposition techniques. Applied to demand planning, financial projections, and operational forecasting.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon ei-viz">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3>Data Visualisation and BI</h3>
+                    <p>Interactive dashboards and visual analytics using Matplotlib, Seaborn, Plotly, and Power BI. Clear, decision-ready presentation of complex findings.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon ei-stats">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                    </div>
+                    <h3>Statistical Analysis</h3>
+                    <p>Hypothesis testing (parametric and non-parametric), correlation analysis, causal inference, model validation, and experiment design including A/B testing frameworks.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon ei-ops">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Anomaly Detection</h3>
+                    <p>Isolation Forests, autoencoders, and statistical methods for detecting irregular patterns in operational and financial data. Real-time and batch processing approaches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         TESTIMONIAL
+         ========================================== -->
+    <section class="section fade-in" style="padding-top: 0;">
+        <div class="section-inner">
+            <blockquote style="border-left: 3px solid var(--color-accent); padding: 1.5rem 2rem; margin: 0; background: rgba(255,255,255,0.03); border-radius: 0 8px 8px 0;">
+                <p style="font-size: 1.05rem; line-height: 1.75; color: var(--color-text); font-style: italic; margin: 0 0 1rem 0;">
+                    "Raquel consistently demonstrated outstanding leadership throughout our final project in the Cambridge University Data Science Program. She distinguished herself by proposing innovative solutions, guiding the team toward consensus, and ensuring decisions were implemented effectively. She combines strong technical expertise with sound judgment, and excels at aligning teams around clear objectives."
+                </p>
+                <cite style="font-style: normal; font-size: 0.9rem; color: var(--color-text-muted);">
+                    S.S. &mdash; Business Information Analyst &bull; Cambridge Data Science Career Accelerator cohort
+                </cite>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CONTACT
+         ========================================== -->
+    <section id="contact" class="section fade-in">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">Contact</div>
+                <h2 class="section-title">Let's work together</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-text">
+                    <p>
+                        I am open to consulting engagements and contract roles in data science, analytics engineering, and applied ML. If you have a complex data challenge or a team that could use senior analytical capability, I would be glad to hear from you.
+                    </p>
+                    <p>
+                        Based in London, available for remote and hybrid work across the UK.
+                    </p>
+                    <div class="contact-links">
+                        <a href="https://github.com/JR001-dot" target="_blank" rel="noopener" class="contact-link-item">
+                            <div class="contact-link-icon">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </div>
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener" class="contact-link-item">
+                            <div class="contact-link-icon">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </div>
+                            LinkedIn
+                        </a>
+                        <div class="contact-link-item" style="cursor: default;">
+                            <div class="contact-link-icon">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            London, United Kingdom
+                        </div>
+                    </div>
+                </div>
+                <form id="contactForm" class="contact-form" action="https://formspree.io/f/xanogbqe" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="you@company.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Enquiry Type</label>
+                        <select id="type" name="type">
+                            <option value="">Select an option</option>
+                            <option value="consulting">Consulting engagement</option>
+                            <option value="contract">Contract role</option>
+                            <option value="permanent">Permanent position</option>
+                            <option value="collaboration">Collaboration / other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="Tell me about your project or role..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit">
+                        Send Message
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><path d="M22 2L15 22l-4-9-9-4z"/></svg>
+                    </button>
+                <input type="hidden" name="_subject" value="New Contact Form Submission - RJ Data Voyage">
+                        <input type="hidden" name="_cc" value="info@rjdatavoyage.co.uk">
+                    </form>
+    <div id="formSuccess" style="display:none; margin-top: 20px; padding: 16px; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); border-radius: var(--radius); color: var(--color-success); font-size: 0.9rem; text-align: center;">
+        Message sent successfully. I will respond to your enquiry promptly.
+    </div>
+    <div id="formError" style="display:none; margin-top: 20px; padding: 16px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: var(--radius); color: #EF4444; font-size: 0.9rem; text-align: center;">
+        Something went wrong. Please try again or email directly.
+    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">&copy; 2026 RJ Data Voyage. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         SCRIPTS
+         ========================================== -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Close mobile nav on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+
+        // Smooth scroll offset for nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+
+
+
+    <script>
+        const form = document.getElementById('contactForm');
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const btn = form.querySelector('button[type="submit"]');
+                const origText = btn.textContent;
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                try {
+                    const resp = await fetch('https://formspree.io/f/xanogbqe', {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (resp.ok) {
+                        form.reset();
+                        btn.textContent = 'Sent successfully!';
+                        btn.style.background = '#34D399';
+                        setTimeout(() => { btn.textContent = origText; btn.disabled = false; btn.style.background = ''; }, 4000);
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (err) {
+                    btn.textContent = 'Error - please try again';
+                    btn.style.background = '#EF4444';
+                    setTimeout(() => { btn.textContent = origText; btn.disabled = false; btn.style.background = ''; }, 4000);
+                }
+            });
+        }
+    </script>
+
+
+    <!-- Scroll counter animation -->
+    <script>
+    (function() {
+        const counters = document.querySelectorAll('.impact-counter-value');
+        let animated = false;
+        
+        function animateCounters() {
+            if (animated) return;
+            
+            const section = document.querySelector('.impact-counters');
+            if (!section) return;
+            
+            const rect = section.getBoundingClientRect();
+            if (rect.top > window.innerHeight * 0.85) return;
+            
+            animated = true;
+            
+            counters.forEach(function(counter) {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const duration = 2000;
+                const start = performance.now();
+                
+                function update(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease out cubic
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.round(eased * target);
+                    counter.textContent = current + suffix;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.textContent = target + suffix;
+                    }
+                }
+                
+                requestAnimationFrame(update);
+            });
+        }
+        
+        window.addEventListener('scroll', animateCounters, { passive: true });
+        // Also check on load in case already in view
+        animateCounters();
+    })();
+    </script>
+
+</body>
+</html>
