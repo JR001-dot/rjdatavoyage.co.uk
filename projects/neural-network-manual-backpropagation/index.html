@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demand Forecasting with ARIMA and Prophet | RJ Data Voyage</title>
-    <meta name="description" content="Comparative time-series forecasting achieving 31% MAE reduction and 22.79% MAPE, delivering reliable demand projections for retail inventory planning.">
+    <title>Neural Network Manual Backpropagation | RJ Data Voyage</title>
+    <meta name="description" content="A from-scratch NumPy implementation of forward and backward propagation for a retail recommendation engine, built without any deep learning framework to establish first-principles understanding.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/time-series-forecasting">
-    <meta property="og:title" content="Demand Forecasting with ARIMA and Prophet | RJ Data Voyage">
-    <meta property="og:description" content="Comparative time-series forecasting achieving 31% MAE reduction and 22.79% MAPE, delivering reliable demand projections for retail inventory planning.">
+    <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/neural-network-manual-backpropagation">
+    <meta property="og:title" content="Neural Network Manual Backpropagation | RJ Data Voyage">
+    <meta property="og:description" content="A from-scratch NumPy implementation of forward and backward propagation for a retail recommendation engine, built without any deep learning framework to establish first-principles understanding.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,8 +47,6 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text-primary); line-height: 1.7; font-weight: 400; font-size: 16px; -webkit-font-smoothing: antialiased; }
-
-        /* Navigation */
         .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-height); background: rgba(11, 17, 32, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--color-border-subtle); }
         .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
         .nav-logo { font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text-primary); text-decoration: none; }
@@ -57,8 +55,6 @@
         .nav-links a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; transition: color var(--transition); }
         .nav-links a:hover { color: var(--color-text-primary); }
         .nav-toggle { display: none; background: none; border: none; color: var(--color-text-secondary); cursor: pointer; padding: 8px; }
-
-        /* Case study layout */
         .case-study { max-width: var(--max-width); margin: 0 auto; padding: calc(var(--nav-height) + 48px) 24px 80px; }
         .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 500; color: var(--color-text-muted); text-decoration: none; margin-bottom: 32px; transition: color var(--transition); }
         .back-link:hover { color: var(--color-accent); }
@@ -66,47 +62,33 @@
         .cs-title { font-family: var(--font-display); font-size: 2.4rem; line-height: 1.2; margin-bottom: 20px; }
         .cs-summary { font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 32px; max-width: 680px; }
         .cs-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; padding: 24px 0; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); margin-bottom: 40px; }
-        .cs-meta-item { }
         .cs-meta-label { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; color: var(--color-text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
         .cs-meta-value { font-size: 0.9rem; color: var(--color-text-primary); font-weight: 500; }
-
-        /* Sections */
         .cs-section { margin-bottom: 48px; }
         .cs-section-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-subtle); }
         .cs-section p { color: var(--color-text-secondary); margin-bottom: 16px; font-size: 1rem; line-height: 1.8; }
         .cs-section p strong { color: var(--color-text-primary); font-weight: 500; }
-
-        /* Tech pills */
         .cs-tech-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
         .cs-tech-pill { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; padding: 6px 14px; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: 4px; color: var(--color-text-muted); letter-spacing: 0.02em; }
-
-        /* Outcome cards */
         .cs-outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
         .cs-outcome-card { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-radius: var(--radius); padding: 24px; }
         .cs-outcome-value { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-accent); margin-bottom: 6px; }
         .cs-outcome-label { font-size: 0.825rem; color: var(--color-text-muted); line-height: 1.5; }
-
-        /* Methodology steps */
         .cs-steps { margin-top: 20px; }
         .cs-step { display: flex; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle); }
         .cs-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .cs-step-num { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--color-accent); min-width: 32px; padding-top: 2px; }
         .cs-step-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
         .cs-step-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.65; }
-
-        /* Hero */
-        .cs-hero { position: relative; width: 100%; height: 280px; border-radius: var(--radius); overflow: hidden; margin-bottom: 48px; background: linear-gradient(135deg, #0a1628 0%, #0a192f 50%, #0d1f3c 100%); }
+        .cs-hero { position: relative; width: 100%; height: 280px; border-radius: var(--radius); overflow: hidden; margin-bottom: 48px; background: linear-gradient(135deg, #0a1628 0%, #121a2e 50%, #0a1628 100%); }
         .cs-hero-label { position: absolute; top: 24px; left: 32px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(56,189,248,0.4); }
         .cs-hero-metric { position: absolute; top: 20px; right: 32px; font-family: var(--font-mono); font-size: 1.1rem; font-weight: 300; color: rgba(56,189,248,0.25); }
-        .cs-chart-area { position: absolute; inset: 60px 32px 40px; }
-        .cs-chart-line { position: absolute; bottom: 0; left: 0; right: 0; height: 100%; }
-        .cs-chart-line svg { width: 100%; height: 100%; }
-        .cs-chart-line path { fill: none; stroke-width: 2; stroke-linecap: round; }
-        .line-actual { stroke: rgba(56,189,248,0.5); stroke-dasharray: 600; stroke-dashoffset: 600; animation: drawLine 3s ease-out forwards; }
-        .line-forecast { stroke: rgba(52,211,153,0.5); stroke-dasharray: 4 6; stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawLine 2s ease-out 1.5s forwards; }
-        @keyframes drawLine { to { stroke-dashoffset: 0; } }
-
-        /* CTA */
+        .cs-funnel { position: absolute; inset: 60px 32px 40px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
+        .cs-funnel-bar { height: 12px; border-radius: 6px; animation: funnelGrow 1.5s ease-out forwards; transform: scaleX(0); transform-origin: center; }
+        @keyframes funnelGrow { to { transform: scaleX(1); } }
+        .cs-funnel-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em; margin-top: 4px; }
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
         .cs-cta { text-align: center; padding: 48px 0; border-top: 1px solid var(--color-border-subtle); margin-top: 48px; }
         .cs-cta-text { font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 20px; }
         .cs-cta-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -115,16 +97,12 @@
         .btn-primary:hover { background: #7DD3FC; }
         .btn-secondary { background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border-subtle); }
         .btn-secondary:hover { color: var(--color-text-primary); border-color: var(--color-text-muted); }
-
-        /* Footer */
         .site-footer { border-top: 1px solid var(--color-border-subtle); padding: 32px 24px; text-align: center; }
         .site-footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
         .site-footer p { font-size: 0.8rem; color: var(--color-text-muted); }
         .site-footer-links { display: flex; gap: 20px; }
         .site-footer-links a { font-size: 0.8rem; color: var(--color-text-muted); text-decoration: none; transition: color var(--transition); }
         .site-footer-links a:hover { color: var(--color-text-primary); }
-
-        /* Mobile responsive */
         @media (max-width: 768px) {
             .nav-links { display: none; position: absolute; top: var(--nav-height); left: 0; right: 0; flex-direction: column; background: rgba(11, 17, 32, 0.95); padding: 16px 24px; gap: 16px; border-bottom: 1px solid var(--color-border-subtle); }
             .nav-links.open { display: flex; }
@@ -135,7 +113,7 @@
             .cs-hero { height: 220px; }
             .site-footer-inner { flex-direction: column; text-align: center; }
         }
-    </style>
+</style>
 </head>
 <body>
     <nav class="nav">
@@ -161,22 +139,22 @@
             Back to Projects
         </a>
 
-        <div class="cs-domain">Forecasting / Retail Analytics</div>
-        <h1 class="cs-title">Demand Forecasting with ARIMA and Prophet</h1>
-        <p class="cs-summary">A comparative forecasting system that applies multiple time-series methods to retail sales data, achieving a 31% reduction in mean absolute error and providing clear demand projections for inventory planning.</p>
+        <div class="cs-domain">Deep Learning Fundamentals</div>
+        <h1 class="cs-title">Neural Network Manual Backpropagation</h1>
+        <p class="cs-summary">A recommendation-engine neural network built and trained entirely by hand in NumPy &mdash; no TensorFlow, no PyTorch &mdash; to demonstrate genuine first-principles understanding of forward propagation, gradient computation, and gradient descent.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Type</div>
-                <div class="cs-meta-value">Time Series Analysis</div>
+                <div class="cs-meta-value">From-Scratch Implementation</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Domain</div>
-                <div class="cs-meta-value">Retail / Demand Planning</div>
+                <div class="cs-meta-value">Retail / E-commerce</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Best MAPE</div>
-                <div class="cs-meta-value">22.79%</div>
+                <div class="cs-meta-label">Methods</div>
+                <div class="cs-meta-value">Manual Forward &amp; Backward Pass</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Status</div>
@@ -185,23 +163,29 @@
         </div>
 
         <div class="cs-hero">
-            <div class="cs-hero-label">TIME SERIES FORECASTING</div>
-            <div class="cs-hero-metric">+15%</div>
-            <div class="cs-chart-area">
-                <div class="cs-chart-line">
-                    <svg viewBox="0 0 760 160" preserveAspectRatio="none">
-                        <path class="line-actual" d="M0,120 C40,115 80,100 120,95 C160,90 200,110 240,105 C280,100 320,80 360,75 C400,70 440,85 480,90 C500,92 510,88 520,85"/>
-                        <path class="line-forecast" d="M520,85 C560,75 600,65 640,60 C680,55 720,50 760,45"/>
-                    </svg>
+            <div class="cs-hero-label">MANUAL IMPLEMENTATION</div>
+            <div class="cs-hero-metric">2-2-1 ARCHITECTURE</div>
+            <div class="cs-funnel">
+                <div>
+                    <div class="cs-funnel-bar" style="width:260px;background:rgba(56,189,248,0.5);animation-delay:0.2s"></div>
+                    <div class="cs-funnel-label" style="color:rgba(56,189,248,0.7);text-align:center">FORWARD PASS &rarr; PREDICTION</div>
+                </div>
+                <div>
+                    <div class="cs-funnel-bar" style="width:200px;background:rgba(251,191,36,0.4);animation-delay:0.6s"></div>
+                    <div class="cs-funnel-label" style="color:rgba(251,191,36,0.6);text-align:center">LOSS GRADIENT COMPUTED</div>
+                </div>
+                <div>
+                    <div class="cs-funnel-bar" style="width:240px;background:rgba(52,211,153,0.5);animation-delay:1.0s"></div>
+                    <div class="cs-funnel-label" style="color:rgba(52,211,153,0.7);text-align:center">BACKPROP &rarr; WEIGHT UPDATE</div>
                 </div>
             </div>
         </div>
 
+
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>ARIMA and Prophet forecasting cut mean absolute error by 31% over baseline methods, reaching a 22.79% MAPE and directly tightening inventory and staffing decisions for retail demand planning.</strong></p>
-            <p>Retailers face volatile demand fluctuations driven by seasonality, promotions, external events, and shifting consumer behaviour. Baseline forecasting methods often fail to capture these temporal patterns, leading to either overstocking (tying up capital) or understocking (losing sales).</p>
-            <p>Accurate demand forecasting directly impacts profitability. Even small improvements in forecast accuracy translate into significant savings in inventory costs and reduced lost revenue from stockouts.</p>
+            <p><strong>A complete neural network, forward pass, backpropagation, and gradient descent, built and trained using nothing but NumPy, establishing first-principles understanding before scaling to a production retail recommendation engine.</strong></p>
+            <p>Before reaching for a deep learning framework, this project set out to build and train a neural network entirely by hand, to establish genuine first-principles understanding of forward propagation, backpropagation, and gradient descent, rather than treating them as a framework's black box.</p>
         </section>
 
         <section class="cs-section">
@@ -210,29 +194,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Time Series Decomposition</div>
-                        <div class="cs-step-desc">Decomposed the historical sales data into trend, seasonal, and residual components to understand the underlying patterns driving demand fluctuations.</div>
+                        <div class="cs-step-title">Network Definition</div>
+                        <div class="cs-step-desc">Built a 2-2-1 architecture by hand: two input features (customer signals), a two-neuron ReLU hidden layer, and a single Sigmoid output neuron for binary recommendation prediction, with all weights and biases explicitly initialised.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Feature Engineering</div>
-                        <div class="cs-step-desc">Created temporal features including lag variables, rolling statistics, holiday indicators, and seasonal encodings to enrich the forecasting models.</div>
+                        <div class="cs-step-title">Forward Propagation</div>
+                        <div class="cs-step-desc">Manually implemented the forward pass, computing hidden-layer activations via ReLU and the final prediction via Sigmoid, entirely with NumPy matrix operations.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Model Development</div>
-                        <div class="cs-step-desc">Built and compared ARIMA/SARIMA models for statistical rigour and Prophet for handling multiple seasonality patterns and holiday effects.</div>
+                        <div class="cs-step-title">Manual Backpropagation</div>
+                        <div class="cs-step-desc">Derived and coded the loss gradient with respect to the output, then propagated gradients backward through the output and hidden layers by hand, computing every derivative explicitly rather than relying on autodiff.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Evaluation and Selection</div>
-                        <div class="cs-step-desc">Evaluated models using RMSE, MAE, and MAPE against baseline methods, selecting the optimal approach for each product category.</div>
+                        <div class="cs-step-title">Gradient Descent</div>
+                        <div class="cs-step-desc">Updated all weights and biases using the computed gradients at a learning rate of 0.02, closing the loop from prediction to error to parameter update with no framework involved.</div>
                     </div>
                 </div>
             </div>
@@ -242,35 +226,38 @@
             <h2 class="cs-section-title">Results</h2>
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">31%</div>
-                    <div class="cs-outcome-label">Reduction in mean absolute error over baseline forecasting methods</div>
+                    <div class="cs-outcome-value">2-2-1</div>
+                    <div class="cs-outcome-label">Network architecture: input, hidden, and output layers implemented entirely from scratch</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">22.79%</div>
-                    <div class="cs-outcome-label">MAPE achieved - the average forecast deviation from actual demand</div>
+                    <div class="cs-outcome-value">0</div>
+                    <div class="cs-outcome-label">Deep learning framework dependencies &mdash; pure NumPy forward and backward pass</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Multi-Model</div>
-                    <div class="cs-outcome-label">Best model selected per product category for optimal accuracy</div>
+                    <div class="cs-outcome-value">ReLU + Sigmoid</div>
+                    <div class="cs-outcome-label">Activation functions and their derivatives implemented and verified by hand</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>The best-performing model achieved a <strong>mean absolute percentage error (MAPE) of 22.79%</strong> and a <strong>31% reduction in MAE</strong> over the baseline, giving demand planners materially tighter projections for inventory and staffing decisions.</p>
-                <p>The Prophet-based approach performed best on products with strong seasonal patterns and holiday effects, while ARIMA excelled on more stationary series. The hybrid approach of selecting the best model per category delivered the overall improvement, confirming that no single forecasting method dominates across all demand profiles.</p>
-                <p>For retail operations, this level of forecast improvement translates directly into reduced overstocking costs and fewer lost sales from stockouts - the two largest controllable drags on inventory-dependent profitability.</p>
+                <p>The exercise successfully traced a full training step end-to-end: a customer feature vector flows forward through ReLU and Sigmoid activations to a prediction, the loss gradient is computed against a target label, and that error is propagated backward through both layers to produce weight updates via gradient descent.</p>
+                <p>Working through the maths manually surfaces exactly why frameworks like TensorFlow and PyTorch exist, and exactly what they're automating underneath their abstractions. That distinction matters directly for architecture decisions on real projects: knowing what backpropagation is actually computing makes it much easier to reason about vanishing gradients, activation choice, and learning rate sensitivity when scaling a model up.</p>
             </div>
         </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Business Impact</h2>
+            <p>For a retail recommendation engine specifically, this foundation supports better-informed architecture decisions when scaling from a toy 2-2-1 network to a production system serving millions of customers and products, more personalised recommendations translate fairly directly into higher engagement, conversion, and customer lifetime value, and being able to reason about the mechanics rather than just calling <code>model.fit()</code> is a genuine differentiator when diagnosing why a production model isn't learning as expected.</p>
+        </section>
+
 
         <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
-                <span class="cs-tech-pill">Statsmodels</span>
-                <span class="cs-tech-pill">Prophet</span>
-                <span class="cs-tech-pill">ARIMA</span>
-                <span class="cs-tech-pill">SARIMA</span>
-                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">NumPy</span>
                 <span class="cs-tech-pill">Matplotlib</span>
+                <span class="cs-tech-pill">Manual Backpropagation</span>
+                <span class="cs-tech-pill">Gradient Descent</span>
             </div>
         </section>
 

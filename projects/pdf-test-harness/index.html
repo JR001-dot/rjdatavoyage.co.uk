@@ -265,6 +265,7 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
+            <p><strong>A two-layer compliance test harness achieved 100% true positive and true negative rates across 300 documents &mdash; zero misclassifications &mdash; catching defects automated PDF generation would otherwise let through silently.</strong></p>
             <p>Automated document generation pipelines produce outputs at scale — but without systematic validation, defects accumulate silently. A PDF generator producing thousands of letters, certificates, or regulated notices may drift from specification without triggering any visible error: spacing breaks, required fields go missing, formatting rules are violated.</p>
             <p><strong>The question is not whether the documents were generated, but whether they are compliant.</strong> Answering that reliably requires a test harness that defines compliance precisely, executes deterministically, and distinguishes true defects from false alarms — the same standard applied to any quality-critical system.</p>
             <p>This project built exactly that: a two-layer automated framework capable of parsing generated PDFs, asserting compliance against a defined specification, and reporting results at both aggregate and per-file granularity.</p>

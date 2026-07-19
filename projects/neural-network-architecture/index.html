@@ -169,6 +169,7 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
+            <p><strong>Systematic grid search across epoch and batch-size configurations reached 94.6% test accuracy on the UCI Spambase benchmark, isolating exactly which architectural choices drove the improvement rather than asserting it from documentation.</strong></p>
             <p>Spam classification is a canonical problem in binary classification, but the more durable goal here was to develop genuine architectural intuition: how does layer depth, neuron count, epoch budget and batch size interact? Which choices matter most in practice, and can that be demonstrated empirically rather than asserted from reading documentation?</p>
             <p><strong>The UCI Spambase benchmark</strong> provides a clean, well-understood target — 4,601 emails labelled spam or legitimate, each described by 57 word-frequency and email-characteristic features — making it ideal for controlled architecture exploration where performance differences are attributable to design choices, not data quality.</p>
         </section>
