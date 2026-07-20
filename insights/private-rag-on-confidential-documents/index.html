@@ -3,24 +3,18 @@
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5YEF5Y9F2');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Running a private RAG system on confidential documents | RJ Data Voyage</title>
-    <meta name="description" content="How to give your team AI over sensitive documents, with answers grounded in your own files and nothing leaving infrastructure you control. A practical guide to private, local retrieval-augmented generation (RAG).">
+    <meta name="description" content="Your most valuable knowledge is locked in documents you can't paste into a public chatbot. Here's how to point capable AI at it anyway, with nothing leaving your own servers. A practical guide to private, local RAG.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/insights/private-rag-on-confidential-documents">
-    <meta property="og:title" content="Running a private RAG system on confidential documents | RJ Data Voyage">
-    <meta property="og:description" content="How to give your team AI over sensitive documents, with answers grounded in your own files and nothing leaving infrastructure you control. A practical guide to private, local retrieval-augmented generation (RAG).">
-    <meta property="og:type" content="article">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta property="og:title" content="Running a private RAG system on confidential documents | RJ Data Voyage"><meta property="og:description" content="Your most valuable knowledge is locked in documents you can't paste into a public chatbot. Here's how to point capable AI at it anyway, with nothing leaving your own servers. A practical guide to private, local RAG."><meta property="og:type" content="article">
+    <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
-      :root{--color-bg:#0B1120;--color-bg-card:#151F32;--color-surface:#1E293B;--color-border-subtle:rgba(255,255,255,0.06);--color-text-primary:#F1F5F9;--color-text-secondary:#94A3B8;--color-text-muted:#64748B;--color-accent:#38BDF8;--font-display:'DM Serif Display',Georgia,serif;--font-body:'IBM Plex Sans',-apple-system,sans-serif;--font-mono:'IBM Plex Mono','Courier New',monospace;--nav-height:72px;--radius:10px;--transition:0.3s cubic-bezier(0.4,0,0.2,1);}
+      :root{--color-bg:#0B1120;--color-bg-card:#151F32;--color-surface:#1E293B;--color-border-subtle:rgba(255,255,255,0.06);--color-text-primary:#F1F5F9;--color-text-secondary:#94A3B8;--color-text-muted:#64748B;--color-accent:#38BDF8;--color-warn:#F5A623;--color-good:#34D399;--font-display:'DM Serif Display',Georgia,serif;--font-body:'IBM Plex Sans',-apple-system,sans-serif;--font-mono:'IBM Plex Mono','Courier New',monospace;--nav-height:72px;--radius:10px;--transition:0.3s cubic-bezier(0.4,0,0.2,1);}
       *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
       html{scroll-behavior:smooth;}
       body{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text-primary);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;}
@@ -31,21 +25,54 @@
       .nav-links{display:flex;gap:28px;list-style:none;}
       .nav-links a{color:var(--color-text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color var(--transition);}
       .nav-links a:hover{color:var(--color-text-primary);}
-      .article{max-width:720px;margin:0 auto;padding:calc(var(--nav-height) + 64px) 24px 96px;}
-      .back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:500;color:var(--color-text-muted);text-decoration:none;margin-bottom:32px;transition:color var(--transition);}
+      .hero-band{background:linear-gradient(135deg,#0a1628 0%,#0d2137 55%,#0f2a49 100%);border-bottom:1px solid var(--color-border-subtle);}
+      .hero-inner{max-width:760px;margin:0 auto;padding:calc(var(--nav-height) + 56px) 24px 44px;}
+      .back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:500;color:var(--color-text-muted);text-decoration:none;margin-bottom:28px;transition:color var(--transition);}
       .back-link:hover{color:var(--color-accent);}
       .kicker{font-family:var(--font-mono);font-size:0.75rem;font-weight:500;color:var(--color-accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
-      .article h1{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,2.9rem);font-weight:400;line-height:1.18;letter-spacing:-0.02em;margin-bottom:18px;}
-      .meta{font-size:0.85rem;color:var(--color-text-muted);margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--color-border-subtle);}
-      .article .lead{font-size:1.2rem;color:var(--color-text-secondary);line-height:1.75;margin-bottom:26px;}
-      .article h2{font-family:var(--font-display);font-size:1.6rem;font-weight:400;margin:44px 0 16px;}
-      .article p{color:var(--color-text-secondary);margin-bottom:20px;font-size:1.02rem;line-height:1.8;}
+      .hero-inner h1{font-family:var(--font-display);font-size:clamp(2.1rem,5vw,3.1rem);font-weight:400;line-height:1.14;letter-spacing:-0.02em;margin-bottom:18px;}
+      .meta{font-size:0.85rem;color:var(--color-text-muted);}
+      .article{max-width:720px;margin:0 auto;padding:36px 24px 96px;}
+      .article .lead{font-size:1.3rem;color:var(--color-text-primary);line-height:1.55;font-weight:300;margin-bottom:30px;}
+      .article h2{font-family:var(--font-display);font-size:1.7rem;font-weight:400;margin:52px 0 18px;}
+      .article p{color:var(--color-text-secondary);margin-bottom:20px;font-size:1.05rem;line-height:1.8;}
       .article p strong{color:var(--color-text-primary);font-weight:600;}
-      .article em{color:var(--color-text-primary);font-style:italic;}
-      .diagram{margin:26px 0 10px;padding:22px 20px 14px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);}
+      .tldr{background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-left:3px solid var(--color-accent);border-radius:var(--radius);padding:22px 24px;margin:8px 0 28px;}
+      .tldr-h{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:12px;}
+      .tldr ul{list-style:none;display:grid;gap:10px;}
+      .tldr li{position:relative;padding-left:22px;color:var(--color-text-secondary);font-size:0.98rem;line-height:1.6;}
+      .tldr li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--color-accent);}
+      .pull{font-family:var(--font-display);font-size:1.45rem;line-height:1.4;color:var(--color-text-primary);border-left:3px solid var(--color-accent);padding:6px 0 6px 22px;margin:26px 0;}
+      .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:6px 0 24px;}
+      .rcard{background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:22px;}
+      .ric{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9px;background:rgba(56,189,248,0.12);color:var(--color-accent);margin-bottom:14px;}
+      .rcard h3{font-size:1rem;font-weight:600;color:var(--color-text-primary);margin-bottom:7px;}
+      .rcard p{color:var(--color-text-muted);font-size:0.92rem;line-height:1.6;margin:0;}
+      .diagram{margin:24px 0 26px;padding:22px 20px 14px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);}
       .diagram svg{width:100%;height:auto;display:block;}
       .diagram figcaption{font-size:0.82rem;color:var(--color-text-muted);margin-top:14px;text-align:center;}
-      .cta{margin-top:56px;padding:28px 32px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);}
+      .stages{list-style:none;display:grid;gap:0;margin:6px 0 8px;}
+      .stages li{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--color-border-subtle);}
+      .stages li:last-child{border-bottom:none;}
+      .stages .snum{flex:none;font-family:var(--font-mono);font-size:0.78rem;font-weight:600;color:var(--color-accent);padding-top:3px;}
+      .stages div{color:var(--color-text-secondary);font-size:1rem;line-height:1.7;}
+      .stages strong{color:var(--color-text-primary);}
+      .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:6px 0 24px;}
+      .wcard{display:flex;gap:14px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:20px;}
+      .wic{flex:none;color:var(--color-warn);padding-top:1px;}
+      .wcard h3{font-size:0.98rem;font-weight:600;color:var(--color-text-primary);margin-bottom:6px;}
+      .wcard p{color:var(--color-text-muted);font-size:0.9rem;line-height:1.6;margin:0;}
+      .fit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:6px 0 24px;}
+      .fit-col{background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:22px;}
+      .fit-good{border-top:3px solid var(--color-good);}
+      .fit-bad{border-top:3px solid rgba(148,163,184,0.5);}
+      .fit-h{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:14px;}
+      .fit ul{list-style:none;display:grid;gap:12px;}
+      .fit li{display:flex;gap:11px;font-size:0.94rem;line-height:1.5;color:var(--color-text-secondary);}
+      .fit li span{flex:none;}
+      .fit li.good span{color:var(--color-good);}
+      .fit li.bad span{color:var(--color-text-muted);}
+      .cta{margin-top:52px;padding:28px 32px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);}
       .cta p{color:var(--color-text-secondary);font-size:0.98rem;margin:0;}
       .cta a{color:var(--color-accent);text-decoration:none;font-weight:600;}
       .footer{padding:48px 24px;border-top:1px solid var(--color-border-subtle);}
@@ -54,15 +81,7 @@
       .footer-links{display:flex;gap:24px;}
       .footer-links a{color:var(--color-text-muted);text-decoration:none;font-size:0.825rem;}
       .footer-links a:hover{color:var(--color-accent);}
-      .hub{max-width:820px;margin:0 auto;padding:calc(var(--nav-height) + 64px) 24px 96px;}
-      .hub h1{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.6rem);font-weight:400;margin-bottom:12px;}
-      .hub .intro{color:var(--color-text-secondary);font-size:1.05rem;margin-bottom:36px;max-width:640px;}
-      .post{display:block;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:28px;text-decoration:none;transition:border-color var(--transition),transform var(--transition);}
-      .post:hover{border-color:var(--color-accent);transform:translateY(-2px);}
-      .post .d{font-family:var(--font-mono);font-size:0.68rem;color:var(--color-accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
-      .post h2{font-family:var(--font-display);font-size:1.4rem;font-weight:400;color:var(--color-text-primary);margin-bottom:8px;}
-      .post p{color:var(--color-text-muted);font-size:0.95rem;line-height:1.6;}
-      @media(max-width:640px){:root{--nav-height:64px;}.nav-links{display:none;}}
+      @media(max-width:640px){:root{--nav-height:64px;}.nav-links{display:none;}.fit{grid-template-columns:1fr;}}
     </style>
 
     <script type="application/ld+json">
@@ -70,7 +89,7 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Running a private RAG system on confidential documents",
-  "description": "How to give your team AI over sensitive documents, with answers grounded in your own files and nothing leaving infrastructure you control. A practical guide to private, local retrieval-augmented generation (RAG).",
+  "description": "Your most valuable knowledge is locked in documents you can't paste into a public chatbot. Here's how to point capable AI at it anyway, with nothing leaving your own servers. A practical guide to private, local RAG.",
   "datePublished": "2026-07-20",
   "dateModified": "2026-07-20",
   "author": {
@@ -89,68 +108,106 @@
 </head>
 <body>
 
-    <nav class="nav" role="navigation" aria-label="Main navigation">
-        <div class="nav-inner">
-            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
-            <ul class="nav-links">
-                <li><a href="/#about">About</a></li>
-                <li><a href="/#services">Services</a></li>
-                <li><a href="/#projects">Projects</a></li>
-                <li><a href="/insights/">Insights</a></li>
-                <li><a href="/#expertise">Expertise</a></li>
-                <li><a href="/#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <nav class="nav" role="navigation" aria-label="Main navigation"><div class="nav-inner">
+        <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
+        <ul class="nav-links">
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#projects">Projects</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/#expertise">Expertise</a></li>
+            <li><a href="/#contact">Contact</a></li>
+        </ul>
+    </div></nav>
 
-    <article class="article">
+    <div class="hero-band"><div class="hero-inner">
         <a href="/insights/" class="back-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> All insights</a>
         <div class="kicker">Applied AI / RAG</div>
         <h1>Running a private RAG system on confidential documents</h1>
         <div class="meta">By RJ Data Voyage &middot; 20 July 2026 &middot; 6 min read</div>
-        <p class="lead">Most organisations that would benefit most from large language models are the ones least able to use the obvious ones. If your documents contain client data, regulated financial information, legal privilege, patient records, or commercially sensitive contracts, pasting them into a public chatbot is not an option, and often not a legal one. The instinct, understandably, is to conclude that modern AI simply isn't available to you.</p>
-        <p>It is. You just have to keep it inside your own walls. This is what a <em>private</em> retrieval-augmented generation (RAG) system does: it gives your team the ability to ask natural-language questions of your own documents, with answers grounded in those documents, without a single byte leaving infrastructure you control.</p>
-        <p>Here is how these systems actually work, where they go wrong, and how to tell whether one is worth building.</p>
-        <h2>What private RAG actually means</h2>
-        <p>Retrieval-augmented generation is a simple idea wrapped in an intimidating acronym. Rather than relying on whatever a language model happened to memorise during training, you retrieve the most relevant passages from your own documents at question time and hand them to the model as context. The model then generates an answer grounded in that retrieved material, ideally citing where it came from.</p>
-        <p>The &lsquo;private&rsquo; part is the architectural commitment that matters: the language model, the document index and the embeddings all run on hardware you own or rent exclusively, whether a local GPU server or a locked-down cloud instance with no third-party API calls. Nothing is sent to an external model provider. The trade-off is that you take on the engineering; the reward is that confidentiality is preserved by design, not by a vendor&rsquo;s promise.</p>
-        <h2>Why local rather than cloud</h2>
-        <p>There are three reasons organisations choose a private deployment, and usually it&rsquo;s a combination of all three.</p>
-        <p>The first is <strong>regulatory and contractual obligation</strong>. In financial services, law, healthcare and the public sector, &lsquo;we sent your data to a US AI provider&rsquo; is frequently not a defensible sentence. A local system keeps you inside your existing data-protection posture rather than opening a new one.</p>
-        <p>The second is <strong>genuine confidentiality</strong>. Some information is sensitive not because a regulator says so, but because leakage would be commercially damaging: deal terms, unpublished research, internal strategy. A private system means the question &lsquo;could this end up in someone else&rsquo;s training data?&rsquo; has a clear answer: no.</p>
-        <p>The third is <strong>control and permanence</strong>. Public model endpoints change, deprecate and re-price. A system you host behaves the same way next year as it does today, which matters when it&rsquo;s embedded in an operational workflow.</p>
-        <p>The honest counterpoint: local systems demand more upfront engineering and some ongoing maintenance, and a well-chosen local model will usually trail the very largest frontier models on raw capability. For document question-answering grounded in your own material, that gap matters far less than people expect, because the hard part isn&rsquo;t the model&rsquo;s cleverness; it&rsquo;s the retrieval.</p>
-        <h2>How the pipeline fits together</h2>
-        <p>A private RAG system is best understood as a sequence of stages, each of which can be tuned independently.</p>
-        <figure class="diagram"><svg viewBox="0 0 720 152" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The private RAG pipeline: ingestion, chunking, embedding and indexing, query routing, then generation and grounding"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="#38BDF8"/></marker></defs><line x1="130" y1="76" x2="156" y2="76" stroke="rgba(56,189,248,0.55)" stroke-width="1.5" marker-end="url(#ah)"/><line x1="278" y1="76" x2="304" y2="76" stroke="rgba(56,189,248,0.55)" stroke-width="1.5" marker-end="url(#ah)"/><line x1="426" y1="76" x2="452" y2="76" stroke="rgba(56,189,248,0.55)" stroke-width="1.5" marker-end="url(#ah)"/><line x1="574" y1="76" x2="600" y2="76" stroke="rgba(56,189,248,0.55)" stroke-width="1.5" marker-end="url(#ah)"/><rect x="10" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)" stroke-width="1"/><text x="69" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">01</text><text x="69" y="92" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Ingestion</text><rect x="158" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)" stroke-width="1"/><text x="217" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">02</text><text x="217" y="92" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Chunking</text><rect x="306" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)" stroke-width="1"/><text x="365" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">03</text><text x="365" y="84" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Embedding</text><text x="365" y="101" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">&amp; indexing</text><rect x="454" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)" stroke-width="1"/><text x="513" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">04</text><text x="513" y="84" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Query</text><text x="513" y="101" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">routing</text><rect x="602" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)" stroke-width="1"/><text x="661" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">05</text><text x="661" y="84" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Generation</text><text x="661" y="101" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">&amp; grounding</text></svg><figcaption>The five stages of a private RAG pipeline. Each stage can be tuned independently.</figcaption></figure>
-        <p><strong>Ingestion.</strong> Real document estates are messy: PDFs, Word files, scanned images, spreadsheets, emails and slide decks. A production system needs to handle many formats gracefully (a system I delivered recently supported more than twenty-five file types) and to extract clean text from each, including running OCR over scanned pages that would otherwise be invisible to the model.</p>
-        <p><strong>Chunking.</strong> Documents are split into passages small enough to retrieve precisely but large enough to preserve meaning. This sounds trivial and isn&rsquo;t: chunk too finely and you sever the context a sentence depends on; too coarsely and retrieval becomes vague. Respecting document structure (sections, clauses, tables) beats blindly splitting every few hundred words.</p>
-        <p><strong>Embedding and indexing.</strong> Each chunk is converted into a numerical vector that captures its meaning, and stored in a vector index. At question time the query is embedded the same way, and the system retrieves the chunks whose vectors sit closest to it. This semantic search is why RAG can find the right passage even when the user&rsquo;s wording doesn&rsquo;t match the document&rsquo;s.</p>
-        <p><strong>Query routing.</strong> Not every question is the same shape. &lsquo;What is the termination notice period in the Acme contract?&rsquo; wants a precise clause; &lsquo;Summarise the risks across all supplier agreements&rsquo; wants breadth. A capable system routes different query types down different paths rather than forcing everything through one. In practice a tiered engine, combining a fast direct lookup, a semantic search route and a broader analytical route, handles a far wider range of real questions than a single mechanism.</p>
-        <p><strong>Generation and grounding.</strong> Finally the local language model composes an answer from the retrieved passages, with references back to the source. Grounding is what separates a useful system from a confident liar: the model is instructed to answer from the supplied context and to say when the documents don&rsquo;t contain the answer.</p>
-        <h2>Where private RAG goes wrong</h2>
-        <p>Most disappointing RAG deployments fail for the same handful of reasons, and none of them are the model being &lsquo;not smart enough&rsquo;.</p>
-        <p><strong>Retrieval, not generation, is usually the bottleneck.</strong> If the right passage isn&rsquo;t retrieved, no model can answer well. When results are poor, the first place to look is chunking and embeddings, not the language model.</p>
-        <p><strong>Hallucination when the answer isn&rsquo;t there.</strong> A system that invents a plausible clause is worse than one that says &lsquo;not found&rsquo;. Explicit grounding instructions and a willingness to return &lsquo;the documents don&rsquo;t cover this&rsquo; are essential, especially in regulated settings where a wrong answer carries real consequences.</p>
-        <p><strong>No evaluation.</strong> Teams often ship on the strength of a few impressive demo questions and never measure real accuracy. You need a test set of representative questions with known answers, and a way to track how changes to chunking, retrieval or prompting move the numbers. Without it, you&rsquo;re tuning blind.</p>
-        <p><strong>Underestimating the document mess.</strong> The gap between a clean demo corpus and a real shared drive, with its duplicates, near-duplicates, scans and inconsistent formatting, is where most of the engineering effort actually goes.</p>
-        <h2>Is it worth building?</h2>
-        <p>A private RAG system earns its keep when three things are true: your useful knowledge is trapped in documents rather than databases; that knowledge is too sensitive to send to a public model; and people currently waste meaningful time hunting through it manually. Regulated document review, contract and policy search, internal knowledge bases and due-diligence workflows all fit that shape well.</p>
-        <p>It is not the right tool for structured-data questions a database or dashboard already answers, and it&rsquo;s overkill for a handful of non-sensitive files. The discipline is in scoping it to where the confidentiality constraint and the document-heavy workflow genuinely coincide.</p>
-        <p>Done properly, the result is quietly transformative: the capability of a modern language model, pointed at your own material, running entirely on infrastructure you control, with the answer to &lsquo;where did our data go?&rsquo; being, simply, nowhere.</p>
+    </div></div>
+    <article class="article">
+
+        <p class="lead">Your most valuable knowledge is probably locked inside documents you can&rsquo;t paste into a public chatbot. Here is how to point capable AI at it anyway, with not a single byte leaving your own servers.</p>
+
+        <div class="tldr">
+            <div class="tldr-h">The short version</div>
+            <ul>
+                <li>Private RAG lets your team ask questions of your own documents and get answers grounded in them, on infrastructure you control.</li>
+                <li>The hard part isn&rsquo;t the model. It&rsquo;s retrieval: finding the right passage before the model ever speaks.</li>
+                <li>Build one when your knowledge is trapped in documents, too sensitive for the cloud, and slow to search by hand.</li>
+            </ul>
+        </div>
+
+        <p>If your files hold client data, patient records, privileged advice or unpublished deals, the public chatbots are off-limits, and often unlawful to use. The usual conclusion is that modern AI just isn&rsquo;t for you. It is. You simply keep it inside your own walls.</p>
+
+        <h2>What &lsquo;private RAG&rsquo; actually means</h2>
+        <p>Retrieval-augmented generation sounds harder than it is. Instead of trusting whatever a model memorised in training, you fetch the most relevant passages from your own documents at the moment a question is asked, and hand them to the model as context. It answers from that material, and cites it.</p>
+        <blockquote class="pull">&lsquo;Private&rsquo; is the part that matters: the model, the index and the embeddings all run on hardware you own. Nothing is sent to anyone.</blockquote>
+        <p>You take on the engineering. In return, confidentiality is designed in, rather than promised in a vendor&rsquo;s terms.</p>
+
+        <h2>Why local, not cloud</h2>
+        <div class="rgrid">
+          <div class="rcard"><span class="ric"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/></svg></span><h3>Regulation and contracts</h3><p>&lsquo;We sent your data to a US AI provider&rsquo; is not a defensible sentence in finance, law, healthcare or government.</p></div>
+          <div class="rcard"><span class="ric"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h3>Confidentiality</h3><p>Deal terms, unpublished research, internal strategy. A private system answers &lsquo;could this leak into someone&rsquo;s training data?&rsquo; with a flat no.</p></div>
+          <div class="rcard"><span class="ric"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5"/><path d="M20 5v4h-4"/><path d="M20 12a8 8 0 0 1-14 5"/><path d="M4 19v-4h4"/></svg></span><h3>Control</h3><p>Public endpoints change, deprecate and re-price. A system you host behaves the same next year as it does today.</p></div>
+        </div>
+        <p>The honest trade-off: more engineering up front, and a local model won&rsquo;t top the largest cloud models on raw cleverness. For grounded document questions that barely matters, because the win is in retrieval, not raw intelligence.</p>
+
+        <h2>How it works</h2>
+        <p>A private RAG system is really five stages, each of which you can tune on its own.</p>
+        <figure class="diagram"><svg viewBox="0 0 720 152" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The private RAG pipeline: ingestion, chunking, embedding and indexing, query routing, then generation and grounding"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="#38BDF8"/></marker></defs><line x1="130" y1="76" x2="156" y2="76" stroke="rgba(56,189,248,0.55)" stroke-width="1.5" marker-end="url(#ah)"/><line x1="278" y1="76" x2="304" y2="76" stroke="rgba(56,189,248,0.55)" stroke-width="1.5" marker-end="url(#ah)"/><line x1="426" y1="76" x2="452" y2="76" stroke="rgba(56,189,248,0.55)" stroke-width="1.5" marker-end="url(#ah)"/><line x1="574" y1="76" x2="600" y2="76" stroke="rgba(56,189,248,0.55)" stroke-width="1.5" marker-end="url(#ah)"/><rect x="10" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)"/><text x="69" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">01</text><text x="69" y="92" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Ingestion</text><rect x="158" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)"/><text x="217" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">02</text><text x="217" y="92" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Chunking</text><rect x="306" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)"/><text x="365" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">03</text><text x="365" y="84" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Embedding</text><text x="365" y="101" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">&amp; indexing</text><rect x="454" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)"/><text x="513" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">04</text><text x="513" y="84" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Query</text><text x="513" y="101" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">routing</text><rect x="602" y="30" width="118" height="92" rx="9" fill="#151F32" stroke="rgba(56,189,248,0.28)"/><text x="661" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#38BDF8">05</text><text x="661" y="84" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">Generation</text><text x="661" y="101" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#E2E8F0">&amp; grounding</text></svg><figcaption>The five stages of a private RAG pipeline. Each one can be tuned on its own.</figcaption></figure>
+        <ol class="stages">
+          <li><span class="snum">01</span><div><strong>Ingestion.</strong> Pull clean text out of a messy estate of PDFs, scans, spreadsheets and emails. A recent build handled more than twenty-five formats, OCR included.</div></li>
+          <li><span class="snum">02</span><div><strong>Chunking.</strong> Split documents into passages small enough to pinpoint but large enough to keep their meaning. Respect the structure; don&rsquo;t chop every few hundred words.</div></li>
+          <li><span class="snum">03</span><div><strong>Embedding and indexing.</strong> Turn each passage into a vector and store it. Semantic search then finds the right one even when the question&rsquo;s wording doesn&rsquo;t match the document&rsquo;s.</div></li>
+          <li><span class="snum">04</span><div><strong>Query routing.</strong> A precise clause lookup and a &lsquo;summarise every supplier agreement&rsquo; question are different jobs. A good system sends them down different paths.</div></li>
+          <li><span class="snum">05</span><div><strong>Generation and grounding.</strong> The model answers from the retrieved passages, cites them, and says so when the documents simply don&rsquo;t hold the answer.</div></li>
+        </ol>
+
+        <h2>Where these projects go wrong</h2>
+        <p>Most disappointing deployments fail for the same few reasons, and &lsquo;the model isn&rsquo;t clever enough&rsquo; is rarely one of them.</p>
+        <div class="wgrid">
+          <div class="wcard"><span class="wic"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none"/></svg></span><div><h3>Retrieval is the bottleneck, not the model</h3><p>If the right passage never surfaces, no model can save the answer. Poor results almost always mean chunking or embeddings, not a weak LLM.</p></div></div>
+          <div class="wcard"><span class="wic"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none"/></svg></span><div><h3>Confident hallucination</h3><p>A plausible invented clause is worse than &lsquo;not found&rsquo;. Grounding, and permission to say &lsquo;the documents don&rsquo;t cover this&rsquo;, are non-negotiable in regulated work.</p></div></div>
+          <div class="wcard"><span class="wic"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none"/></svg></span><div><h3>No evaluation</h3><p>Shipping on a handful of good demo questions is tuning blind. You need a real test set with known answers to see whether a change helped or hurt.</p></div></div>
+          <div class="wcard"><span class="wic"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none"/></svg></span><div><h3>Underestimating the mess</h3><p>Real shared drives are full of duplicates, near-duplicates, scans and inconsistent formatting. That gap, not the model, is where the effort goes.</p></div></div>
+        </div>
+
+        <h2>Should you build one?</h2>
+        <div class="fit">
+            <div class="fit-col fit-good">
+                <div class="fit-h">Worth it when</div>
+                <ul>
+            <li class="good"><span><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Your useful knowledge is trapped in documents, not databases</li>
+            <li class="good"><span><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>That knowledge is too sensitive to send to a public model</li>
+            <li class="good"><span><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>People currently lose hours searching by hand</li>
+            <li class="good"><span><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Regulated review, contract search, internal knowledge bases, due diligence</li>
+                </ul>
+            </div>
+            <div class="fit-col fit-bad">
+                <div class="fit-h">Skip it when</div>
+                <ul>
+            <li class="bad"><span><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Questions a database or dashboard already answers cleanly</li>
+            <li class="bad"><span><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>A handful of non-sensitive files</li>
+            <li class="bad"><span><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>You need the absolute frontier of model capability more than privacy</li>
+                </ul>
+            </div>
+        </div>
+        <p>The discipline is scoping it to where the confidentiality constraint and the document-heavy workflow genuinely overlap. Everywhere else, a simpler tool wins.</p>
+        <p>Done well, it is unremarkable in the best way: a capable model, pointed at your own material, running entirely on kit you control. Ask it where your data went, and the answer is, simply, nowhere.</p>
+
         <div class="cta"><p>RJ Data Voyage builds privacy-first applied-AI systems: local LLMs and retrieval-augmented generation that run entirely on your own infrastructure. If you&rsquo;re weighing up a private document-AI project, <a href="/#contact">get in touch</a>.</p></div>
     </article>
 
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-left">&copy; 2026 RJ Data Voyage. All rights reserved.</div>
-            <div class="footer-links">
-                <a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="/#contact">Contact</a>
-            </div>
+    <footer class="footer"><div class="footer-inner">
+        <div class="footer-left">&copy; 2026 RJ Data Voyage. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="/#contact">Contact</a>
         </div>
-    </footer>
+    </div></footer>
 
 </body>
 </html>
