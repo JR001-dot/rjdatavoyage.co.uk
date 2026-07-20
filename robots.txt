@@ -1,4 +1,12 @@
+# rjdatavoyage.co.uk
+# Allow search indexing and AI-assistant retrieval so the site can be cited.
+#   search=yes    -> may build a search index and return links/excerpts
+#   ai-input=yes  -> may use content for AI grounding/RAG in generated answers
+#   ai-train=yes  -> may use content to train AI models
+# For AI-search visibility (GEO) the critical signal is ai-input=yes.
+# To refuse model TRAINING while staying citable, change ai-train=yes to ai-train=no.
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 Sitemap: https://rjdatavoyage.co.uk/sitemap.xml
