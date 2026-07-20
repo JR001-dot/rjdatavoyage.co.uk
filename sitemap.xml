@@ -120,4 +120,7 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+<url><loc>https://rjdatavoyage.co.uk/services/data-science</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://rjdatavoyage.co.uk/services/nlp</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://rjdatavoyage.co.uk/services/applied-ai</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

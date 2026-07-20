@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5YEF5Y9F2');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied AI, Local LLM &amp; RAG Consulting | RJ Data Voyage</title>
+    <meta name="description" content="Applied AI consultant, London UK. Privacy-first local LLM and retrieval-augmented generation (RAG) systems that run on your own infrastructure — no cloud exposure.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rjdatavoyage.co.uk/services/applied-ai">
+    <meta property="og:title" content="Applied AI, Local LLM &amp; RAG Consulting | RJ Data Voyage">
+    <meta property="og:description" content="Applied AI consultant, London UK. Privacy-first local LLM and retrieval-augmented generation (RAG) systems that run on your own infrastructure — no cloud exposure.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+      :root{
+        --color-bg:#0B1120;--color-bg-elevated:#111827;--color-bg-card:#151F32;--color-surface:#1E293B;
+        --color-border:#1E3A5F;--color-border-subtle:rgba(255,255,255,0.06);
+        --color-text-primary:#F1F5F9;--color-text-secondary:#94A3B8;--color-text-muted:#64748B;
+        --color-accent:#38BDF8;--color-accent-dim:rgba(56,189,248,0.12);--color-success:#34D399;
+        --font-display:'DM Serif Display',Georgia,serif;--font-body:'IBM Plex Sans',-apple-system,sans-serif;
+        --font-mono:'IBM Plex Mono','Courier New',monospace;--max-width:960px;--nav-height:72px;--radius:10px;
+        --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+      }
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+      html{scroll-behavior:smooth;}
+      body{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text-primary);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;}
+      a{color:inherit;}
+      .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-height);background:rgba(11,17,32,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--color-border-subtle);}
+      .nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;}
+      .nav-logo{font-family:var(--font-display);font-size:1.25rem;color:var(--color-text-primary);text-decoration:none;}
+      .nav-logo span{color:var(--color-accent);}
+      .nav-links{display:flex;gap:30px;list-style:none;}
+      .nav-links a{color:var(--color-text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;letter-spacing:0.02em;transition:color var(--transition);}
+      .nav-links a:hover{color:var(--color-text-primary);}
+      .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--color-text-secondary);}
+      .wrap{max-width:var(--max-width);margin:0 auto;padding:calc(var(--nav-height) + 64px) 24px 100px;}
+      .back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:500;color:var(--color-text-muted);text-decoration:none;margin-bottom:36px;transition:color var(--transition);}
+      .back-link:hover{color:var(--color-accent);}
+      .svc-label{font-family:var(--font-mono);font-size:0.75rem;font-weight:500;color:var(--color-accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
+      .svc-title{font-family:var(--font-display);font-size:clamp(2.1rem,4.5vw,3rem);font-weight:400;line-height:1.15;letter-spacing:-0.02em;margin-bottom:22px;}
+      .svc-summary{font-size:1.15rem;color:var(--color-text-secondary);line-height:1.8;max-width:720px;margin-bottom:8px;}
+      .section{margin-top:64px;}
+      .section-h{font-family:var(--font-display);font-size:1.5rem;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--color-border-subtle);}
+      .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+      .card{background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:24px;}
+      .card h3{font-size:1rem;font-weight:600;margin-bottom:8px;color:var(--color-text-primary);}
+      .card p{font-size:0.9rem;color:var(--color-text-muted);line-height:1.6;}
+      .steps{display:grid;gap:0;}
+      .step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--color-border-subtle);}
+      .step:last-child{border-bottom:none;}
+      .step-num{font-family:var(--font-mono);font-size:0.8rem;font-weight:600;color:var(--color-accent);min-width:34px;padding-top:2px;}
+      .step h3{font-size:0.95rem;font-weight:600;margin-bottom:5px;}
+      .step p{font-size:0.875rem;color:var(--color-text-muted);line-height:1.6;}
+      .pills{display:flex;flex-wrap:wrap;gap:10px;}
+      .pill{font-family:var(--font-mono);font-size:0.75rem;font-weight:500;padding:6px 14px;background:var(--color-surface);border:1px solid var(--color-border-subtle);border-radius:4px;color:var(--color-text-muted);}
+      .rel{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+      .rel a{display:block;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:20px;text-decoration:none;transition:border-color var(--transition),transform var(--transition);}
+      .rel a:hover{border-color:var(--color-accent);transform:translateY(-2px);}
+      .rel .d{font-family:var(--font-mono);font-size:0.68rem;color:var(--color-accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+      .rel .t{font-size:0.95rem;font-weight:600;color:var(--color-text-primary);}
+      .cta{margin-top:72px;padding:40px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);text-align:center;}
+      .cta h2{font-family:var(--font-display);font-size:1.6rem;margin-bottom:10px;}
+      .cta p{color:var(--color-text-muted);margin-bottom:24px;}
+      .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;font-family:var(--font-body);font-size:0.9rem;font-weight:600;border-radius:var(--radius);text-decoration:none;background:var(--color-accent);color:var(--color-bg);transition:all var(--transition);}
+      .btn:hover{background:#60CFFE;transform:translateY(-1px);box-shadow:0 8px 30px rgba(56,189,248,0.25);}
+      .footer{padding:48px 24px;border-top:1px solid var(--color-border-subtle);}
+      .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+      .footer-left{font-size:0.825rem;color:var(--color-text-muted);}
+      .footer-links{display:flex;gap:24px;}
+      .footer-links a{color:var(--color-text-muted);text-decoration:none;font-size:0.825rem;transition:color var(--transition);}
+      .footer-links a:hover{color:var(--color-accent);}
+      @media(max-width:640px){:root{--nav-height:64px;}.nav-links{display:none;}.step{flex-direction:column;gap:6px;}.footer-inner{flex-direction:column;text-align:center;}}
+    </style>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Applied AI, Local LLM & RAG Consulting",
+  "serviceType": "Applied AI, local large language model and retrieval-augmented generation consulting",
+  "provider": {
+    "@id": "https://rjdatavoyage.co.uk/#business"
+  },
+  "areaServed": "GB",
+  "url": "https://rjdatavoyage.co.uk/services/applied-ai",
+  "description": "Privacy-first applied AI: local LLM deployment and retrieval-augmented generation (RAG) systems that run entirely on the client's own infrastructure.",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Organisations in regulated and data-heavy sectors"
+  }
+}
+    </script>
+</head>
+<body>
+
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
+            <ul class="nav-links">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#expertise">Expertise</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="wrap">
+        <a href="/#services" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            All services
+        </a>
+        <div class="svc-label">Service</div>
+        <h1 class="svc-title">Applied AI — Local LLMs &amp; RAG</h1>
+        <p class="svc-summary">I build privacy-first AI systems — local large language models and retrieval-augmented generation — that give you the capability of modern AI without your data ever leaving your own infrastructure.</p>
+
+        <section class="section">
+            <h2 class="section-h">What I deliver</h2>
+            <div class="cards">
+              <div class="card"><h3>Local LLM deployment</h3><p>Capable language models running on your own GPU or servers, with zero cloud exposure.</p></div>
+              <div class="card"><h3>RAG over private documents</h3><p>Semantic search and grounded answers across your own confidential files.</p></div>
+              <div class="card"><h3>Query engines &amp; routing</h3><p>Multi-route pipelines tuned to how your team actually asks questions.</p></div>
+              <div class="card"><h3>Evaluation &amp; guardrails</h3><p>Measurable accuracy and safe, auditable outputs you can trust.</p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-h">How I work</h2>
+            <div class="steps">
+              <div class="step"><div class="step-num">01</div><div><h3>Discovery</h3><p>We start with the decision you need to make, the data you hold, and what a good outcome looks like.</p></div></div>
+              <div class="step"><div class="step-num">02</div><div><h3>Scope</h3><p>A clear, fixed-scope proposal with defined deliverables and success criteria — no open-ended billing.</p></div></div>
+              <div class="step"><div class="step-num">03</div><div><h3>Build</h3><p>Modelling, validation and iteration against your real data, with progress you can see.</p></div></div>
+              <div class="step"><div class="step-num">04</div><div><h3>Handover</h3><p>Production-ready code, documentation and a dashboard or interface your team can actually use.</p></div></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-h">Capabilities &amp; tools</h2>
+            <div class="pills"><span class="pill">Local LLMs</span><span class="pill">RAG</span><span class="pill">Semantic Search</span><span class="pill">Vector DBs</span><span class="pill">Sentence Transformers</span><span class="pill">GPU</span><span class="pill">Python</span></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-h">Selected related work</h2>
+            <div class="rel">
+              <a href="/projects/private-document-ai"><div class="d">Applied AI / RAG / Privacy</div><div class="t">Private Local Documents AI</div></a>
+            </div>
+        </section>
+
+        <div class="cta">
+            <h2>Have a project in mind?</h2>
+            <p>Tell me about the decision you're trying to make with your data. I'll tell you honestly whether I can help.</p>
+            <a href="/#contact" class="btn">Get in touch</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">&copy; 2026 RJ Data Voyage. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
