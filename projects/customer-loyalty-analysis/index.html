@@ -12,11 +12,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Loyalty Analysis | RJ Data Voyage</title>
-    <meta name="description" content="Predictive modelling and correlation analysis identifying the primary drivers of customer loyalty for a retail consumer goods company, prioritising quality, reputation, and brand investment.">
+    <meta name="description" content="Linear regression and Pearson correlation identifying the drivers of customer loyalty across 1,711 customers: quality first, negative publicity second, brand awareness a distant third. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/customer-loyalty-analysis">
     <meta property="og:title" content="Customer Loyalty Analysis | RJ Data Voyage">
-    <meta property="og:description" content="Predictive modelling and correlation analysis identifying the primary drivers of customer loyalty for a retail consumer goods company, prioritising quality, reputation, and brand investment.">
+    <meta property="og:description" content="Linear regression and Pearson correlation identifying the drivers of customer loyalty across 1,711 customers: quality first, negative publicity second, brand awareness a distant third. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -119,7 +119,7 @@
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "Customer Loyalty Analysis",
-  "about": "Predictive modelling of the drivers of customer loyalty",
+  "about": "Regression and correlation analysis of the drivers of customer loyalty",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
   "keywords": "predictive modelling, retail analytics, correlation, business analytics",
   "url": "https://rjdatavoyage.co.uk/projects/customer-loyalty-analysis",
@@ -158,7 +158,7 @@
 
         <div class="cs-domain">Business Analytics / Retail</div>
         <h1 class="cs-title">Customer Loyalty Analysis</h1>
-        <p class="cs-summary">Predictive modelling for a retail consumer goods company, isolating which of product quality, brand awareness, and negative publicity actually drives customer loyalty &mdash; and which combination of factors best justifies further investment.</p>
+        <p class="cs-summary">Regression and correlation analysis for a retail consumer goods scenario, testing which of product quality, brand awareness and negative publicity drives customer loyalty, and which combination explains the most.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -174,8 +174,8 @@
                 <div class="cs-meta-value">Linear Regression, Pearson Correlation</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
@@ -201,8 +201,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>Product quality is the single strongest driver of customer loyalty (r = 0.713), far ahead of brand awareness (r = 0.18) &mdash; a finding that reset a retail consumer goods company's marketing investment priorities.</strong></p>
-            <p>The company wanted to understand what actually drives customer loyalty, and how to prioritise limited marketing and product investment across quality, brand awareness, and reputation management. Intuition alone couldn't settle which lever mattered most, or how they interacted.</p>
+            <p><strong>Across 1,711 customers, product quality was the strongest correlate of loyalty (r = 0.713), well ahead of brand awareness (r = 0.18). A three-variable linear model explained 62.8% of loyalty variance on a held-out test set.</strong></p>
+            <p>The scenario asked which lever deserves investment: product quality, brand awareness or reputation management. Intuition alone could not settle which mattered most, or how much each added once the others were accounted for.</p>
         </section>
 
         <section class="cs-section">
@@ -212,28 +212,28 @@
                     <div class="cs-step-num">01</div>
                     <div>
                         <div class="cs-step-title">Exploratory Analysis</div>
-                        <div class="cs-step-desc">Examined distributions and relationships between loyalty and three candidate drivers: perceived product quality, brand awareness, and negative publicity impact.</div>
+                        <div class="cs-step-desc">Examined distributions and relationships between loyalty and three candidate drivers: perceived product quality, brand awareness and negative publicity.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
                         <div class="cs-step-title">Predictive Modelling</div>
-                        <div class="cs-step-desc">Built linear regression models predicting loyalty, evaluated with R&sup2;, adjusted R&sup2;, and residual sum of squares to assess genuine explanatory power rather than raw fit alone.</div>
+                        <div class="cs-step-desc">Trained a linear regression on an 80/20 train/test split and evaluated it on the held-out test set with R&sup2;, adjusted R&sup2; and residual sum of squares.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
                         <div class="cs-step-title">Model Experimentation</div>
-                        <div class="cs-step-desc">Tested every combination of the three predictor variables to isolate each factor's individual contribution, rather than relying on a single all-variables model.</div>
+                        <div class="cs-step-desc">Compared four predictor combinations, all three variables and each pair, to see how much each factor adds.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
                         <div class="cs-step-title">Correlation Analysis</div>
-                        <div class="cs-step-desc">Ran Pearson correlation testing with significance values across all variable pairs to quantify both the strength and the statistical reliability of each relationship.</div>
+                        <div class="cs-step-desc">Ran Pearson correlation with p-values for loyalty against each driver, plus quality against negative publicity.</div>
                     </div>
                 </div>
             </div>
@@ -244,26 +244,26 @@
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">r = 0.713</div>
-                    <div class="cs-outcome-label">Quality vs loyalty &mdash; strong, highly significant positive correlation</div>
+                    <div class="cs-outcome-label">Quality vs loyalty: strong, highly significant positive correlation</div>
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">r = -0.449</div>
-                    <div class="cs-outcome-label">Negative publicity vs loyalty &mdash; moderate, highly significant negative correlation</div>
+                    <div class="cs-outcome-label">Negative publicity vs loyalty: moderate, highly significant negative correlation</div>
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">R&sup2; = 0.628</div>
-                    <div class="cs-outcome-label">Best model (all three variables); quality + publicity alone reaches 0.623</div>
+                    <div class="cs-outcome-label">Held-out test set, all three variables (adjusted R&sup2; = 0.625); quality + negative publicity alone reaches 0.623</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p><strong>Product quality is the primary loyalty driver</strong> by a clear margin, and negative publicity has a real, substantial suppressing effect on loyalty. Brand awareness alone showed only a weak correlation (r = 0.18), meaning awareness campaigns in isolation are unlikely to move loyalty much without a quality story behind them.</p>
-                <p>A near-identical result came from just two variables, quality and negative publicity (R&sup2; = 0.623 vs 0.628 for all three), which matters practically: the company can track and act on two clear signals rather than maintaining a more complex, brand-awareness-inclusive model for negligible extra explanatory power.</p>
+                <p><strong>Product quality is the primary loyalty driver</strong> by a clear margin, and negative publicity has a real suppressing effect. Brand awareness showed only a weak correlation (r = 0.18).</p>
+                <p>Dropping brand awareness barely changes the model (R&sup2; 0.623 vs 0.628), while dropping quality collapses it to 0.211. Two signals, quality and negative publicity, carry almost all of the explanatory power.</p>
             </div>
         </section>
 
         <section class="cs-section">
-            <h2 class="cs-section-title">Business Impact</h2>
-            <p>The analysis produced a clear investment priority order: product quality first, proactive reputation management second, and brand awareness campaigns third, best deployed alongside quality messaging rather than as a stand-alone lever. It also gave the company a working predictive model to monitor and update as new customer data comes in, rather than a one-off snapshot.</p>
+            <h2 class="cs-section-title">What It Means</h2>
+            <p>The results point to a clear priority order: product quality first, managing negative publicity second, brand awareness third. Awareness campaigns on their own are unlikely to move loyalty much without a quality story behind them.</p>
         </section>
 
 

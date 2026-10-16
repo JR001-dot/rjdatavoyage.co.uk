@@ -259,7 +259,7 @@
 
         <div class="cs-domain">QA Engineering / Test Automation</div>
         <h1 class="cs-title">Automated PDF Compliance Test Harness</h1>
-        <p class="cs-summary">Multi-layer validation framework that programmatically tests 300 PDF documents against structural and content compliance rules — achieving 100% true positive and true negative rates across a controlled ground-truth corpus — with per-file failure diagnosis and a colour-coded Excel compliance report.</p>
+        <p class="cs-summary">Multi-layer validation framework that programmatically tests 300 PDF documents against structural and content compliance rules - achieving 100% true positive and true negative rates across a controlled ground-truth corpus - with per-file failure diagnosis and a colour-coded Excel compliance report.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -276,20 +276,20 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Test Corpus</div>
-                <div class="cs-meta-value">300 documents — 210 known-good, 90 known-defective</div>
+                <div class="cs-meta-value">300 documents - 210 known-good, 90 known-defective</div>
             </div>
         </div>
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>A two-layer compliance test harness achieved 100% true positive and true negative rates across 300 documents &mdash; zero misclassifications &mdash; catching defects automated PDF generation would otherwise let through silently.</strong></p>
-            <p>Automated document generation pipelines produce outputs at scale — but without systematic validation, defects accumulate silently. A PDF generator producing thousands of letters, certificates, or regulated notices may drift from specification without triggering any visible error: spacing breaks, required fields go missing, formatting rules are violated.</p>
-            <p><strong>The question is not whether the documents were generated, but whether they are compliant.</strong> Answering that reliably requires a test harness that defines compliance precisely, executes deterministically, and distinguishes true defects from false alarms — the same standard applied to any quality-critical system.</p>
+            <p><strong>A two-layer compliance test harness achieved 100% true positive and true negative rates across 300 documents - zero misclassifications - catching defects automated PDF generation would otherwise let through silently.</strong></p>
+            <p>Automated document generation pipelines produce outputs at scale - but without systematic validation, defects accumulate silently. A PDF generator producing thousands of letters, certificates, or regulated notices may drift from specification without triggering any visible error: spacing breaks, required fields go missing, formatting rules are violated.</p>
+            <p><strong>The question is not whether the documents were generated, but whether they are compliant.</strong> Answering that reliably requires a test harness that defines compliance precisely, executes deterministically, and distinguishes true defects from false alarms - the same standard applied to any quality-critical system.</p>
             <p>This project built exactly that: a two-layer automated framework capable of parsing generated PDFs, asserting compliance against a defined specification, and reporting results at both aggregate and per-file granularity.</p>
         </section>
 
         <div class="cs-callout">
-            <p><strong>Why this matters for regulated environments:</strong> In financial services, insurance, and legal contexts, document compliance is not a cosmetic concern — it is an audit and regulatory obligation. Manual spot-checking at volume is statistically insufficient. Automated harnesses with quantified false-positive and false-negative rates are the only defensible approach.</p>
+            <p><strong>Why this matters for regulated environments:</strong> In financial services, insurance, and legal contexts, document compliance is not a cosmetic concern - it is an audit and regulatory obligation. Manual spot-checking at volume is statistically insufficient. Automated harnesses with quantified false-positive and false-negative rates are the only defensible approach.</p>
         </div>
 
         <section class="cs-section">
@@ -299,21 +299,21 @@
                     <div class="cs-step-num">01</div>
                     <div>
                         <div class="cs-step-title">Ground-Truth Corpus Design</div>
-                        <div class="cs-step-desc">Constructed a controlled test corpus of 300 synthetic PDF letters: 210 known-good (conforming to all specification rules) and 90 known-defective (containing deliberate, categorised violations). This separation is essential — without a ground truth, test accuracy cannot be measured, only assumed.</div>
+                        <div class="cs-step-desc">Constructed a controlled test corpus of 300 synthetic PDF letters: 210 known-good (conforming to all specification rules) and 90 known-defective (containing deliberate, categorised violations). This separation is essential - without a ground truth, test accuracy cannot be measured, only assumed.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Layer 1 — Structural Validation (Y-Gap)</div>
+                        <div class="cs-step-title">Layer 1 - Structural Validation (Y-Gap)</div>
                         <div class="cs-step-desc">Implemented paragraph spacing analysis using PyMuPDF (fitz), extracting the vertical positions of text blocks and asserting that inter-paragraph gaps conform to the defined layout specification. Each document is evaluated against a configurable y-gap threshold, with the exact failure reason logged when the rule is violated.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Layer 2 — Content Integrity Validation</div>
-                        <div class="cs-step-desc">Applied a sequential regex-based assertion engine that validates required content fields in strict top-to-bottom order: salutation format, date, property address, order reference, phone, website, bold formatting markers, and two weather-line phrases. Presence, format, and ordering are all checked — partial compliance is not accepted.</div>
+                        <div class="cs-step-title">Layer 2 - Content Integrity Validation</div>
+                        <div class="cs-step-desc">Applied a sequential regex-based assertion engine that validates required content fields in strict top-to-bottom order: salutation format, date, property address, order reference, phone, website, bold formatting markers, and two weather-line phrases. Presence, format, and ordering are all checked - partial compliance is not accepted.</div>
                     </div>
                 </div>
                 <div class="cs-step">
@@ -328,7 +328,7 @@
 
         <!-- Animated terminal hero -->
         <div class="cs-hero">
-            <div class="cs-hero-label">TEST HARNESS — FINAL ACCURACY REPORT</div>
+            <div class="cs-hero-label">TEST HARNESS - FINAL ACCURACY REPORT</div>
             <div class="cs-hero-metric">300 DOCS</div>
             <div class="harness-terminal">
                 <div><span class="t-label">GROUND TRUTH &nbsp;&nbsp;&nbsp;</span><span class="t-dim">Known-good: 210 &nbsp;&nbsp; Known-defective: 90 &nbsp;&nbsp; Total: 300</span></div>
@@ -346,20 +346,20 @@
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">100%</div>
-                    <div class="cs-outcome-label">True positive rate — all 210 compliant documents correctly passed</div>
+                    <div class="cs-outcome-label">True positive rate - all 210 compliant documents correctly passed</div>
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">100%</div>
-                    <div class="cs-outcome-label">True negative rate — all 90 defective documents correctly failed</div>
+                    <div class="cs-outcome-label">True negative rate - all 90 defective documents correctly failed</div>
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">0</div>
-                    <div class="cs-outcome-label">False positives and false negatives — zero misclassifications across 300 documents</div>
+                    <div class="cs-outcome-label">False positives and false negatives - zero misclassifications across 300 documents</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>The harness achieved <strong>perfect classification across all 300 documents</strong> — 210 true positives and 90 true negatives, with zero false positives and zero false negatives. The two validation layers were complementary: structural validation (y-gap) flagged 58 failures, content integrity flagged 90, with the combined verdict correctly identifying all defective documents.</p>
-                <p>Failure diagnosis identified the most common root causes, enabling the document generator to be targeted for fixes rather than requiring broad rework. Weather-line content was the highest-frequency failure mode (74 instances), followed by salutation format errors (58) — findings that directly informed prioritised corrections upstream.</p>
+                <p>The harness achieved <strong>perfect classification across all 300 documents</strong> - 210 true positives and 90 true negatives, with zero false positives and zero false negatives. The two validation layers were complementary: structural validation (y-gap) flagged 58 failures, content integrity flagged 90, with the combined verdict correctly identifying all defective documents.</p>
+                <p>Failure diagnosis identified the most common root causes, enabling the document generator to be targeted for fixes rather than requiring broad rework. Weather-line content was the highest-frequency failure mode (74 instances), followed by salutation format errors (58) - findings that directly informed prioritised corrections upstream.</p>
             </div>
 
             <div class="failure-table-wrap">
@@ -371,15 +371,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Weather line 1 — missing required phrase</td><td>74</td></tr>
-                        <tr><td>Weather line 2 — missing required phrase</td><td>74</td></tr>
-                        <tr><td>Salutation — incorrect format or missing</td><td>58</td></tr>
-                        <tr><td>Order number — absent or malformed</td><td>36</td></tr>
-                        <tr><td>Date — absent or malformed</td><td>36</td></tr>
-                        <tr><td>Property line — absent or malformed</td><td>36</td></tr>
-                        <tr><td>Phone — absent or incorrect</td><td>20</td></tr>
-                        <tr><td>Website — absent or incorrect</td><td>20</td></tr>
-                        <tr><td>Bold formatting — expected markers missing</td><td>16</td></tr>
+                        <tr><td>Weather line 1 - missing required phrase</td><td>74</td></tr>
+                        <tr><td>Weather line 2 - missing required phrase</td><td>74</td></tr>
+                        <tr><td>Salutation - incorrect format or missing</td><td>58</td></tr>
+                        <tr><td>Order number - absent or malformed</td><td>36</td></tr>
+                        <tr><td>Date - absent or malformed</td><td>36</td></tr>
+                        <tr><td>Property line - absent or malformed</td><td>36</td></tr>
+                        <tr><td>Phone - absent or incorrect</td><td>20</td></tr>
+                        <tr><td>Website - absent or incorrect</td><td>20</td></tr>
+                        <tr><td>Bold formatting - expected markers missing</td><td>16</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -388,8 +388,8 @@
         <section class="cs-section">
             <h2 class="cs-section-title">Relevance to Production Contexts</h2>
             <p>This harness demonstrates capabilities that translate directly to production quality engineering: structured test design with explicit ground truth, multi-layer validation with independent failure modes, per-document failure attribution rather than aggregate-only reporting, and machine-readable output (Excel) for downstream audit processes.</p>
-            <p>The same architecture — parse, assert, report — scales to any document type where compliance rules can be formalised: regulated financial notices, insurance certificates, legal contracts, or automated correspondence systems. The pattern is domain-agnostic; only the assertion rules change.</p>
-            <p><strong>For organisations running AI-assisted document generation pipelines</strong>, this kind of post-generation compliance testing is the QA layer that makes the pipeline auditable — not just functional.</p>
+            <p>The same architecture - parse, assert, report - scales to any document type where compliance rules can be formalised: regulated financial notices, insurance certificates, legal contracts, or automated correspondence systems. The pattern is domain-agnostic; only the assertion rules change.</p>
+            <p><strong>For organisations running AI-assisted document generation pipelines</strong>, this kind of post-generation compliance testing is the QA layer that makes the pipeline auditable - not just functional.</p>
         </section>
 
         <section class="cs-section">

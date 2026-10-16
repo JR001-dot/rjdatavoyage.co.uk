@@ -163,7 +163,7 @@
 
         <div class="cs-domain">Deep Learning</div>
         <h1 class="cs-title">Neural Network Design &amp; Hyperparameter Optimisation</h1>
-        <p class="cs-summary">Binary classification neural network designed, trained and systematically optimised using TensorFlow and Keras on the UCI Spambase dataset — 4,601 emails across 57 frequency-based features — with grid search over architecture configurations achieving 94.6% test accuracy.</p>
+        <p class="cs-summary">Binary classification neural network designed, trained and systematically optimised using TensorFlow and Keras on the UCI Spambase dataset - 4,601 emails across 57 frequency-based features - with grid search over architecture configurations achieving 94.6% test accuracy.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -180,7 +180,7 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Dataset</div>
-                <div class="cs-meta-value">UCI Spambase — 4,601 emails, 57 features</div>
+                <div class="cs-meta-value">UCI Spambase - 4,601 emails, 57 features</div>
             </div>
         </div>
 
@@ -188,7 +188,7 @@
             <h2 class="cs-section-title">The Challenge</h2>
             <p><strong>Systematic grid search across epoch and batch-size configurations reached 94.6% test accuracy on the UCI Spambase benchmark, isolating exactly which architectural choices drove the improvement rather than asserting it from documentation.</strong></p>
             <p>Spam classification is a canonical problem in binary classification, but the more durable goal here was to develop genuine architectural intuition: how does layer depth, neuron count, epoch budget and batch size interact? Which choices matter most in practice, and can that be demonstrated empirically rather than asserted from reading documentation?</p>
-            <p><strong>The UCI Spambase benchmark</strong> provides a clean, well-understood target — 4,601 emails labelled spam or legitimate, each described by 57 word-frequency and email-characteristic features — making it ideal for controlled architecture exploration where performance differences are attributable to design choices, not data quality.</p>
+            <p><strong>The UCI Spambase benchmark</strong> provides a clean, well-understood target - 4,601 emails labelled spam or legitimate, each described by 57 word-frequency and email-characteristic features - making it ideal for controlled architecture exploration where performance differences are attributable to design choices, not data quality.</p>
         </section>
 
         <section class="cs-section">
@@ -198,14 +198,14 @@
                     <div class="cs-step-num">01</div>
                     <div>
                         <div class="cs-step-title">Data Preparation</div>
-                        <div class="cs-step-desc">Loaded and preprocessed the UCI Spambase dataset — 4,601 labelled emails with 57 word-frequency and character-frequency features. Applied StandardScaler normalisation, then split 80/20 into training and held-out test sets with stratification to preserve class proportions.</div>
+                        <div class="cs-step-desc">Loaded and preprocessed the UCI Spambase dataset - 4,601 labelled emails with 57 word-frequency and character-frequency features. Applied StandardScaler normalisation, then split 80/20 into training and held-out test sets with stratification to preserve class proportions.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
                         <div class="cs-step-title">Architecture Design</div>
-                        <div class="cs-step-desc">Designed a sequential deep network with two hidden layers — 64 then 32 neurons — both with ReLU activation, and a single sigmoid output node for binary classification. Compiled with Adam optimiser and binary cross-entropy loss, then validated the baseline architecture against the held-out set.</div>
+                        <div class="cs-step-desc">Designed a sequential deep network with two hidden layers - 64 then 32 neurons - both with ReLU activation, and a single sigmoid output node for binary classification. Compiled with Adam optimiser and binary cross-entropy loss, then validated the baseline architecture against the held-out set.</div>
                     </div>
                 </div>
                 <div class="cs-step">
@@ -267,16 +267,16 @@
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">Grid Search</div>
-                    <div class="cs-outcome-label">Epoch and batch size systematically explored — optimal: ~14 epochs, batch size ~17</div>
+                    <div class="cs-outcome-label">Epoch and batch size systematically explored - optimal: ~14 epochs, batch size ~17</div>
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">94.5% avg</div>
-                    <div class="cs-outcome-label">Average best accuracy across all grid search configurations — consistent, stable performance</div>
+                    <div class="cs-outcome-label">Average best accuracy across all grid search configurations - consistent, stable performance</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>The baseline architecture — two hidden layers of 64 and 32 neurons with ReLU activation, Adam optimiser — achieved <strong>94.57% test accuracy</strong> from the outset, demonstrating the architecture was well-matched to the problem. Systematic grid search confirmed this result was reproducible and not an artefact of a single lucky training run: the average best accuracy across all configurations was <strong>94.50%</strong>, with optimal performance clustering around 14 epochs and a batch size of 17.</p>
-                <p>The grid search exercise established that epoch count and batch size both influence the accuracy-overfitting trade-off, but that the architecture's fundamental capacity was sufficient — diminishing returns set in quickly beyond the identified optimum. The validation curves for each configuration were plotted to make this sensitivity landscape visible rather than abstract.</p>
+                <p>The baseline architecture - two hidden layers of 64 and 32 neurons with ReLU activation, Adam optimiser - achieved <strong>94.57% test accuracy</strong> from the outset, demonstrating the architecture was well-matched to the problem. Systematic grid search confirmed this result was reproducible and not an artefact of a single lucky training run: the average best accuracy across all configurations was <strong>94.50%</strong>, with optimal performance clustering around 14 epochs and a batch size of 17.</p>
+                <p>The grid search exercise established that epoch count and batch size both influence the accuracy-overfitting trade-off, but that the architecture's fundamental capacity was sufficient - diminishing returns set in quickly beyond the identified optimum. The validation curves for each configuration were plotted to make this sensitivity landscape visible rather than abstract.</p>
             </div>
         </section>
 

@@ -12,11 +12,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Insurance Cost Correlation Analysis | RJ Data Voyage</title>
-    <meta name="description" content="Statistical correlation analysis of lifestyle and demographic factors against insurance costs for a London investment firm, informing an evidence-based employee benefits decision.">
+    <meta name="description" content="Pearson correlation analysis of BMI, age and number of children against insurance charges across 1,000 anonymised records, with the limits of correlation stated plainly. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/medical-insurance-correlation-analysis">
     <meta property="og:title" content="Medical Insurance Cost Correlation Analysis | RJ Data Voyage">
-    <meta property="og:description" content="Statistical correlation analysis of lifestyle and demographic factors against insurance costs for a London investment firm, informing an evidence-based employee benefits decision.">
+    <meta property="og:description" content="Pearson correlation analysis of BMI, age and number of children against insurance charges across 1,000 anonymised records, with the limits of correlation stated plainly. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -119,7 +119,7 @@
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "Medical Insurance Cost Correlation Analysis",
-  "about": "Pearson correlation analysis grounding an employee-benefits decision",
+  "about": "Pearson correlation analysis of lifestyle factors and insurance charges",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
   "keywords": "Pearson correlation, statistical analysis, insurance",
   "url": "https://rjdatavoyage.co.uk/projects/medical-insurance-correlation-analysis",
@@ -158,7 +158,7 @@
 
         <div class="cs-domain">Statistical Analysis / Insurance</div>
         <h1 class="cs-title">Medical Insurance Cost Correlation Analysis</h1>
-        <p class="cs-summary">A rigorous correlation study for a London investment firm evaluating BMI-linked pricing tiers for employee medical benefits &mdash; separating genuine statistical signal from assumption, and pairing the findings with an explicit ethical and legal limitations review.</p>
+        <p class="cs-summary">A correlation study of what drives medical insurance charges, set in a scenario where a London investment firm is weighing a BMI-linked employee insurance scheme. It separates statistical signal from assumption and states plainly what correlation can and cannot support.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -167,15 +167,15 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Domain</div>
-                <div class="cs-meta-value">Financial Services</div>
+                <div class="cs-meta-value">Insurance / Employee Benefits</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">Pearson Correlation, Hypothesis Testing</div>
+                <div class="cs-meta-value">Pearson Correlation, Significance Testing</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
@@ -201,9 +201,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>BMI is the strongest predictor of insurance costs in this dataset, with a strong, highly significant correlation (r = 0.709, p &lt; 0.001) &mdash; a finding a London investment firm used to ground its employee medical benefits decision in evidence rather than assumption.</strong></p>
-            <p>The firm was weighing changes to its employee medical benefits scheme and wanted evidence-based grounds for any BMI-linked pricing tiers, rather than relying on assumption or industry convention. The brief was to quantify, rigorously, which lifestyle and demographic factors actually correlate with insurance costs, and how confident that relationship is.</p>
-            <p>The analysis used an anonymised insurance dataset covering demographic and lifestyle variables, with the explicit goal of separating genuine statistical signal from noise before any pricing decision was made.</p>
+            <p><strong>Across 1,000 anonymised records, BMI showed a strong, highly significant correlation with insurance charges (r = 0.709, p &lt; 0.001). Age was weak (r = 0.080) and number of children showed no significant link (r = 0.031).</strong></p>
+            <p>The scenario: an insurer's competitive quote varies the cost per employee by BMI, so staff outside an 18-24 BMI range would pay an extra monthly contribution. Before adopting it, the firm needs evidence of whether lifestyle factors actually correlate with insurance costs, and needs to be able to explain that evidence to employees who may see the scheme as unfair.</p>
         </section>
 
         <section class="cs-section">
@@ -213,28 +212,28 @@
                     <div class="cs-step-num">01</div>
                     <div>
                         <div class="cs-step-title">Exploratory Data Analysis</div>
-                        <div class="cs-step-desc">Ran descriptive statistics, scatter plots, and histograms across the anonymised dataset to understand distributions and initial relationships before any formal testing.</div>
+                        <div class="cs-step-desc">Ran descriptive statistics, scatter plots and histograms to understand distributions and initial relationships before any formal testing.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
                         <div class="cs-step-title">Statistical Testing</div>
-                        <div class="cs-step-desc">Calculated Pearson correlation coefficients between BMI, age, and number of children against insurance charges, with two-tailed p-value significance testing at &alpha; = 0.05.</div>
+                        <div class="cs-step-desc">Calculated Pearson correlation coefficients for BMI, age and number of children against insurance charges, with p-values tested at &alpha; = 0.05.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
                         <div class="cs-step-title">Results Interpretation</div>
-                        <div class="cs-step-desc">Classified each relationship as strong, weak, or non-significant, and distinguished statistical significance from practical, decision-relevant effect size.</div>
+                        <div class="cs-step-desc">Classified each relationship as strong, weak or not significant, and separated statistical significance from practical relevance.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Limitations &amp; Ethics Review</div>
-                        <div class="cs-step-desc">Explicitly assessed confounding variables (smoking, exercise, medical history), selection and measurement bias, and the equality-legislation implications of any BMI-based pricing before making recommendations.</div>
+                        <div class="cs-step-title">Limitations &amp; Fairness</div>
+                        <div class="cs-step-desc">Set out what the result cannot support: correlation does not establish causation, unmeasured variables may bias the picture, and BMI-linked pricing raises fairness questions for employees.</div>
                     </div>
                 </div>
             </div>
@@ -245,28 +244,28 @@
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">r = 0.709</div>
-                    <div class="cs-outcome-label">BMI vs insurance charges &mdash; strong, highly significant correlation (p = 2.06e-153)</div>
+                    <div class="cs-outcome-label">BMI vs insurance charges: strong, highly significant correlation (p = 2.06e-153)</div>
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">r = 0.080</div>
-                    <div class="cs-outcome-label">Age vs charges &mdash; weak but statistically significant correlation (p = 0.012)</div>
+                    <div class="cs-outcome-label">Age vs charges: weak but statistically significant correlation (p = 0.012)</div>
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">r = 0.031</div>
-                    <div class="cs-outcome-label">Number of children vs charges &mdash; not statistically significant (p = 0.332)</div>
+                    <div class="cs-outcome-label">Number of children vs charges: not statistically significant (p = 0.332)</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p><strong>BMI emerged as by far the strongest predictor</strong> of insurance costs among the variables tested, with a strong, highly significant positive correlation. Age showed a real but much weaker relationship, and number of children showed no meaningful link to cost at all &mdash; a useful negative finding that rules out a factor the firm might otherwise have assumed was relevant.</p>
+                <p><strong>BMI was by far the strongest correlate</strong> of insurance charges among the variables tested. Age showed a real but much weaker relationship, and number of children showed no meaningful link, a useful negative finding that rules out a factor that might otherwise be assumed relevant.</p>
                 <div class="cs-callout">
-                    <p>Correlation is not causation: a higher BMI correlating with higher charges does not establish that BMI directly causes those costs, and the dataset is cross-sectional, external, and missing likely confounders such as smoking status, exercise habits, and pre-existing conditions. These limitations were surfaced deliberately, alongside the equality-legislation and employee-wellbeing risks of BMI-linked pricing, so the firm could weigh the statistics against the ethical and legal picture together.</p>
+                    <p>Correlation is not causation: higher BMI moving with higher charges does not show that BMI causes those costs. The dataset holds only three candidate variables, so unmeasured factors could explain part of the relationship.</p>
                 </div>
             </div>
         </section>
 
         <section class="cs-section">
-            <h2 class="cs-section-title">Business Impact</h2>
-            <p>The analysis gave the firm a statistically grounded basis for its benefits decision, plus an honest account of what that basis does and doesn't support. Recommendations included transparent, evidence-based BMI pricing tiers if pursued, paired with employee communication that leads with the data rather than the outcome, complementary wellness programmes offering a genuine route to lower costs, and a formal compliance review with legal and HR before implementation, given the discrimination-risk considerations identified during the analysis itself.</p>
+            <h2 class="cs-section-title">What It Means</h2>
+            <p>The evidence supports BMI as a relevant cost factor and rules out number of children. On its own, it does not justify charging employees by BMI: any scheme built on it would need to address the fairness concerns the scenario raises before adoption.</p>
         </section>
 
 
