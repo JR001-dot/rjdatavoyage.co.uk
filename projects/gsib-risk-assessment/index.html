@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-SIB Risk Assessment System | RJ Data Voyage</title>
-    <meta name="description" content="NLP-driven risk assessment system analysing 81 quarterly financial reports across 3 Global Systemically Important Banks using FinBERT, BERTopic, and ARIMA.">
+    <title>G-SIB Disclosure Analysis Prototype | RJ Data Voyage</title>
+    <meta name="description" content="Team employer project: an NLP prototype that scored 17,292 text chunks from 81 public reports and earnings-call transcripts of three global systemically important banks with FinBERT and VADER, and mapped negative passages to risk themes.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/gsib-risk-assessment">
-    <meta property="og:title" content="G-SIB Risk Assessment System | RJ Data Voyage">
-    <meta property="og:description" content="NLP-driven risk assessment system analysing 81 quarterly financial reports across 3 Global Systemically Important Banks using FinBERT, BERTopic, and ARIMA.">
+    <meta property="og:title" content="G-SIB Disclosure Analysis Prototype | RJ Data Voyage">
+    <meta property="og:description" content="Team employer project: an NLP prototype that scored 17,292 text chunks from 81 public reports and earnings-call transcripts of three global systemically important banks with FinBERT and VADER, and mapped negative passages to risk themes.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,15 +120,17 @@
             .cs-hero-label { position: absolute; top: 24px; left: 32px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(56,189,248,0.4); }
             .cs-hero-metric { position: absolute; top: 20px; right: 32px; font-family: var(--font-mono); font-size: 1.8rem; font-weight: 300; color: rgba(56,189,248,0.25); }
         
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
     </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "G-SIB Risk Assessment System",
-  "about": "NLP-driven systemic-risk monitoring across Global Systemically Important Banks",
+  "name": "G-SIB Disclosure Analysis Prototype",
+  "about": "NLP sentiment and risk-theme analysis of public bank disclosures (team project)",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "FinBERT, BERTopic, ARIMA, VADER, GPT-2, NLP, financial regulation",
+  "keywords": "FinBERT, VADER, NLP, financial regulation, G-SIB, sentiment analysis",
   "url": "https://rjdatavoyage.co.uk/projects/gsib-risk-assessment",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -164,33 +166,33 @@
         </a>
 
         <div class="cs-domain">Financial Regulation / NLP</div>
-        <h1 class="cs-title">G-SIB Risk Assessment System</h1>
-        <p class="cs-summary">An end-to-end NLP pipeline that analyses quarterly financial reports and earnings call transcripts from Global Systemically Important Banks, extracting regulatory-style risk insights that would take human analysts weeks to compile manually.</p>
+        <h1 class="cs-title">G-SIB Disclosure Analysis Prototype</h1>
+        <p class="cs-summary">An NLP prototype that turns public disclosures from Global Systemically Important Banks into comparable sentiment and risk signals across banks and quarters.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Type</div>
-                <div class="cs-meta-value">Cambridge Capstone (2025)</div>
+                <div class="cs-meta-value">Cambridge employer project (team)</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Domain</div>
-                <div class="cs-meta-value">Financial Risk &amp; Regulation</div>
+                <div class="cs-meta-label">My Role</div>
+                <div class="cs-meta-value">Designed and built the core pipeline</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Data</div>
-                <div class="cs-meta-value">81 Public Reports (2023-2025)</div>
+                <div class="cs-meta-value">81 public reports and transcripts, Q1 2023 - Q1 2025</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-value">Prototype</div>
             </div>
         </div>
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>A five-model NLP pipeline processed 81 quarterly reports across three G-SIBs - UBS, Morgan Stanley, and Barclays - turning public earnings transcripts and disclosures into structured, cross-bank risk intelligence at a speed manual review can't match.</strong></p>
-            <p>Financial regulators face a growing structural problem: the volume of unstructured data published by systemically important banks far exceeds what human analysts can process consistently. Quarterly earnings reports, investor call transcripts, risk disclosures, and supplementary filings contain critical signals about capital adequacy, liquidity risk, and emerging vulnerabilities.</p>
-            <p><strong>Manual review of these documents is slow, inconsistent, and prone to oversight.</strong> Key risk indicators are often buried in dense financial language, and cross-bank comparisons require analysts to synthesise information across hundreds of pages per quarter.</p>
+            <p><strong>FinBERT and VADER scored 17,292 passages from 81 bank reports and earnings-call transcripts, showing which bank's disclosures carried the most negative language and which risk themes drove it.</strong></p>
+            <p>Supervisors and analysts face more published material from systemically important banks than they can read consistently: quarterly reports, earnings-call transcripts and Q&amp;A sessions. Signals about credit quality, funding and legal exposure are spread across hundreds of pages per quarter.</p>
+            <p>The brief was to prototype how NLP could make these disclosures comparable across banks and over time, using only public documents.</p>
         </section>
 
         <section class="cs-section">
@@ -199,36 +201,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Data Collection and Preprocessing</div>
-                        <div class="cs-step-desc">Collected 81 publicly available quarterly financial reports and earnings call transcripts from three G-SIBs spanning 2023 to 2025. Cleaned and structured the raw text data, handling financial formatting, tables, and multi-section document structures.</div>
+                        <div class="cs-step-title">Document collection and processing</div>
+                        <div class="cs-step-desc">81 public documents for three G-SIBs, Q1 2023 to Q1 2025 (27 per bank): earnings reports and earnings-call / Q&amp;A transcripts. Text extracted from PDF and Word files and split into chunks, with bank, quarter and document metadata kept for traceability.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Multi-Model NLP Pipeline</div>
-                        <div class="cs-step-desc">Built a layered NLP architecture combining FinBERT for domain-specific sentiment scoring, VADER for complementary lexicon-based analysis, BERTopic for dynamic topic modelling to surface emerging risk themes, and GPT-2 for contextual summarisation.</div>
+                        <div class="cs-step-title">Sentiment scoring</div>
+                        <div class="cs-step-desc">Every chunk scored with FinBERT (finance-specific) and VADER (lexicon-based), then aggregated by bank and quarter.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Financial Metrics Extraction</div>
-                        <div class="cs-step-desc">Implemented structured extraction of quantitative financial metrics from unstructured text, enabling direct comparison of capital ratios, loss provisions, and liquidity indicators across banks and quarters.</div>
+                        <div class="cs-step-title">Risk themes and metrics</div>
+                        <div class="cs-step-desc">Negative passages mapped to a keyword-based risk taxonomy (credit, market, liquidity, operational, legal and more). Financial metrics such as capital ratios and net interest margin extracted with regular expressions.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">ARIMA Forecasting</div>
-                        <div class="cs-step-desc">Applied ARIMA time-series modelling to the extracted metrics, generating forward-looking projections of key risk indicators to add a predictive dimension beyond retrospective analysis.</div>
-                    </div>
-                </div>
-                <div class="cs-step">
-                    <div class="cs-step-num">05</div>
-                    <div>
-                        <div class="cs-step-title">Interactive Dashboard</div>
-                        <div class="cs-step-desc">Produced a comprehensive interactive dashboard presenting regulatory-style risk insights, enabling exploration of sentiment trends, topic evolution, metric comparisons, and forecast trajectories.</div>
+                        <div class="cs-step-title">Summaries and reporting</div>
+                        <div class="cs-step-desc">GPT-2 document insights and BART-based summary aggregation, with HTML reports and a dashboard image for review. A teammate built a separate LLM summarisation module; the wider team contributed brainstorming and validation.</div>
                     </div>
                 </div>
             </div>
@@ -260,22 +255,21 @@
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">81</div>
-                    <div class="cs-outcome-label">Quarterly reports analysed across 3 G-SIBs</div>
+                    <div class="cs-outcome-label">Public reports and transcripts across 3 G-SIBs</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">5</div>
-                    <div class="cs-outcome-label">NLP models integrated into a single pipeline</div>
+                    <div class="cs-outcome-value">17,292</div>
+                    <div class="cs-outcome-label">Text chunks scored with FinBERT and VADER</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">2 yrs</div>
-                    <div class="cs-outcome-label">Of financial data spanning 2023-2025</div>
+                    <div class="cs-outcome-value">15.8%</div>
+                    <div class="cs-outcome-label">Of chunks classified negative by FinBERT</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>Processed 81 quarterly reports across three global systemically important banks (UBS, Morgan Stanley, Barclays) spanning 2023-2025, extracting financial metrics, sentiment trajectories, and emerging risk themes at a speed and consistency that manual analyst review cannot replicate.</p>
-                <p>A five-model NLP pipeline (FinBERT, VADER, BERTopic, GPT-2, ARIMA) delivered structured intelligence from unstructured filings - turning earnings transcripts and regulatory disclosures into comparable, queryable data across banks and quarters. Topic modelling surfaced cross-bank themes that siloed reading would miss.</p>
-                <p>For regulatory teams managing growing volumes of public disclosures, this approach replaces weeks of manual extraction per reporting cycle with automated, auditable analysis that scales without proportional headcount increases.</p>
-                <p><strong>Important note:</strong> This is a prototype built using only publicly available data. It demonstrates the methodology and capability, not a production deployment.</p>
+            <p>FinBERT classified 65.2% of chunks as neutral, 19.1% positive and 15.8% negative. The share of negative language differed clearly between banks (20.0%, 11.2% and 9.2%) but stayed steady over time (14.1% to 16.9% per quarter).</p>
+            <p>The leading themes in negative passages were credit risk (10.0%), treasury and balance-sheet topics (7.1%), cost inflation (4.6%), market volatility (4.1%) and legal risk (3.5%); 36.7% did not match a theme. The pipeline also extracted 358 financial-metric mentions and 345 transcript segments.</p>
+            <div class="cs-callout"><p><strong>Prototype limitations:</strong> extracted metrics were not validated against the filings, so they are not used for capital-ratio comparisons. BERTopic was attempted but returned a single topic on this corpus, so themes come from the keyword taxonomy. A forecasting module was drafted but not run; nine quarters per bank is too short for it. Bank names and source files are withheld.</p></div>
             </div>
         </section>
 
@@ -285,14 +279,13 @@
                 <span class="cs-tech-pill">Python</span>
                 <span class="cs-tech-pill">FinBERT</span>
                 <span class="cs-tech-pill">VADER</span>
-                <span class="cs-tech-pill">BERTopic</span>
                 <span class="cs-tech-pill">GPT-2</span>
-                <span class="cs-tech-pill">ARIMA</span>
-                <span class="cs-tech-pill">Sentence Transformers</span>
                 <span class="cs-tech-pill">BART</span>
-                <span class="cs-tech-pill">HDBSCAN</span>
-                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">Hugging Face Transformers</span>
+                <span class="cs-tech-pill">Sentence Transformers</span>
+                <span class="cs-tech-pill">pandas</span>
                 <span class="cs-tech-pill">Plotly</span>
+                <span class="cs-tech-pill">Matplotlib</span>
             </div>
         </section>
 

@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Sentiment Classification Engine | RJ Data Voyage</title>
-    <meta name="description" content="BERT-based NLP sentiment analysis system achieving 92% accuracy on wellness centre customer reviews, surfacing actionable service improvement insights.">
+    <title>Customer Review Topic Modelling and Emotion Analysis | RJ Data Voyage</title>
+    <meta name="description" content="Topic modelling and emotion analysis of 27,585 reviews of a UK gym chain: BERTopic, a BERT emotion model and an instruction-tuned LLM identified cleanliness, staff conduct, equipment and membership fees as the main drivers of angry reviews. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/sentiment-analysis">
-    <meta property="og:title" content="Customer Sentiment Classification Engine | RJ Data Voyage">
-    <meta property="og:description" content="BERT-based NLP sentiment analysis system achieving 92% accuracy on wellness centre customer reviews, surfacing actionable service improvement insights.">
+    <meta property="og:title" content="Customer Review Topic Modelling and Emotion Analysis | RJ Data Voyage">
+    <meta property="og:description" content="Topic modelling and emotion analysis of 27,585 reviews of a UK gym chain: BERTopic, a BERT emotion model and an instruction-tuned LLM identified cleanliness, staff conduct, equipment and membership fees as the main drivers of angry reviews. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,15 +120,17 @@
             .w-neg { background: rgba(239,68,68,0.12); color: rgba(239,68,68,0.7); border: 1px solid rgba(239,68,68,0.15); }
             .w-neu { background: rgba(148,163,184,0.08); color: rgba(148,163,184,0.5); border: 1px solid rgba(148,163,184,0.1); }
         
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
     </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Customer Sentiment Classification Engine",
-  "about": "BERT-based sentiment classification of unstructured customer feedback",
+  "name": "Customer Review Topic Modelling and Emotion Analysis",
+  "about": "Topic modelling and emotion analysis of customer reviews for a UK gym chain",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "BERT, PyTorch, NLTK, Transformers, sentiment analysis, NLP",
+  "keywords": "BERTopic, emotion classification, LLM, LDA, NLP, customer reviews",
   "url": "https://rjdatavoyage.co.uk/projects/sentiment-analysis",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -164,33 +166,33 @@
         </a>
 
         <div class="cs-domain">Natural Language Processing</div>
-        <h1 class="cs-title">Customer Sentiment Classification Engine</h1>
-        <p class="cs-summary">A production-ready NLP system that transforms unstructured customer feedback into categorised sentiment signals, enabling a wellness centre to identify service strengths and weaknesses at scale.</p>
+        <h1 class="cs-title">Customer Review Topic Modelling and Emotion Analysis</h1>
+        <p class="cs-summary">What drives negative reviews for a UK gym chain? Topic modelling, emotion classification and an instruction-tuned LLM applied to 27,585 reviews from two public review platforms.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Type</div>
-                <div class="cs-meta-value">Applied NLP</div>
+                <div class="cs-meta-value">Topic Modelling / NLP</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Domain</div>
-                <div class="cs-meta-value">Customer Analytics</div>
+                <div class="cs-meta-value">Customer Experience</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Accuracy</div>
-                <div class="cs-meta-value">92%</div>
+                <div class="cs-meta-label">Data</div>
+                <div class="cs-meta-value">27,585 reviews, 2 platforms</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>A fine-tuned BERT model classified 27,586 customer reviews with 92% accuracy, surfacing the specific recurring service issues a wellness centre's team couldn't extract from unstructured feedback at that scale.</strong></p>
-            <p>Wellness centres accumulate large volumes of customer feedback through reviews, surveys, and informal comments. This feedback contains valuable signals about what clients value and where service quality is inconsistent.</p>
-            <p><strong>Without systematic analysis, these signals remain locked inside unstructured text.</strong> Feedback is read sporadically, patterns are missed, and service improvement decisions are based on anecdote rather than data.</p>
+            <p><strong>Topic modelling of 2,031 angry reviews traced the anger mainly to four issues: cleanliness, staff conduct, equipment and membership fees.</strong></p>
+            <p>A national gym chain receives thousands of reviews across public platforms. Star ratings show that customers are unhappy, but not why, or where. The task was to turn unstructured review text into specific, location-aware themes that operations teams can act on.</p>
+            <p>The work combined classical NLP with transformer models and an instruction-tuned LLM, and compared what each approach surfaced.</p>
         </section>
 
         <section class="cs-section">
@@ -199,29 +201,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Text Preprocessing Pipeline</div>
-                        <div class="cs-step-desc">Built a robust pipeline handling tokenisation, stopword removal, lemmatisation, and domain-specific text normalisation for customer-generated text with spelling variations and informal language.</div>
+                        <div class="cs-step-title">Preparation and anonymisation</div>
+                        <div class="cs-step-desc">Filtered to English-language reviews, removed duplicates, and stripped personal names and brand terms before analysis. Word frequencies and word clouds compared the two platforms.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">BERT Fine-Tuning</div>
-                        <div class="cs-step-desc">Fine-tuned a pre-trained BERT model on the labelled customer review dataset. Optimised learning rate schedules, batch sizes, and training epochs for the specific domain vocabulary.</div>
+                        <div class="cs-step-title">Topic modelling of negative reviews</div>
+                        <div class="cs-step-desc">Defined negative reviews as ratings below 3, then ran BERTopic (sentence-transformer embeddings) on reviews from locations present on both platforms, and compared the top 20 locations by negative reviews on each platform.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Model Evaluation</div>
-                        <div class="cs-step-desc">Evaluated using precision, recall, F1-score, and confusion matrix analysis. Ensured strong performance on negative reviews, the highest-value category for service improvement.</div>
+                        <div class="cs-step-title">Emotion analysis</div>
+                        <div class="cs-step-desc">Classified every negative review with a pre-trained BERT emotion model, kept the reviews where anger was the top emotion, and ran BERTopic again on that subset.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Insight Extraction</div>
-                        <div class="cs-step-desc">Beyond binary sentiment, extracted thematic patterns from classified reviews to identify specific service areas driving positive and negative feedback.</div>
+                        <div class="cs-step-title">LLM topic extraction and LDA comparison</div>
+                        <div class="cs-step-desc">Used Falcon-7B-Instruct to extract three topics per review and suggest actions for each topic cluster, and compared the results with a Gensim LDA model (10 topics).</div>
                     </div>
                 </div>
             </div>
@@ -229,8 +231,8 @@
 
         <div class="cs-hero">
 
-            <div class="cs-hero-label">SENTIMENT CLASSIFICATION</div>
-            <div class="cs-hero-metric">92%</div>
+            <div class="cs-hero-label">TOPIC MODELLING</div>
+            <div class="cs-hero-metric">2,031 ANGER REVIEWS</div>
             <div class="cs-hero-flow">
                 <div class="cs-hero-row">
                     <span class="cs-hero-word w-pos" style="animation-delay:0.0s">excellent</span>
@@ -258,22 +260,22 @@
             <h2 class="cs-section-title">Results</h2>
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">92%</div>
-                    <div class="cs-outcome-label">Classification accuracy on customer reviews</div>
+                    <div class="cs-outcome-value">27,585</div>
+                    <div class="cs-outcome-label">English-language reviews analysed (11,857 + 15,728 across two platforms)</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">BERT</div>
-                    <div class="cs-outcome-label">Transformer model fine-tuned for domain</div>
+                    <div class="cs-outcome-value">2,031</div>
+                    <div class="cs-outcome-label">Negative reviews where anger was the dominant emotion</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Actionable</div>
-                    <div class="cs-outcome-label">Thematic insights for service improvement</div>
+                    <div class="cs-outcome-value">4</div>
+                    <div class="cs-outcome-label">Main anger drivers identified: cleanliness, staff, equipment, fees</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>Classified 27,586 customer reviews with 92% accuracy using a fine-tuned BERT model, transforming an unmanageable volume of unstructured feedback into structured, categorised intelligence.</p>
-                <p>Beyond binary positive/negative classification, the thematic extraction layer identified specific recurring service issues - the kind of patterns that are invisible when feedback is read sporadically but become clear and actionable when analysed systematically.</p>
-                <p>The system gave the wellness centre something it did not have before: an evidence base for prioritising service improvements, replacing anecdotal impressions with data showing exactly which issues appeared most frequently and with the strongest negative sentiment.</p>
+            <p>Negative reviews numbered 2,422 on one platform and 3,396 on the other. Among angry reviews, the largest themes were <strong>cleanliness of toilets and changing rooms (334 reviews), staff rudeness (326), equipment (271) and membership fees and cancellation (260)</strong>. The first topic-modelling run on negative reviews pointed the same way: showers and changing-room cleanliness first, then broken equipment.</p>
+            <p>Seven locations appeared in both platforms' top-20 lists for negative reviews, giving a short list of sites where problems are consistent rather than platform-specific.</p>
+            <div class="cs-callout"><p><strong>Limitations:</strong> the first BERTopic run used the first 1,000 negative reviews rather than a random sample, and the LLM step ran on 50 angry reviews only. The emotion model labelled about 1,700 negative reviews as "joy", a likely misclassification. LLM-generated suggestions are generic and were not validated.</p></div>
             </div>
         </section>
 
@@ -281,13 +283,15 @@
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
-                <span class="cs-tech-pill">BERT</span>
+                <span class="cs-tech-pill">BERTopic</span>
+                <span class="cs-tech-pill">Sentence Transformers</span>
                 <span class="cs-tech-pill">Hugging Face Transformers</span>
-                <span class="cs-tech-pill">PyTorch</span>
+                <span class="cs-tech-pill">BERT emotion model</span>
+                <span class="cs-tech-pill">Falcon-7B-Instruct</span>
+                <span class="cs-tech-pill">Gensim LDA</span>
                 <span class="cs-tech-pill">NLTK</span>
-                <span class="cs-tech-pill">Pandas</span>
-                <span class="cs-tech-pill">Scikit-learn</span>
-                <span class="cs-tech-pill">Matplotlib</span>
+                <span class="cs-tech-pill">spaCy</span>
+                <span class="cs-tech-pill">pandas</span>
             </div>
         </section>
 

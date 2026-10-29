@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titanic Survival Prediction: Optimiser Comparison | RJ Data Voyage</title>
-    <meta name="description" content="A systematic Adam vs RMSprop optimiser comparison for neural network training, progressing from baseline models through regularisation, early stopping, and 5-fold cross-validation.">
+    <title>Optimiser Comparison: Adam vs RMSprop | RJ Data Voyage</title>
+    <meta name="description" content="Adam and RMSprop compared on a small binary classification network for passenger survival data (891 records), with regularisation, dropout and early stopping explored. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/titanic-optimiser-comparison">
-    <meta property="og:title" content="Titanic Survival Prediction: Optimiser Comparison | RJ Data Voyage">
-    <meta property="og:description" content="A systematic Adam vs RMSprop optimiser comparison for neural network training, progressing from baseline models through regularisation, early stopping, and 5-fold cross-validation.">
+    <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/optimiser-comparison">
+    <meta property="og:title" content="Optimiser Comparison: Adam vs RMSprop | RJ Data Voyage">
+    <meta property="og:description" content="Adam and RMSprop compared on a small binary classification network for passenger survival data (891 records), with regularisation, dropout and early stopping explored. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,11 +118,11 @@
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Titanic Survival Prediction: Optimiser Comparison",
-  "about": "Four-stage Adam vs RMSprop optimiser evaluation",
+  "name": "Optimiser Comparison: Adam vs RMSprop",
+  "about": "Comparison of Adam and RMSprop optimisers on a small neural network",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "deep learning, optimiser comparison, Adam, RMSprop, model evaluation",
-  "url": "https://rjdatavoyage.co.uk/projects/titanic-optimiser-comparison",
+  "keywords": "Adam, RMSprop, neural network, regularisation, cross-validation",
+  "url": "https://rjdatavoyage.co.uk/projects/optimiser-comparison",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
 </script>
@@ -157,8 +157,8 @@
         </a>
 
         <div class="cs-domain">Deep Learning / Model Evaluation</div>
-        <h1 class="cs-title">Titanic Survival Prediction: Optimiser Comparison</h1>
-        <p class="cs-summary">A controlled, progressively rigorous comparison of the Adam and RMSprop optimisers on a binary classification task - from baseline training through regularisation, early stopping, and 5-fold cross-validation - to establish an evidence-based optimiser selection methodology.</p>
+        <h1 class="cs-title">Optimiser Comparison: Adam vs RMSprop</h1>
+        <p class="cs-summary">Two optimisers compared on a small neural network for historical passenger-survival data, then regularisation, dropout, early stopping and cross-validation explored.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -171,11 +171,11 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">Adam, RMSprop, Cross-Validation</div>
+                <div class="cs-meta-value">Adam, RMSprop, Regularisation</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
@@ -205,8 +205,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>Adam and RMSprop land within a single percentage point of each other after 5-fold cross-validation (82.83% vs 81.93%) - proof that for this dataset, disciplined evaluation methodology matters far more than optimiser choice.</strong></p>
-            <p>Choice of optimiser is one of the most consequential, and most under-examined, decisions in neural network training. This project used the classic Titanic survival dataset (891 records, 12 raw features) as a controlled test bed to systematically compare Adam against RMSprop, not just on raw accuracy, but through progressively more rigorous evaluation: baseline comparison, regularisation, early stopping, and cross-validation.</p>
+            <p><strong>On a held-out test set, a small network trained with RMSprop scored 86.0% accuracy against 83.2% for Adam.</strong></p>
+            <p>Optimiser choice is often left at the default. The aim was to compare Adam and RMSprop on the same architecture and data, then test whether regularisation, dropout and early stopping change the picture.</p>
         </section>
 
         <section class="cs-section">
@@ -215,29 +215,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Preprocessing</div>
-                        <div class="cs-step-desc">Dropped identifier and free-text columns, imputed missing Age and Embarked values, one-hot encoded Sex and Embarked (12 &rarr; 10 features), then split 70/10/20 (train/validation/test) with stratification on survival, scaling only after the split to prevent data leakage.</div>
+                        <div class="cs-step-title">Data</div>
+                        <div class="cs-step-desc">891 passenger records, 10 features after encoding; split 72% train, 8% validation, 20% test.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Baseline Comparison</div>
-                        <div class="cs-step-desc">Trained identical 10-64-32-1 architectures (ReLU hidden layers, Sigmoid output) with Adam and RMSprop for 10 epochs each, holding every other hyperparameter constant.</div>
+                        <div class="cs-step-title">Baseline comparison</div>
+                        <div class="cs-step-desc">Identical 64-32 networks trained for 10 epochs with Adam and with RMSprop.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Regularisation &amp; Early Stopping</div>
-                        <div class="cs-step-desc">Added L2 regularisation (&lambda; = 0.01) and dropout (rate = 0.1) to both optimisers, then layered in early stopping (patience = 1) to halt training as soon as validation loss plateaued.</div>
+                        <div class="cs-step-title">Regularisation and early stopping</div>
+                        <div class="cs-step-desc">L2 regularisation, dropout and early stopping added to both.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Cross-Validation</div>
-                        <div class="cs-step-desc">Ran 5-fold stratified cross-validation on the fully regularised, early-stopped models to get a robust, low-variance estimate of each optimiser's true generalisation performance.</div>
+                        <div class="cs-step-title">Cross-validation</div>
+                        <div class="cs-step-desc">5-fold cross-validation set up to compare the optimisers more robustly than a single split.</div>
                     </div>
                 </div>
             </div>
@@ -247,27 +247,22 @@
             <h2 class="cs-section-title">Results</h2>
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">82.83% &plusmn; 4.78%</div>
-                    <div class="cs-outcome-label">Adam, 5-fold cross-validated accuracy (best overall performer)</div>
+                    <div class="cs-outcome-value">86.0%</div>
+                    <div class="cs-outcome-label">RMSprop test accuracy (baseline network)</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">81.93% &plusmn; 4.30%</div>
-                    <div class="cs-outcome-label">RMSprop, 5-fold cross-validated accuracy (more stable validation loss)</div>
+                    <div class="cs-outcome-value">83.2%</div>
+                    <div class="cs-outcome-label">Adam test accuracy (baseline network)</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">84.3%</div>
-                    <div class="cs-outcome-label">RMSprop's best precision figure across configurations tested</div>
+                    <div class="cs-outcome-value">891</div>
+                    <div class="cs-outcome-label">Records; 179 in the test set</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>Across every stage of evaluation, the two optimisers landed within a percentage point or two of each other, a result that is itself informative: for a small-to-medium tabular dataset like this, <strong>optimiser choice matters far less than getting preprocessing, regularisation, and validation strategy right.</strong> Adam consistently converged faster and edged out RMSprop on balanced accuracy and F1 score after cross-validation, while RMSprop consistently showed more stable validation loss and better precision, fewer false positives, at a small cost to recall.</p>
-                <p>Regularisation and early stopping made a real, measurable difference for both optimisers, reducing overfitting and improving validation stability, and the confidence intervals from 5-fold cross-validation overlap enough that the practical choice between Adam and RMSprop should be driven by the deployment context rather than treated as a settled question.</p>
+            <p>In the baseline comparison RMSprop finished ahead. On a test set of this size a difference of about 3 points is roughly five passengers, so a single split cannot separate the optimisers reliably, which is why cross-validation was the next step.</p>
             </div>
-        </section>
-
-        <section class="cs-section">
-            <h2 class="cs-section-title">Business Impact</h2>
-            <p>The recommendation is context-dependent rather than a single winner: Adam with early stopping for scenarios that need maximum survivor identification (higher recall, at the cost of some false positives), and RMSprop with regularisation where minimising false positives matters more than catching every case. More broadly, the project demonstrates a disciplined evaluation methodology, baseline &rarr; regularise &rarr; early-stop &rarr; cross-validate, that generalises well beyond this dataset to any binary classification problem where a confident, defensible model choice is needed.</p>
+            <div class="cs-callout"><p><strong>Note:</strong> the regularisation, early-stopping and cross-validation cells were not saved with outputs, so their results are not quoted here. They will be added after a re-run.</p></div>
         </section>
 
 
@@ -276,11 +271,10 @@
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
                 <span class="cs-tech-pill">TensorFlow / Keras</span>
-                <span class="cs-tech-pill">Scikit-learn</span>
-                <span class="cs-tech-pill">Adam</span>
-                <span class="cs-tech-pill">RMSprop</span>
-                <span class="cs-tech-pill">L2 Regularisation</span>
-                <span class="cs-tech-pill">Cross-Validation</span>
+                <span class="cs-tech-pill">scikit-learn</span>
+                <span class="cs-tech-pill">pandas</span>
+                <span class="cs-tech-pill">NumPy</span>
+                <span class="cs-tech-pill">Matplotlib</span>
             </div>
         </section>
 

@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decision Tree &amp; SHAP: Bank Marketing Prediction | RJ Data Voyage</title>
-    <meta name="description" content="Tree-based model comparison and SHAP interpretability analysis on the UCI Bank Marketing dataset, identifying the true drivers of term-deposit subscription conversion under significant class imbalance.">
+    <title>Decision Trees and SHAP: Bank Marketing | RJ Data Voyage</title>
+    <meta name="description" content="Six classifiers compared on 41,188 bank telemarketing records for term-deposit subscription; Gradient Boosting reached 0.9485 ROC AUC, with SHAP showing why. Includes a note on the call-duration leakage. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/decision-tree-bank-marketing">
-    <meta property="og:title" content="Decision Tree &amp; SHAP: Bank Marketing Prediction | RJ Data Voyage">
-    <meta property="og:description" content="Tree-based model comparison and SHAP interpretability analysis on the UCI Bank Marketing dataset, identifying the true drivers of term-deposit subscription conversion under significant class imbalance.">
+    <meta property="og:title" content="Decision Trees and SHAP: Bank Marketing | RJ Data Voyage">
+    <meta property="og:description" content="Six classifiers compared on 41,188 bank telemarketing records for term-deposit subscription; Gradient Boosting reached 0.9485 ROC AUC, with SHAP showing why. Includes a note on the call-duration leakage. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,10 +118,10 @@
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Decision Tree & SHAP: Bank Marketing Prediction",
-  "about": "Tree-based model comparison with SHAP interpretation on bank-marketing data",
+  "name": "Decision Trees and SHAP: Bank Marketing",
+  "about": "Model comparison and SHAP interpretation for term-deposit subscription",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "decision trees, gradient boosting, SHAP, ROC-AUC, marketing analytics",
+  "keywords": "gradient boosting, XGBoost, SHAP, decision tree, classification",
   "url": "https://rjdatavoyage.co.uk/projects/decision-tree-bank-marketing",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -157,8 +157,8 @@
         </a>
 
         <div class="cs-domain">Marketing Analytics / ML</div>
-        <h1 class="cs-title">Decision Tree &amp; SHAP: Bank Marketing Prediction</h1>
-        <p class="cs-summary">A tree-based model comparison and SHAP interpretability study on the UCI Bank Marketing dataset, identifying which factors genuinely drive term-deposit subscription success under substantial class imbalance, and turning that into an actionable campaign strategy.</p>
+        <h1 class="cs-title">Decision Trees and SHAP: Bank Marketing</h1>
+        <p class="cs-summary">A model comparison and SHAP interpretability study on a public bank telemarketing dataset, predicting which contacts subscribe to a term deposit under strong class imbalance.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -171,11 +171,11 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">Gradient Boosting, XGBoost, SHAP</div>
+                <div class="cs-meta-value">Tree Ensembles, SHAP</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
@@ -193,7 +193,7 @@
                 </div>
                 <div>
                     <div class="cs-funnel-bar" style="width:245px;background:rgba(56,189,248,0.4);animation-delay:1.0s"></div>
-                    <div class="cs-funnel-label" style="color:rgba(56,189,248,0.6);text-align:center">XGBOOST &#8226; 0.920</div>
+                    <div class="cs-funnel-label" style="color:rgba(56,189,248,0.6);text-align:center">XGBOOST &#8226; 0.945</div>
                 </div>
                 <div>
                     <div class="cs-funnel-bar" style="width:300px;background:rgba(52,211,153,0.5);animation-delay:1.4s"></div>
@@ -205,8 +205,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>Gradient Boosting reached 0.9485 ROC-AUC predicting term-deposit subscriptions, with SHAP analysis revealing call duration, not customer demographics, as the dominant driver of conversion.</strong></p>
-            <p>A marketing team running these campaigns needed to know which contacts were worth calling, and why some conversations converted while most didn't. The dataset was heavily imbalanced (88.6% no-subscription vs 11.4% subscription), which makes naive accuracy misleading and model interpretability essential for turning predictions into an actual campaign strategy.</p>
+            <p><strong>Gradient Boosting predicted term-deposit subscriptions with 0.9485 ROC AUC, and SHAP showed which factors drove each prediction.</strong></p>
+            <p>A bank's marketing team wanted to know which contacts were worth calling. Only 11.3% of contacts subscribed (88.7% did not), so accuracy alone would be misleading and the model's reasoning needed to be visible.</p>
         </section>
 
         <section class="cs-section">
@@ -215,29 +215,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Exploration &amp; Encoding</div>
-                        <div class="cs-step-desc">Loaded the UCI Bank Marketing dataset, examined target distribution and class imbalance, and label-encoded categorical variables. No feature standardisation was applied, correctly, since tree-based models don't require it.</div>
+                        <div class="cs-step-title">Data</div>
+                        <div class="cs-step-desc">41,188 contacts with 48 pre-processed, one-hot-encoded features; strong class imbalance.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Model Comparison</div>
-                        <div class="cs-step-desc">Trained and evaluated five tree-based approaches side by side: Decision Tree, Random Forest, AdaBoost, Gradient Boosting, and XGBoost, using ROC-AUC as the primary metric given the class imbalance.</div>
+                        <div class="cs-step-title">Model comparison</div>
+                        <div class="cs-step-desc">Six classifiers compared on test ROC AUC: logistic regression, decision tree, random forest, AdaBoost, Gradient Boosting and XGBoost.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Hyperparameter Tuning</div>
-                        <div class="cs-step-desc">Optimised the Decision Tree specifically using grid search with both pre-pruning and post-pruning techniques, to isolate how much of its underperformance was fixable through tuning alone.</div>
+                        <div class="cs-step-title">Tuning</div>
+                        <div class="cs-step-desc">Decision tree tuned with grid search over pre-pruning settings (5-fold cross-validation).</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">SHAP Interpretation</div>
-                        <div class="cs-step-desc">Applied SHAP values to the best-performing model to understand which features actually drove subscription predictions, and in which direction, rather than treating the model as a black box.</div>
+                        <div class="cs-step-title">Interpretation</div>
+                        <div class="cs-step-desc">SHAP values on the Gradient Boosting model to show which features drove predictions, and in which direction.</div>
                     </div>
                 </div>
             </div>
@@ -245,29 +245,14 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">Results</h2>
-            <div class="cs-outcomes">
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">0.9485</div>
-                    <div class="cs-outcome-label">ROC-AUC, Gradient Boosting - best of five models compared</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">+24.8%</div>
-                    <div class="cs-outcome-label">ROC-AUC improvement from hyperparameter tuning the baseline Decision Tree (0.738 &rarr; 0.921)</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">88.6% / 11.4%</div>
-                    <div class="cs-outcome-label">Class imbalance in the raw dataset, handled explicitly rather than ignored</div>
-                </div>
-            </div>
-            <div style="margin-top: 24px;">
-                <p><strong>Gradient Boosting was the clear winner</strong> at 0.9485 ROC-AUC, narrowly ahead of a tuned Decision Tree (0.921) and XGBoost (0.920), with the untuned baseline Decision Tree trailing well behind at 0.738, a result that shows how much of tree-based model performance comes down to tuning discipline rather than algorithm choice alone.</p>
-                <p>SHAP analysis identified <strong>call duration as by far the strongest predictor</strong> of a successful subscription, with a clear positive relationship: longer, more substantive conversations converted more often. Macroeconomic indicators (employment variation rate, number employed) were the next most influential signals, both negatively correlated with subscription, ahead of campaign contact frequency and customer age.</p>
-            </div>
+            <div style="overflow-x:auto;margin:16px 0"><table style="width:100%;border-collapse:collapse;font-size:0.9rem"><thead><tr><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Model</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Test ROC AUC</th></tr></thead><tbody><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Gradient Boosting</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)"><strong>0.9485</strong></td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">XGBoost</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.9446</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Random Forest</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.9393</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">AdaBoost</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.9341</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Logistic Regression</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.9288</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Decision Tree (tuned)</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.9213</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Decision Tree (baseline)</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.7380</td></tr></tbody></table></div>
+            <p>The ensembles were close together, and tuning lifted the single decision tree from 0.738 to 0.921. SHAP ranked call duration as by far the strongest predictor, followed by two macroeconomic indicators (employment variation rate and number employed).</p>
+            <div class="cs-callout"><p><strong>Leakage note:</strong> call duration is only known after the call ends, so it cannot be used to decide whom to call. The high AUC therefore describes what successful calls looked like, rather than providing pre-call lead scoring. A deployable model would be re-trained without duration.</p></div>
         </section>
 
         <section class="cs-section">
-            <h2 class="cs-section-title">Business Impact</h2>
-            <p>The SHAP findings translate directly into a call-quality-over-quantity strategy: training agents toward longer, higher-value conversations rather than maximising call volume, timing campaign intensity around favourable macroeconomic conditions, and capping contact frequency to avoid the fatigue effect the model surfaced. Deployed for real-time lead scoring, the Gradient Boosting model gives the marketing team a way to prioritise high-potential contacts before they pick up the phone, rather than after.</p>
+            <h2 class="cs-section-title">What This Means</h2>
+            <p>Used descriptively, the analysis shows that engaged, longer conversations and favourable economic conditions go with subscriptions. For targeting before a call, the next step is a model without call duration, judged on precision among the contacts it ranks highest.</p>
         </section>
 
 
@@ -275,11 +260,11 @@
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
-                <span class="cs-tech-pill">Scikit-learn</span>
+                <span class="cs-tech-pill">scikit-learn</span>
                 <span class="cs-tech-pill">XGBoost</span>
                 <span class="cs-tech-pill">SHAP</span>
                 <span class="cs-tech-pill">GridSearchCV</span>
-                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">pandas</span>
             </div>
         </section>
 

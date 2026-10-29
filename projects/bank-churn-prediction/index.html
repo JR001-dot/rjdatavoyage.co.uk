@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Customer Churn Prediction | RJ Data Voyage</title>
-    <meta name="description" content="Classification models across 10,000+ banking customer records with SHAP explainability, identifying churn drivers for targeted retention strategies.">
+    <title>Bank Customer Churn Classification | RJ Data Voyage</title>
+    <meta name="description" content="Decision tree and random forest models predicting churn for 5,034 bank customers (20.8% churn). Random forest: 86.1% accuracy, F1 0.61. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/bank-churn-prediction">
-    <meta property="og:title" content="Bank Customer Churn Prediction | RJ Data Voyage">
-    <meta property="og:description" content="Classification models across 10,000+ banking customer records with SHAP explainability, identifying churn drivers for targeted retention strategies.">
+    <meta property="og:title" content="Bank Customer Churn Classification | RJ Data Voyage">
+    <meta property="og:description" content="Decision tree and random forest models predicting churn for 5,034 bank customers (20.8% churn). Random forest: 86.1% accuracy, F1 0.61. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,15 +132,17 @@
             .cs-hero { height: 220px; }
             .site-footer-inner { flex-direction: column; text-align: center; }
         }
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
     </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Bank Customer Churn Prediction",
-  "about": "Classification of churn signals across 10,000+ customer records",
+  "name": "Bank Customer Churn Classification",
+  "about": "Churn classification for retail bank customers",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "classification, churn prediction, financial services, machine learning",
+  "keywords": "decision tree, random forest, churn, classification",
   "url": "https://rjdatavoyage.co.uk/projects/bank-churn-prediction",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -175,9 +177,9 @@
             Back to Projects
         </a>
 
-        <div class="cs-domain">Financial Services / ML</div>
-        <h1 class="cs-title">Bank Customer Churn Prediction</h1>
-        <p class="cs-summary">A classification system that identifies banking customers at risk of churning, providing relationship managers with early warning signals and the feature-level insight needed to design effective retention interventions.</p>
+        <div class="cs-domain">Classification / Banking</div>
+        <h1 class="cs-title">Bank Customer Churn Classification</h1>
+        <p class="cs-summary">Decision tree and random forest models predicting which retail bank customers will leave, with the trade-off between catching churners and false alarms made explicit.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -190,17 +192,17 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">Ensemble, SHAP</div>
+                <div class="cs-meta-value">Decision Tree, Random Forest</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
         <div class="cs-hero">
             <div class="cs-hero-label">CHURN PREDICTION</div>
-            <div class="cs-hero-metric">SHAP + ENSEMBLE</div>
+            <div class="cs-hero-metric">TREES + FOREST</div>
             <div class="cs-funnel">
                 <div>
                     <div class="cs-funnel-bar" style="width:320px;background:rgba(56,189,248,0.3);animation-delay:0.2s"></div>
@@ -208,7 +210,7 @@
                 </div>
                 <div>
                     <div class="cs-funnel-bar" style="width:220px;background:rgba(251,191,36,0.3);animation-delay:0.6s"></div>
-                    <div class="cs-funnel-label" style="color:rgba(251,191,36,0.4);text-align:center">ENGAGEMENT DECLINING</div>
+                    <div class="cs-funnel-label" style="color:rgba(251,191,36,0.4);text-align:center">TREE SPLITS</div>
                 </div>
                 <div>
                     <div class="cs-funnel-bar" style="width:140px;background:rgba(239,68,68,0.3);animation-delay:1.0s"></div>
@@ -223,9 +225,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>Classification models flagged at-risk customers across 10,000+ banking records, with SHAP analysis showing churn drivers vary significantly by segment - ruling out a one-size-fits-all retention strategy.</strong></p>
-            <p>Customer acquisition in retail banking is significantly more expensive than retention, yet many institutions lack systematic early-warning capability for identifying at-risk customers. By the time a customer closes their account, the retention window has passed.</p>
-            <p>The challenge is not just predicting who will leave, but understanding why, so that relationship managers can tailor their intervention to the specific drivers of each customer's dissatisfaction.</p>
+            <p><strong>A random forest classified bank customers' churn with 86.1% accuracy, while a balanced decision tree caught more churners (recall 0.70) at the cost of more false alarms.</strong></p>
+            <p>Losing a retail banking customer costs far more than retaining one, but retention offers are expensive to send to everyone. The task was to predict churn from customer attributes and understand the trade-off between catching churners and wasting offers.</p>
         </section>
 
         <section class="cs-section">
@@ -234,29 +235,22 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Data Exploration</div>
-                        <div class="cs-step-desc">Analysed customer demographic, transactional, and product holding data across 10,000+ records. Identified key features correlated with churn and examined class imbalance characteristics.</div>
+                        <div class="cs-step-title">Data</div>
+                        <div class="cs-step-desc">5,034 customers, 10 features, 20.8% churn rate.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Feature Engineering</div>
-                        <div class="cs-step-desc">Created behavioural features including product usage trends, transaction frequency changes, and tenure-adjusted engagement metrics.</div>
+                        <div class="cs-step-title">Decision trees</div>
+                        <div class="cs-step-desc">Gini and entropy criteria, depth and leaf-size tuning, and class weighting to give the minority churn class more influence.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Model Development</div>
-                        <div class="cs-step-desc">Built and compared multiple classifiers with particular attention to handling class imbalance through SMOTE, class weighting, and threshold optimisation.</div>
-                    </div>
-                </div>
-                <div class="cs-step">
-                    <div class="cs-step-num">04</div>
-                    <div>
-                        <div class="cs-step-title">Interpretability</div>
-                        <div class="cs-step-desc">Applied SHAP analysis to provide feature-level explanations for churn predictions, enabling targeted retention strategies rather than generic interventions.</div>
+                        <div class="cs-step-title">Random forest</div>
+                        <div class="cs-step-desc">Ensemble of trees compared against the best single tree on accuracy, precision, recall and F1.</div>
                     </div>
                 </div>
             </div>
@@ -266,34 +260,31 @@
             <h2 class="cs-section-title">Results</h2>
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">10,000+</div>
-                    <div class="cs-outcome-label">Customer records analysed across demographic, transactional, and product data</div>
+                    <div class="cs-outcome-value">86.1%</div>
+                    <div class="cs-outcome-label">Random forest accuracy</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">SHAP</div>
-                    <div class="cs-outcome-label">Per-customer feature importance revealing individual churn drivers</div>
+                    <div class="cs-outcome-value">0.61</div>
+                    <div class="cs-outcome-label">Random forest F1 for churners (precision 0.74, recall 0.52)</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Segment-Specific</div>
-                    <div class="cs-outcome-label">Churn drivers varied significantly across customer segments</div>
+                    <div class="cs-outcome-value">0.70</div>
+                    <div class="cs-outcome-label">Recall of the balanced decision tree (depth 8), F1 0.59</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>Analysed <strong>over 10,000 customer records</strong> spanning demographics, transaction history, and product holdings, building classification models that identified customers at elevated churn risk with sufficient lead time for intervention.</p>
-                <p>SHAP analysis revealed that the primary churn drivers varied significantly across customer segments, confirming that a one-size-fits-all retention approach would be ineffective. For some segments, product engagement was the dominant signal; for others, tenure and transaction frequency changes were more predictive. This justified personalised intervention strategies tailored to each segment's specific risk profile.</p>
-                <p>The model gives relationship managers something they did not have before: an evidence-based early warning with a clear explanation of why each customer is flagged, enabling targeted outreach before the customer has mentally disengaged.</p>
+            <p>The random forest was more accurate, but missed about half of the churners. The class-weighted tree caught about 70% of them with lower precision, which may suit a cheap retention action better. The right choice depends on the relative cost of a missed churner and an unnecessary offer.</p>
             </div>
+            <div class="cs-callout"><p><strong>Limitations:</strong> hyperparameters were chosen on the test set, and ROC AUC was computed from hard predictions rather than probabilities, which understates it. A clean re-run would tune on a validation split.</p></div>
         </section>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
-                <span class="cs-tech-pill">Scikit-learn</span>
-                <span class="cs-tech-pill">XGBoost</span>
-                <span class="cs-tech-pill">SHAP</span>
-                <span class="cs-tech-pill">SMOTE</span>
-                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">scikit-learn</span>
+                <span class="cs-tech-pill">pandas</span>
+                <span class="cs-tech-pill">NumPy</span>
                 <span class="cs-tech-pill">Matplotlib</span>
             </div>
         </section>

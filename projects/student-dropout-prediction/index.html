@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Retention Prediction System | RJ Data Voyage</title>
-    <meta name="description" content="XGBoost and neural network models for predicting student dropout risk with SHAP explainability, achieving 80.89% recall on the dropout class.">
+    <title>Student Non-Completion Prediction | RJ Data Voyage</title>
+    <meta name="description" content="Staged XGBoost and neural-network models predicting which of 25,059 students will not complete their course. XGBoost reached F1 0.65 for non-completers once engagement data was added. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/student-dropout-prediction">
-    <meta property="og:title" content="Student Retention Prediction System | RJ Data Voyage">
-    <meta property="og:description" content="XGBoost and neural network models for predicting student dropout risk with SHAP explainability, achieving 80.89% recall on the dropout class.">
+    <meta property="og:title" content="Student Non-Completion Prediction | RJ Data Voyage">
+    <meta property="og:description" content="Staged XGBoost and neural-network models predicting which of 25,059 students will not complete their course. XGBoost reached F1 0.65 for non-completers once engagement data was added. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,15 +139,17 @@
             .cs-hero { height: 220px; }
             .site-footer-inner { flex-direction: column; text-align: center; }
         }
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
     </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Student Retention Prediction System",
-  "about": "Explainable prediction of student dropout risk",
+  "name": "Student Non-Completion Prediction",
+  "about": "Staged prediction of student course non-completion",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "XGBoost, SHAP, predictive analytics, classification, explainability",
+  "keywords": "XGBoost, neural network, SMOTE, classification, education",
   "url": "https://rjdatavoyage.co.uk/projects/student-dropout-prediction",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -182,9 +184,9 @@
             Back to Projects
         </a>
 
-        <div class="cs-domain">Predictive Analytics / Education</div>
-        <h1 class="cs-title">Student Retention Prediction System</h1>
-        <p class="cs-summary">A supervised learning system that identifies students at risk of dropping out by combining academic performance data with demographic and engagement indicators, enabling institutions to intervene before it is too late.</p>
+        <div class="cs-domain">Supervised Learning / Education</div>
+        <h1 class="cs-title">Student Non-Completion Prediction</h1>
+        <p class="cs-summary">Predicting which students will not complete their course, in three stages as more data becomes available: application, engagement and academic results.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -197,17 +199,17 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">XGBoost, Neural Network</div>
+                <div class="cs-meta-value">XGBoost, Neural Network, SMOTE</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
         <div class="cs-hero">
             <div class="cs-hero-label">STUDENT RETENTION PREDICTION</div>
-            <div class="cs-hero-metric">XGBOOST + SHAP</div>
+            <div class="cs-hero-metric">XGBOOST, 3 STAGES</div>
             <div class="cs-hero-paths">
                 <div class="cs-path-node" style="top:10%;left:50%;background:rgba(148,163,184,0.4);width:14px;height:14px;animation-delay:0.2s"></div>
                 <div class="cs-path" style="top:12%;left:48%;transform:rotate(-35deg);background:linear-gradient(to bottom,rgba(20,184,166,0.4),rgba(20,184,166,0.15));height:100px;animation-delay:0.5s"></div>
@@ -221,9 +223,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>A predictive model correctly identifies 4 in 5 at-risk students (80.89% recall), with SHAP explainability giving student support teams a specific, actionable reason behind every flagged case.</strong></p>
-            <p>Universities lose talented students every year because at-risk cases are not identified early enough for intervention. By the time a student formally withdraws, the decision has usually been building for months, signalled by patterns in attendance, grades, engagement, and personal circumstances.</p>
-            <p>The data to predict these outcomes often exists across fragmented systems but is rarely synthesised into a unified early-warning signal that student support teams can act on proactively.</p>
+            <p><strong>With engagement data added, XGBoost identified non-completing students with an F1 score of 0.65, early enough in the course to act on.</strong></p>
+            <p>An education provider wanted to know which students are at risk of not completing, and how early that can be predicted. Data arrives in stages: application details first, then engagement during the course, then assessment results. Each stage improves prediction but leaves less time to intervene.</p>
         </section>
 
         <section class="cs-section">
@@ -232,29 +233,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Data Integration and EDA</div>
-                        <div class="cs-step-desc">Conducted phased data exploration across academic records, demographic data, and engagement metrics. Identified key features correlated with dropout behaviour through statistical analysis.</div>
+                        <div class="cs-step-title">Staged data</div>
+                        <div class="cs-step-desc">25,059 students with a non-completion rate of about 14.5%. Stage 1 used applicant and course data (16 columns), stage 2 added engagement (18), stage 3 added academic performance (21).</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Feature Engineering</div>
-                        <div class="cs-step-desc">Built predictive features from raw data including academic trajectory indicators, engagement decay rates, and socioeconomic risk factors.</div>
+                        <div class="cs-step-title">Models</div>
+                        <div class="cs-step-desc">For each stage, XGBoost tuned with randomised search and a Keras neural network, evaluated on the non-completer class.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Model Development</div>
-                        <div class="cs-step-desc">Built and compared XGBoost (for interpretable, gradient-boosted predictions) and a neural network (for capturing non-linear feature interactions) on the same feature set.</div>
+                        <div class="cs-step-title">Class imbalance</div>
+                        <div class="cs-step-desc">SMOTE oversampling tested against the unbalanced baseline; decision thresholds explored.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Evaluation and Interpretability</div>
-                        <div class="cs-step-desc">Compared models on accuracy, precision, recall (prioritising recall to minimise missed at-risk students), and used SHAP values to explain which factors drive risk predictions.</div>
+                        <div class="cs-step-title">Evaluation review (2026)</div>
+                        <div class="cs-step-desc">A later review found the threshold-based evaluation had inverted the predicted labels for the non-completer class. The code was corrected; only results unaffected by the error are reported here.</div>
                     </div>
                 </div>
             </div>
@@ -262,25 +263,10 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">Results</h2>
-            <div class="cs-outcomes">
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">80.89%</div>
-                    <div class="cs-outcome-label">Recall on the dropout class - correctly identifying 4 in 5 at-risk students</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">0.21 F1</div>
-                    <div class="cs-outcome-label">F1 score improved from 0.12 baseline through iterative feature engineering and threshold tuning</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">SHAP</div>
-                    <div class="cs-outcome-label">Explainable predictions for student support teams to target interventions effectively</div>
-                </div>
-            </div>
-            <div style="margin-top: 24px;">
-                <p>The core challenge in this dataset was severe class imbalance - dropout cases formed a small minority of total records, making them inherently difficult to detect. Initial models achieved recall of just <strong>0.44</strong> on the dropout class, meaning more than half of at-risk students were being missed entirely.</p>
-                <p>Through iterative feature engineering, resampling strategies, and threshold optimisation, <strong>XGBoost improved dropout recall from 0.44 to 0.81</strong> (80.89%), correctly flagging four in five students who would ultimately withdraw. The F1 score rose from <strong>0.12 to 0.21</strong>, reflecting the difficulty of simultaneously improving precision on a heavily imbalanced target.</p>
-                <p>SHAP values provided clear, per-student explanations of which factors were driving each risk prediction, giving support teams actionable insight rather than opaque scores. The neural network captured additional non-linear patterns but at the cost of reduced interpretability, making XGBoost the recommended production model for institutional deployment.</p>
-            </div>
+            <div style="overflow-x:auto;margin:16px 0"><table style="width:100%;border-collapse:collapse;font-size:0.9rem"><thead><tr><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">XGBoost, non-completer class</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">F1</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">F1 with SMOTE</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">ROC AUC</th></tr></thead><tbody><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Stage 1 - application data</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.614</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.524</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.879</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Stage 2 - + engagement</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)"><strong>0.650</strong></td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.609</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.914</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Stage 3 - + academic results</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.879</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.880</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">0.998</td></tr></tbody></table></div>
+            <p>Engagement data gave the best balance of accuracy and lead time. SMOTE did not help: it lowered F1 in stages 1 and 2.</p>
+            <p>Stage 3's near-perfect AUC suggests the academic-results data may already encode the outcome, so it needs checking for leakage before being used as an early-warning signal.</p>
+            <div class="cs-callout"><p><strong>Correction:</strong> an earlier version of this page quoted recall and F1 figures produced by the inverted evaluation; they have been withdrawn. Neural-network and tuned-threshold results need a re-run and are not quoted.</p></div>
         </section>
 
         <section class="cs-section">
@@ -288,10 +274,10 @@
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
                 <span class="cs-tech-pill">XGBoost</span>
-                <span class="cs-tech-pill">TensorFlow</span>
-                <span class="cs-tech-pill">SHAP</span>
-                <span class="cs-tech-pill">Pandas</span>
-                <span class="cs-tech-pill">Scikit-learn</span>
+                <span class="cs-tech-pill">TensorFlow / Keras</span>
+                <span class="cs-tech-pill">scikit-learn</span>
+                <span class="cs-tech-pill">imbalanced-learn (SMOTE)</span>
+                <span class="cs-tech-pill">pandas</span>
                 <span class="cs-tech-pill">Matplotlib</span>
             </div>
         </section>

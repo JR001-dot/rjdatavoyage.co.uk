@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maritime Engine Anomaly Detection System | RJ Data Voyage</title>
-    <meta name="description" content="Isolation Forest and PCA-based anomaly detection across 19,535 sensor readings from 6 operational channels, identifying 977 anomalous episodes before threshold alerts.">
+    <title>Ship Engine Anomaly Detection | RJ Data Voyage</title>
+    <meta name="description" content="IQR rule, One-Class SVM and Isolation Forest compared on 19,535 ship-engine sensor readings; the IQR rule flagged 422 readings (2.16%) where two or more sensors were out of range. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/maritime-anomaly-detection">
-    <meta property="og:title" content="Maritime Engine Anomaly Detection System | RJ Data Voyage">
-    <meta property="og:description" content="Isolation Forest and PCA-based anomaly detection across 19,535 sensor readings from 6 operational channels, identifying 977 anomalous episodes before threshold alerts.">
+    <meta property="og:title" content="Ship Engine Anomaly Detection | RJ Data Voyage">
+    <meta property="og:description" content="IQR rule, One-Class SVM and Isolation Forest compared on 19,535 ship-engine sensor readings; the IQR rule flagged 422 readings (2.16%) where two or more sensors were out of range. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,15 +131,17 @@
             .cs-hero { height: 220px; }
             .site-footer-inner { flex-direction: column; text-align: center; }
         }
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
     </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Maritime Engine Anomaly Detection System",
-  "about": "Statistical and ML anomaly detection on marine engine sensor data",
+  "name": "Ship Engine Anomaly Detection",
+  "about": "Statistical and unsupervised anomaly detection on ship-engine sensor data",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "Isolation Forest, PCA, Pandas, anomaly detection, predictive maintenance",
+  "keywords": "IQR, One-Class SVM, Isolation Forest, anomaly detection",
   "url": "https://rjdatavoyage.co.uk/projects/maritime-anomaly-detection",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -174,9 +176,9 @@
             Back to Projects
         </a>
 
-        <div class="cs-domain">Anomaly Detection / Operations</div>
-        <h1 class="cs-title">Maritime Engine Anomaly Detection System</h1>
-        <p class="cs-summary">An intelligent monitoring system that detects subtle degradation patterns in ship engine operational data before conventional rule-based alerts would fire, reducing the risk of costly unplanned downtime.</p>
+        <div class="cs-domain">Anomaly Detection / Maritime</div>
+        <h1 class="cs-title">Ship Engine Anomaly Detection</h1>
+        <p class="cs-summary">A statistical rule and two unsupervised models compared for flagging abnormal ship-engine sensor readings, as candidates for engineering review.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -189,11 +191,11 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">Isolation Forest, PCA</div>
+                <div class="cs-meta-value">IQR, One-Class SVM, Isolation Forest</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
@@ -208,9 +210,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>Isolation Forest and PCA flagged 977 anomalous episodes across 19,535 engine sensor readings, reducing 6 correlated channels to 2 components while preserving the variance that signals developing faults before a threshold alert would fire.</strong></p>
-            <p>Maritime engine systems generate continuous streams of operational data across dozens of sensors. Conventional monitoring relies on static thresholds, triggering alerts only when individual readings exceed pre-set limits.</p>
-            <p>Threshold-based monitoring misses gradual degradation. A slow drift in the relationship between sensor readings can indicate developing problems long before any single metric breaches a hard limit. By the time a threshold alert fires, the damage is often significant.</p>
+            <p><strong>An IQR rule flagged 422 of 19,535 ship-engine readings (2.16%) where at least two sensors were out of range, giving engineers a short list of readings to review.</strong></p>
+            <p>Engine faults are expensive at sea, and sensor data arrives faster than engineers can review it. With no labelled faults, the question was how to flag a manageable set of unusual readings, and how statistical and machine-learning methods compare.</p>
         </section>
 
         <section class="cs-section">
@@ -219,29 +220,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Multivariate Data Exploration</div>
-                        <div class="cs-step-desc">Explored the sensor dataset to understand normal operational patterns, inter-variable correlations, and natural variation ranges under healthy operating conditions.</div>
+                        <div class="cs-step-title">Data review</div>
+                        <div class="cs-step-desc">19,535 readings from six sensors (engine speed, lubricating-oil pressure and temperature, fuel pressure, coolant pressure and temperature); no missing or duplicate rows.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Feature Engineering</div>
-                        <div class="cs-step-desc">Engineered features capturing temporal dynamics and cross-sensor relationships. Applied normalisation and PCA to create a compact representation preserving anomalous variance.</div>
+                        <div class="cs-step-title">Statistical rule</div>
+                        <div class="cs-step-desc">Interquartile-range (IQR) bounds per sensor; a reading is flagged when at least two sensors are out of range at once.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Anomaly Detection Modelling</div>
-                        <div class="cs-step-desc">Applied Isolation Forest as the primary detection method, complemented with statistical methods for interpretable cross-validation of findings.</div>
+                        <div class="cs-step-title">Unsupervised models</div>
+                        <div class="cs-step-desc">One-Class SVM and Isolation Forest on standardised sensor values, at several settings.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Analysis and Reporting</div>
-                        <div class="cs-step-desc">Produced a detailed analytical report characterising detected anomalies, mapping them to potential operational causes, and recommending monitoring improvements.</div>
+                        <div class="cs-step-title">Visual check</div>
+                        <div class="cs-step-desc">PCA used to plot the flagged readings in two dimensions.</div>
                     </div>
                 </div>
             </div>
@@ -249,35 +250,20 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">Results</h2>
-            <div class="cs-outcomes">
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">977</div>
-                    <div class="cs-outcome-label">Anomalous episodes detected across the operational dataset</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">19,535</div>
-                    <div class="cs-outcome-label">Sensor readings analysed across 6 operational channels</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">6 &rarr; 2</div>
-                    <div class="cs-outcome-label">PCA dimensionality reduction while preserving anomalous variance</div>
-                </div>
-            </div>
-            <div style="margin-top: 24px;">
-                <p>Analysed <strong>19,535 sensor readings</strong> across six operational channels, applying PCA to reduce the feature space from <strong>6 dimensions to 2</strong> while preserving the variance most indicative of anomalous behaviour. Isolation Forest then identified <strong>977 anomalous episodes</strong> - subtle multi-sensor degradation patterns that single-threshold monitoring systems miss entirely.</p>
-                <p>By analysing cross-sensor relationships rather than individual channel limits, the system detects anomalous behaviour during the gradual drift phase - before individual readings breach hard limits. In operational environments where unplanned engine failure carries significant cost and safety consequences, the difference between threshold-based alerts and pattern-based early detection is the difference between reactive repair and planned intervention.</p>
-                <p>The system was designed for interpretability: detected anomalies were mapped to potential operational causes with supporting analytical evidence, enabling engineering teams to investigate and act rather than simply receive opaque alerts.</p>
-            </div>
+            <div style="overflow-x:auto;margin:16px 0"><table style="width:100%;border-collapse:collapse;font-size:0.9rem"><thead><tr><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Method</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Setting</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Readings flagged</th></tr></thead><tbody><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">IQR rule (2+ sensors out of range)</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">-</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)"><strong>422 (2.16%)</strong></td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">One-Class SVM</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">nu = 0.05</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">980 (5.02%)</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Isolation Forest</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">contamination = auto</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">2,892 (14.8%)</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Isolation Forest</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">contamination = 0.05</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">977 (5.0%)</td></tr></tbody></table></div>
+            <p>The IQR rule is the only result not fixed in advance. For One-Class SVM and Isolation Forest, the nu and contamination settings decide roughly what share of readings is flagged, so their 5% figures reflect the chosen setting rather than a discovery. Readings flagged by several methods are the strongest candidates for review.</p>
+            <div class="cs-callout"><p><strong>Limitations:</strong> no labelled faults, so none of the methods can be scored for accuracy; readings are treated independently, without time order.</p></div>
         </section>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
+                <span class="cs-tech-pill">scikit-learn</span>
+                <span class="cs-tech-pill">One-Class SVM</span>
                 <span class="cs-tech-pill">Isolation Forest</span>
                 <span class="cs-tech-pill">PCA</span>
-                <span class="cs-tech-pill">Scikit-learn</span>
-                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">pandas</span>
                 <span class="cs-tech-pill">Matplotlib</span>
                 <span class="cs-tech-pill">Seaborn</span>
             </div>

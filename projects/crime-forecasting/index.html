@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baltimore Crime Pattern Forecasting | RJ Data Voyage</title>
-    <meta name="description" content="ARIMA-based crime forecasting system for Baltimore police data, predicting temporal patterns to support more efficient resource allocation.">
+    <title>Crime Incident Forecasting with SARIMA | RJ Data Voyage</title>
+    <meta name="description" content="Seasonal ARIMA forecasting of city-wide daily crime incidents (2011-2015): five SARIMA models compared on a 52-week hold-out; the best scored test MSE 139.98, ahead of auto_arima at 160.46. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/crime-forecasting">
-    <meta property="og:title" content="Baltimore Crime Pattern Forecasting | RJ Data Voyage">
-    <meta property="og:description" content="ARIMA-based crime forecasting system for Baltimore police data, predicting temporal patterns to support more efficient resource allocation.">
+    <meta property="og:title" content="Crime Incident Forecasting with SARIMA | RJ Data Voyage">
+    <meta property="og:description" content="Seasonal ARIMA forecasting of city-wide daily crime incidents (2011-2015): five SARIMA models compared on a 52-week hold-out; the best scored test MSE 139.98, ahead of auto_arima at 160.46. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,15 +116,17 @@
             .cs-cell { border-radius: 3px; animation: cellFade 1.5s ease-out forwards; opacity: 0; }
             @keyframes cellFade { from { opacity: 0; } to { opacity: 1; } }
         
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
     </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Baltimore Crime Pattern Forecasting",
-  "about": "Time-series forecasting of temporal and geographic crime patterns",
+  "name": "Crime Incident Forecasting with SARIMA",
+  "about": "Seasonal ARIMA forecasting of city-wide crime incidents",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "SARIMA, time series, public safety, forecasting",
+  "keywords": "SARIMA, time series, forecasting, public safety",
   "url": "https://rjdatavoyage.co.uk/projects/crime-forecasting",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -160,8 +162,8 @@
         </a>
 
         <div class="cs-domain">Time Series / Public Safety</div>
-        <h1 class="cs-title">Baltimore Crime Pattern Forecasting</h1>
-        <p class="cs-summary">An ARIMA-based forecasting system that analyses historical crime data to predict temporal patterns and trends, supporting more efficient allocation of policing resources across districts and time periods.</p>
+        <h1 class="cs-title">Crime Incident Forecasting with SARIMA</h1>
+        <p class="cs-summary">Time-series preparation and seasonal ARIMA forecasting of daily crime incidents for a US city, 2011-2015.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -174,19 +176,18 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">ARIMA, Decomposition</div>
+                <div class="cs-meta-value">SARIMA, Decomposition, ADF</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>SARIMA forecasting quantified seasonal crime trends and significant district-level geographic variation in Baltimore incident data, turning historical patterns into forward-looking projections for proactive patrol deployment.</strong></p>
-            <p>Law enforcement agencies allocate patrol and investigative resources based on historical patterns and operational experience, but these approaches struggle with changing trends, seasonal variations, and emerging hotspots.</p>
-            <p><strong>Without predictive capability, resource allocation is inherently reactive</strong>, responding to crime after it occurs rather than positioning resources where they are most likely to be needed. Statistical forecasting can bridge this gap.</p>
+            <p><strong>A hand-specified seasonal ARIMA model forecast a year of weekly crime levels with lower error than automated model selection (test MSE 139.98 against 160.46).</strong></p>
+            <p>Police resources are planned around expected demand, which rises and falls with the seasons. The task was to prepare city-wide incident data for time-series modelling, test its properties and compare seasonal forecasting models on a held-out year.</p>
         </section>
 
         <section class="cs-section">
@@ -195,29 +196,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Data Analysis</div>
-                        <div class="cs-step-desc">Analysed Baltimore police department crime records, exploring temporal patterns by day, week, month, and year. Identified seasonal cycles, long-term trends, and district-level variations.</div>
+                        <div class="cs-step-title">Preparation</div>
+                        <div class="cs-step-desc">Daily incident counts for 2011-2015; 64 missing days imputed; weekly and monthly aggregation.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Time Series Modelling</div>
-                        <div class="cs-step-desc">Applied ARIMA models to the crime count data, with careful attention to stationarity testing, differencing, and parameter selection using AIC/BIC criteria.</div>
+                        <div class="cs-step-title">Diagnostics</div>
+                        <div class="cs-step-desc">Decomposition, ACF and PACF, Augmented Dickey-Fuller and Ljung-Box tests; log transform and differencing to reach stationarity.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Forecasting and Validation</div>
-                        <div class="cs-step-desc">Generated forward projections and validated against held-out test periods, assessing forecast reliability across different crime categories and geographic areas.</div>
+                        <div class="cs-step-title">Seasonality check</div>
+                        <div class="cs-step-desc">The brief asked to confirm a 70-week seasonal period; the ACF showed the cycle is 52 weeks, which was used instead.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Actionable Reporting</div>
-                        <div class="cs-step-desc">Translated statistical forecasts into practical resource allocation recommendations, identifying peak-risk periods and districts.</div>
+                        <div class="cs-step-title">Model comparison</div>
+                        <div class="cs-step-desc">Five hand-specified SARIMA models with yearly seasonality, compared on AIC and on test-set MSE over the final 52 weeks, then compared with auto_arima.</div>
                     </div>
                 </div>
             </div>
@@ -275,20 +276,22 @@
             <h2 class="cs-section-title">Results</h2>
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Temporal</div>
-                    <div class="cs-outcome-label">Seasonal and trend patterns quantified</div>
+                    <div class="cs-outcome-value">2,478-4,776</div>
+                    <div class="cs-outcome-label">Monthly incident range (February low, July high)</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">District</div>
-                    <div class="cs-outcome-label">Geographic variation mapped</div>
+                    <div class="cs-outcome-value">52 weeks</div>
+                    <div class="cs-outcome-label">Seasonal cycle confirmed by the ACF</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Forecast</div>
-                    <div class="cs-outcome-label">Forward projections for resource planning</div>
+                    <div class="cs-outcome-value">139.98</div>
+                    <div class="cs-outcome-label">Test MSE of the best SARIMA model (auto_arima: 160.46)</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>The forecasting models successfully captured seasonal crime patterns and longer-term trends, providing a statistical basis for forward-looking resource allocation. The district-level analysis revealed significant geographic variation in crime patterns, enabling more targeted deployment recommendations.</p>
+            <p>Incidents averaged 3,947 a month with a clear summer peak. The raw monthly series was non-stationary (ADF p = 0.673); after a log transform and differencing it was stationary (p &lt; 0.001), with no remaining autocorrelation (Ljung-Box p &gt; 0.4).</p>
+            <p>SARIMA(1,0,1)(1,1,1,52) had both the lowest AIC (1528.65) and the lowest test MSE (139.98). auto_arima chose SARIMA(1,0,2)(1,1,0,52), with a higher test MSE of 160.46.</p>
+            <div class="cs-callout"><p><strong>Limitations:</strong> city-wide totals only, with no district or crime-type breakdown in the data; a single 52-week hold-out; the best model's seasonal terms were not statistically significant.</p></div>
             </div>
         </section>
 
@@ -296,11 +299,11 @@
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
-                <span class="cs-tech-pill">ARIMA</span>
-                <span class="cs-tech-pill">Statsmodels</span>
-                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">statsmodels</span>
+                <span class="cs-tech-pill">SARIMA</span>
+                <span class="cs-tech-pill">pmdarima</span>
+                <span class="cs-tech-pill">pandas</span>
                 <span class="cs-tech-pill">Matplotlib</span>
-                <span class="cs-tech-pill">Seaborn</span>
             </div>
         </section>
 

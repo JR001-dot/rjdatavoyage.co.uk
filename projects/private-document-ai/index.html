@@ -12,11 +12,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Document Analysis AI | RJ Data Voyage</title>
-    <meta name="description" content="Privacy-first document analysis system with three-tier query architecture, local LLM on GPU, RAG pipeline, and six specialised analysis routes. No data leaves the server.">
+    <meta name="description" content="Privacy-first document analysis system with three-tier query architecture, local LLM on GPU, RAG pipeline, and six specialised analysis routes. No document content is sent to external AI services.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/private-document-ai">
     <meta property="og:title" content="Private Document Analysis AI | RJ Data Voyage">
-    <meta property="og:description" content="Privacy-first document analysis system with three-tier query architecture, local LLM on GPU, RAG pipeline, and six specialised analysis routes. No data leaves the server.">
+    <meta property="og:description" content="Privacy-first document analysis system with three-tier query architecture, local LLM on GPU, RAG pipeline, and six specialised analysis routes. No document content is sent to external AI services.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -169,7 +169,7 @@
 
         <div class="cs-domain">Applied AI / RAG Architecture</div>
         <h1 class="cs-title">Private Document Analysis AI</h1>
-        <p class="cs-summary">A privacy-first document intelligence system that answers questions about uploaded documents and spreadsheets using a three-tier query architecture. Deterministic logic handles what it can, a schema engine handles what it should, and a local LLM with RAG handles the rest. No data ever leaves the server.</p>
+        <p class="cs-summary">A privacy-first document intelligence system that answers questions about uploaded documents and spreadsheets using a three-tier query architecture. Deterministic logic handles what it can, a schema engine handles what it should, and a local LLM with RAG handles the rest. No document content is sent to external AI services.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -201,7 +201,7 @@
             <div class="cs-hero-tiers">
                 <div class="cs-tier-row" style="animation-delay:0.3s">
                     <div class="cs-tier-badge" style="background:rgba(52,211,153,0.15);color:rgba(52,211,153,0.7);border:1px solid rgba(52,211,153,0.2)">T1</div>
-                    <div class="cs-tier-bar" style="width:280px;background:linear-gradient(90deg,rgba(52,211,153,0.08),rgba(52,211,153,0.18));color:rgba(52,211,153,0.5);border:1px solid rgba(52,211,153,0.12)">DETERMINISTIC &bull; INSTANT &bull; 100% ACCURATE</div>
+                    <div class="cs-tier-bar" style="width:280px;background:linear-gradient(90deg,rgba(52,211,153,0.08),rgba(52,211,153,0.18));color:rgba(52,211,153,0.5);border:1px solid rgba(52,211,153,0.12)">DETERMINISTIC &bull; INSTANT &bull; NO HALLUCINATION</div>
                 </div>
                 <div class="cs-tier-arrow" style="animation-delay:0.6s">&darr;</div>
                 <div class="cs-tier-row" style="animation-delay:0.8s">
@@ -219,7 +219,7 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>A three-tier query engine answers questions across 25+ file formats using only local infrastructure, sending zero data to external services - solving the confidentiality problem off-the-shelf tools like ChatGPT can't.</strong></p>
+            <p><strong>A three-tier query engine answers questions across 25+ file formats on a dedicated private GPU server, with no document content sent to external AI services - solving the confidentiality problem off-the-shelf tools like ChatGPT can't.</strong></p>
             <p>Organisations handling sensitive documents - legal transcripts, membership records, internal reports - need to query and analyse that data without sending it to third-party AI services. Off-the-shelf tools like ChatGPT require uploading content to external servers, which is unacceptable when confidentiality is non-negotiable.</p>
             <p><strong>The system needed to run entirely on private infrastructure</strong>, accept a wide range of file formats (spreadsheets, PDFs, Word documents, images), answer questions with verifiable accuracy where possible, and only invoke AI when simpler methods genuinely could not answer the question.</p>
         </section>
@@ -277,14 +277,13 @@
                     <div class="cs-outcome-label">File formats supported including OCR for images</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Zero</div>
-                    <div class="cs-outcome-label">Data sent to external services</div>
+                    \1Document content sent to external AI providers</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>The three-tier architecture means the majority of data questions are answered instantly with guaranteed accuracy, reserving AI processing for questions that genuinely require reasoning or synthesis. Tiers 1 and 2 were validated against 96 test queries with zero hallucination by design - they use deterministic logic, not probabilistic generation.</p>
-                <p>The split report architecture solves a problem that plagues most AI document tools: when numbers and narrative are generated by the same model, the AI can invent statistics. Here, quantitative outputs (charts, counts, tables) are produced by Python code with guaranteed accuracy, while qualitative analysis (themes, quotes, insights) is generated by the AI from document passages. The two streams are kept strictly separate and stitched together only at presentation.</p>
-                <p>For the client, this delivered something commercially unavailable: the analytical capability of a modern AI assistant with the data sovereignty of a fully private, on-premises system. Sensitive documents could be queried, cross-referenced, and analysed without any content leaving their infrastructure.</p>
+                <p>The three-tier architecture means the majority of data questions are answered instantly and deterministically, reserving AI processing for questions that genuinely require reasoning or synthesis. Tiers 1 and 2 were validated against 96 test queries with zero hallucination by design - they use deterministic logic, not probabilistic generation.</p>
+                <p>The split report architecture solves a problem that plagues most AI document tools: when numbers and narrative are generated by the same model, the AI can invent statistics. Here, quantitative outputs (charts, counts, tables) are produced by Python code rather than generated by the model, while qualitative analysis (themes, quotes, insights) is generated by the AI from document passages. The two streams are kept strictly separate and stitched together only at presentation.</p>
+                <p>For the client, this delivered something commercially unavailable: the analytical capability of a modern AI assistant with the data control of a dedicated private deployment. Sensitive documents could be queried, cross-referenced, and analysed without any content leaving their infrastructure.</p>
             </div>
         </section>
 

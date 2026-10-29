@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demand Forecasting with ARIMA and Prophet | RJ Data Voyage</title>
-    <meta name="description" content="Comparative time-series forecasting achieving 31% MAE reduction and 22.79% MAPE, delivering reliable demand projections for retail inventory planning.">
+    <title>Book Sales Demand Forecasting | RJ Data Voyage</title>
+    <meta name="description" content="Weekly demand forecasting for two long-selling book titles: SARIMA, XGBoost, LSTM and SARIMA-LSTM hybrids compared on a 32-week hold-out. SARIMA reached 19.6% MAPE on one title; the hybrids added nothing. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/time-series-forecasting">
-    <meta property="og:title" content="Demand Forecasting with ARIMA and Prophet | RJ Data Voyage">
-    <meta property="og:description" content="Comparative time-series forecasting achieving 31% MAE reduction and 22.79% MAPE, delivering reliable demand projections for retail inventory planning.">
+    <meta property="og:title" content="Book Sales Demand Forecasting | RJ Data Voyage">
+    <meta property="og:description" content="Weekly demand forecasting for two long-selling book titles: SARIMA, XGBoost, LSTM and SARIMA-LSTM hybrids compared on a 32-week hold-out. SARIMA reached 19.6% MAPE on one title; the hybrids added nothing. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,15 +135,17 @@
             .cs-hero { height: 220px; }
             .site-footer-inner { flex-direction: column; text-align: center; }
         }
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
     </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Demand Forecasting with ARIMA and Prophet",
-  "about": "Time-series demand forecasting improving planning accuracy",
+  "name": "Book Sales Demand Forecasting",
+  "about": "Weekly demand forecasting for two long-selling book titles",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "ARIMA, Prophet, time series, demand forecasting",
+  "keywords": "SARIMA, LSTM, XGBoost, hybrid models, demand forecasting, time series",
   "url": "https://rjdatavoyage.co.uk/projects/time-series-forecasting",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -178,32 +180,32 @@
             Back to Projects
         </a>
 
-        <div class="cs-domain">Forecasting / Retail Analytics</div>
-        <h1 class="cs-title">Demand Forecasting with ARIMA and Prophet</h1>
-        <p class="cs-summary">A comparative forecasting system that applies multiple time-series methods to retail sales data, achieving a 31% reduction in mean absolute error and providing clear demand projections for inventory planning.</p>
+        <div class="cs-domain">Forecasting / Publishing</div>
+        <h1 class="cs-title">Book Sales Demand Forecasting</h1>
+        <p class="cs-summary">Weekly demand forecasting for two long-selling book titles, comparing statistical, machine-learning, deep-learning and hybrid models on the final 32 weeks of sales.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Type</div>
-                <div class="cs-meta-value">Time Series Analysis</div>
+                <div class="cs-meta-value">Time Series Forecasting</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Domain</div>
-                <div class="cs-meta-value">Retail / Demand Planning</div>
+                <div class="cs-meta-value">Publishing / Demand Planning</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Best MAPE</div>
-                <div class="cs-meta-value">22.79%</div>
+                <div class="cs-meta-value">19.6% (SARIMA)</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
         <div class="cs-hero">
-            <div class="cs-hero-label">TIME SERIES FORECASTING</div>
-            <div class="cs-hero-metric">+15%</div>
+            <div class="cs-hero-label">DEMAND FORECASTING</div>
+            <div class="cs-hero-metric">SARIMA vs LSTM</div>
             <div class="cs-chart-area">
                 <div class="cs-chart-line">
                     <svg viewBox="0 0 760 160" preserveAspectRatio="none">
@@ -216,9 +218,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>ARIMA and Prophet forecasting cut mean absolute error by 31% over baseline methods, reaching a 22.79% MAPE and directly tightening inventory and staffing decisions for retail demand planning.</strong></p>
-            <p>Retailers face volatile demand fluctuations driven by seasonality, promotions, external events, and shifting consumer behaviour. Baseline forecasting methods often fail to capture these temporal patterns, leading to either overstocking (tying up capital) or understocking (losing sales).</p>
-            <p>Accurate demand forecasting directly impacts profitability. Even small improvements in forecast accuracy translate into significant savings in inventory costs and reduced lost revenue from stockouts.</p>
+            <p><strong>A seasonal SARIMA model forecast 32 weeks of sales with 19.6% MAPE for one title and matched an LSTM on the other, while hybrid models added nothing.</strong></p>
+            <p>Publishers decide on reorders, reprints and stock levels months ahead. Some titles sell steadily for years with strong seasonal peaks; others spike and fade. The question was which forecasting approach gives reliable weekly demand projections for long-selling titles, and whether more complex models are worth their cost.</p>
         </section>
 
         <section class="cs-section">
@@ -227,29 +228,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Time Series Decomposition</div>
-                        <div class="cs-step-desc">Decomposed the historical sales data into trend, seasonal, and residual components to understand the underlying patterns driving demand fluctuations.</div>
+                        <div class="cs-step-title">Data preparation</div>
+                        <div class="cs-step-desc">Combined weekly sales records (227,224 rows across eight sheets), resampled so that weeks with no sales count as zero, and selected two long-selling titles from 2012 onwards. The final 32 weeks were held out for testing.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Feature Engineering</div>
-                        <div class="cs-step-desc">Created temporal features including lag variables, rolling statistics, holiday indicators, and seasonal encodings to enrich the forecasting models.</div>
+                        <div class="cs-step-title">Classical models</div>
+                        <div class="cs-step-desc">Decomposition, ACF/PACF and stationarity tests, then SARIMA via auto_arima with yearly seasonality (52 weeks).</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Model Development</div>
-                        <div class="cs-step-desc">Built and compared ARIMA/SARIMA models for statistical rigour and Prophet for handling multiple seasonality patterns and holiday effects.</div>
+                        <div class="cs-step-title">Machine learning and deep learning</div>
+                        <div class="cs-step-desc">XGBoost with lag, rolling-mean and calendar features, and an LSTM tuned with KerasTuner.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Evaluation and Selection</div>
-                        <div class="cs-step-desc">Evaluated models using RMSE, MAE, and MAPE against baseline methods, selecting the optimal approach for each product category.</div>
+                        <div class="cs-step-title">Hybrids and monthly view</div>
+                        <div class="cs-step-desc">Sequential (SARIMA plus LSTM on residuals) and parallel (weighted) hybrids, then monthly XGBoost and SARIMA on aggregated sales for an 8-month horizon.</div>
                     </div>
                 </div>
             </div>
@@ -257,36 +258,23 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">Results</h2>
-            <div class="cs-outcomes">
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">31%</div>
-                    <div class="cs-outcome-label">Reduction in mean absolute error over baseline forecasting methods</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">22.79%</div>
-                    <div class="cs-outcome-label">MAPE achieved - the average forecast deviation from actual demand</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Multi-Model</div>
-                    <div class="cs-outcome-label">Best model selected per product category for optimal accuracy</div>
-                </div>
-            </div>
-            <div style="margin-top: 24px;">
-                <p>The best-performing model achieved a <strong>mean absolute percentage error (MAPE) of 22.79%</strong> and a <strong>31% reduction in MAE</strong> over the baseline, giving demand planners materially tighter projections for inventory and staffing decisions.</p>
-                <p>The Prophet-based approach performed best on products with strong seasonal patterns and holiday effects, while ARIMA excelled on more stationary series. The hybrid approach of selecting the best model per category delivered the overall improvement, confirming that no single forecasting method dominates across all demand profiles.</p>
-                <p>For retail operations, this level of forecast improvement translates directly into reduced overstocking costs and fewer lost sales from stockouts - the two largest controllable drags on inventory-dependent profitability.</p>
-            </div>
+            <div style="overflow-x:auto;margin:16px 0"><table style="width:100%;border-collapse:collapse;font-size:0.9rem"><thead><tr><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Model (32-week test)</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Title A MAE</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Title A error</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Title B MAE</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Title B error</th></tr></thead><tbody><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">SARIMA</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">169.3</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">MAPE 31.9%</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">382.3</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">MAPE 19.6%</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">LSTM</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">170.6</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">MAPE 22.2%</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">592.2</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">MAPE 28.1%</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Parallel hybrid</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">181.6</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">sMAPE 34.8%</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">1,174.4</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">sMAPE 61.8%</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Sequential hybrid</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">214.3</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">sMAPE 39.8%</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">1,096.5</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">sMAPE 56.6%</td></tr></tbody></table></div>
+            <p>SARIMA was the best model for Title B. For Title A, SARIMA and the LSTM were level on absolute error, with the LSTM ahead on percentage error. Neither hybrid improved on the single models; the optimised blend weight came out at zero, meaning one model on its own was preferred.</p>
+            <p>For planning, the practical finding is that a well-specified seasonal model is a strong default for long-selling titles, and more complex models should be adopted only where they beat it on held-out data.</p>
+            <div class="cs-callout"><p><strong>Known issues:</strong> the weekly XGBoost forecasts stayed flat at about 50 units against actual sales of 1,000-3,500 (a feature-update bug), so XGBoost is excluded. Title B's series was smoothed before the train/test split, which flatters its SARIMA error. Hybrid errors are sMAPE, not MAPE, so they are not directly comparable with the first two rows. Monthly SARIMA failed to produce forecasts; monthly XGBoost MAPE was 48.3% and 27.4%.</p></div>
         </section>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
-                <span class="cs-tech-pill">Statsmodels</span>
-                <span class="cs-tech-pill">Prophet</span>
-                <span class="cs-tech-pill">ARIMA</span>
-                <span class="cs-tech-pill">SARIMA</span>
-                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">statsmodels</span>
+                <span class="cs-tech-pill">pmdarima (SARIMA)</span>
+                <span class="cs-tech-pill">XGBoost</span>
+                <span class="cs-tech-pill">TensorFlow / Keras</span>
+                <span class="cs-tech-pill">KerasTuner</span>
+                <span class="cs-tech-pill">sktime</span>
+                <span class="cs-tech-pill">pandas</span>
                 <span class="cs-tech-pill">Matplotlib</span>
             </div>
         </section>

@@ -11,12 +11,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Behavioural Segmentation System | RJ Data Voyage</title>
-    <meta name="description" content="Machine learning customer segmentation using K-Means clustering and PCA to identify distinct behavioural groups for targeted marketing strategies.">
+    <title>Customer Segmentation with Clustering | RJ Data Voyage</title>
+    <meta name="description" content="K-Means and hierarchical clustering on 68,300 retail customers with PCA and t-SNE, with the weak cluster separation and data issues stated openly. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/customer-segmentation">
-    <meta property="og:title" content="Customer Behavioural Segmentation System | RJ Data Voyage">
-    <meta property="og:description" content="Machine learning customer segmentation using K-Means clustering and PCA to identify distinct behavioural groups for targeted marketing strategies.">
+    <meta property="og:title" content="Customer Segmentation with Clustering | RJ Data Voyage">
+    <meta property="og:description" content="K-Means and hierarchical clustering on 68,300 retail customers with PCA and t-SNE, with the weak cluster separation and data issues stated openly. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,15 +118,17 @@
             .cs-ring { position: absolute; border-radius: 50%; border: 1px dashed; animation: ringAppear 2s ease-out forwards; opacity: 0; }
             @keyframes ringAppear { from { opacity: 0; transform: scale(0.5); } to { opacity: 0.3; transform: scale(1); } }
         
+        .cs-callout { background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm); padding: 18px 20px; margin-top: 16px; }
+        .cs-callout p { margin-bottom: 0 !important; font-size: 0.925rem !important; }
     </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Customer Behavioural Segmentation System",
-  "about": "Unsupervised behavioural segmentation for targeted marketing",
+  "name": "Customer Segmentation with Clustering",
+  "about": "Clustering of retail customers with stated limitations",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "K-Means, Scikit-learn, PCA, clustering, customer analytics",
+  "keywords": "K-Means, hierarchical clustering, PCA, t-SNE, segmentation",
   "url": "https://rjdatavoyage.co.uk/projects/customer-segmentation",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -161,9 +163,9 @@
             Back to Projects
         </a>
 
-        <div class="cs-domain">Business Analytics / ML</div>
-        <h1 class="cs-title">Customer Behavioural Segmentation System</h1>
-        <p class="cs-summary">A clustering-based system that reveals hidden customer segments from transactional and behavioural data, enabling targeted marketing strategies that replace guesswork with data-driven precision.</p>
+        <div class="cs-domain">Unsupervised Learning</div>
+        <h1 class="cs-title">Customer Segmentation with Clustering</h1>
+        <p class="cs-summary">K-Means and hierarchical clustering of 68,300 retail customers, published as a learning exercise with its limitations stated.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -176,19 +178,18 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">K-Means, PCA, RFM</div>
+                <div class="cs-meta-value">K-Means, Hierarchical, PCA, t-SNE</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>Extended RFM clustering identified five distinct behavioural customer segments, from high-value loyal customers to at-risk churners, replacing one-size-fits-all campaigns with per-segment marketing strategies.</strong></p>
-            <p>Businesses often treat their entire customer base as a single group, deploying generic campaigns that resonate with some segments while alienating others. The underlying data to differentiate these groups typically exists within transactional systems, but without systematic analysis it remains unexploited.</p>
-            <p><strong>The real cost is invisible:</strong> wasted marketing spend on customers unlikely to convert, missed opportunities with high-value segments, and a lack of insight into what drives engagement across different customer types.</p>
+            <p><strong>K-Means and hierarchical clustering were tested on 68,300 retail customers; silhouette scores of about 0.25 showed the customer groups overlap heavily rather than forming distinct segments.</strong></p>
+            <p>Marketing teams want customer groups they can target differently. The task was to build customer-level features from transaction data, choose a number of clusters and judge whether the resulting segments are distinct enough to act on.</p>
         </section>
 
         <section class="cs-section">
@@ -197,29 +198,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Exploratory Data Analysis and Feature Engineering</div>
-                        <div class="cs-step-desc">Conducted thorough EDA to understand distributions, correlations, and anomalies. Engineered RFM (Recency, Frequency, Monetary) features and additional behavioural metrics.</div>
+                        <div class="cs-step-title">Feature engineering</div>
+                        <div class="cs-step-desc">Aggregated 951,669 order lines to 68,300 customers across 47 countries: order frequency, recency, total profit, average unit cost and age.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Optimal Cluster Determination</div>
-                        <div class="cs-step-desc">Applied the elbow method and silhouette analysis to determine the optimal number of clusters, balancing granularity with interpretability.</div>
+                        <div class="cs-step-title">Outlier removal</div>
+                        <div class="cs-step-desc">Isolation Forest removed 3,415 outlying customers (5%) before clustering.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Clustering and Dimensionality Reduction</div>
-                        <div class="cs-step-desc">Applied K-Means clustering on engineered features and used PCA for dimensionality reduction, enabling effective clustering and clear visual representation.</div>
+                        <div class="cs-step-title">Choosing k</div>
+                        <div class="cs-step-desc">Elbow method and silhouette scores for k = 2 to 10, then K-Means and agglomerative (hierarchical) clustering.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Segment Profiling and Recommendations</div>
-                        <div class="cs-step-desc">Profiled each cluster by defining characteristics, creating actionable segment descriptions with specific marketing strategy recommendations.</div>
+                        <div class="cs-step-title">Visualisation</div>
+                        <div class="cs-step-desc">PCA and t-SNE projections to inspect how well the clusters separate.</div>
                     </div>
                 </div>
             </div>
@@ -254,35 +255,36 @@
             <h2 class="cs-section-title">Results</h2>
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Distinct</div>
-                    <div class="cs-outcome-label">Behavioural clusters with clear separation</div>
+                    <div class="cs-outcome-value">0.266</div>
+                    <div class="cs-outcome-label">Best silhouette score (k = 2); k = 5 scored 0.255</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">RFM+</div>
-                    <div class="cs-outcome-label">Extended feature engineering beyond standard metrics</div>
+                    <div class="cs-outcome-value">61.0%</div>
+                    <div class="cs-outcome-label">Variance explained by the first two principal components</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">Actionable</div>
-                    <div class="cs-outcome-label">Per-segment marketing strategies delivered</div>
+                    <div class="cs-outcome-value">66%</div>
+                    <div class="cs-outcome-label">Share of customers in the largest K-Means cluster (k = 5)</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>Identified five distinct behavioural segments using extended RFM features (recency, frequency, customer lifetime value, average unit cost, customer age), revealing groups that generic marketing treats identically but that behave in fundamentally different ways.</p>
-                <p>The analysis exposed specific high-value segments: loyal customers generating disproportionate revenue, at-risk churners showing declining engagement patterns, and price-sensitive browsers who convert under different conditions than the core base.</p>
-                <p>Each segment was delivered with actionable characteristics and recommended engagement approaches, providing the analytical foundation for targeted campaigns that allocate budget by segment value rather than distributing spend uniformly across an undifferentiated customer base.</p>
+            <p>The elbow plot suggested five clusters and the silhouette score preferred two, and neither shows clear separation. One cluster held about two-thirds of customers, so the five-cluster solution does not yet give segments a marketing team could target with confidence.</p>
             </div>
+            <div class="cs-callout"><p><strong>What I would fix:</strong> the profit ("CLV") feature was inflated by merging a customer-level value onto every order line before summing, and the final K-Means ran on unscaled features, so large-valued features dominated. Correcting both and re-running is the next step before naming any segments.</p></div>
         </section>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
-                <span class="cs-tech-pill">Scikit-learn</span>
+                <span class="cs-tech-pill">scikit-learn</span>
                 <span class="cs-tech-pill">K-Means</span>
+                <span class="cs-tech-pill">Agglomerative Clustering</span>
+                <span class="cs-tech-pill">Isolation Forest</span>
                 <span class="cs-tech-pill">PCA</span>
-                <span class="cs-tech-pill">Pandas</span>
+                <span class="cs-tech-pill">t-SNE</span>
+                <span class="cs-tech-pill">pandas</span>
                 <span class="cs-tech-pill">Matplotlib</span>
-                <span class="cs-tech-pill">Seaborn</span>
             </div>
         </section>
 

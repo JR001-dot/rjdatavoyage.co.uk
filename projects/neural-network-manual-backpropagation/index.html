@@ -12,11 +12,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neural Network Manual Backpropagation | RJ Data Voyage</title>
-    <meta name="description" content="A from-scratch NumPy implementation of forward and backward propagation for a retail recommendation engine, built without any deep learning framework to establish first-principles understanding.">
+    <meta name="description" content="One forward pass, one backward pass and one gradient-descent update for a 2-2-1 neural network, written by hand in NumPy. Cambridge DS Career Accelerator coursework.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/neural-network-manual-backpropagation">
     <meta property="og:title" content="Neural Network Manual Backpropagation | RJ Data Voyage">
-    <meta property="og:description" content="A from-scratch NumPy implementation of forward and backward propagation for a retail recommendation engine, built without any deep learning framework to establish first-principles understanding.">
+    <meta property="og:description" content="One forward pass, one backward pass and one gradient-descent update for a 2-2-1 neural network, written by hand in NumPy. Cambridge DS Career Accelerator coursework.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -119,9 +119,9 @@
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "Neural Network Manual Backpropagation",
-  "about": "A recommendation-engine neural network built and trained by hand in NumPy",
+  "about": "A hand-written training step for a small neural network",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "NumPy, backpropagation, deep learning fundamentals, neural networks",
+  "keywords": "backpropagation, gradient descent, NumPy, neural network",
   "url": "https://rjdatavoyage.co.uk/projects/neural-network-manual-backpropagation",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -158,7 +158,7 @@
 
         <div class="cs-domain">Deep Learning Fundamentals</div>
         <h1 class="cs-title">Neural Network Manual Backpropagation</h1>
-        <p class="cs-summary">A recommendation-engine neural network built and trained entirely by hand in NumPy - no TensorFlow, no PyTorch - to demonstrate genuine first-principles understanding of forward propagation, gradient computation, and gradient descent.</p>
+        <p class="cs-summary">A single training step of a small neural network written by hand in NumPy, without TensorFlow or PyTorch, to show exactly what a framework automates.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -167,15 +167,15 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Domain</div>
-                <div class="cs-meta-value">Retail / E-commerce</div>
+                <div class="cs-meta-value">Recommendation scenario (course)</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">Manual Forward &amp; Backward Pass</div>
+                <div class="cs-meta-value">Manual Forward and Backward Pass</div>
             </div>
             <div class="cs-meta-item">
-                <div class="cs-meta-label">Status</div>
-                <div class="cs-meta-value">Completed</div>
+                <div class="cs-meta-label">Origin</div>
+                <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
         </div>
 
@@ -201,8 +201,8 @@
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>A complete neural network, forward pass, backpropagation, and gradient descent, built and trained using nothing but NumPy, establishing first-principles understanding before scaling to a production retail recommendation engine.</strong></p>
-            <p>Before reaching for a deep learning framework, this project set out to build and train a neural network entirely by hand, to establish genuine first-principles understanding of forward propagation, backpropagation, and gradient descent, rather than treating them as a framework's black box.</p>
+            <p><strong>One complete training step of a 2-2-1 neural network, forward pass, backpropagation and weight update, was written by hand in NumPy.</strong></p>
+            <p>Before relying on a deep-learning framework, the goal was to compute every step of training explicitly, so that gradients, activations and learning rates are understood rather than taken on trust.</p>
         </section>
 
         <section class="cs-section">
@@ -211,29 +211,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Network Definition</div>
-                        <div class="cs-step-desc">Built a 2-2-1 architecture by hand: two input features (customer signals), a two-neuron ReLU hidden layer, and a single Sigmoid output neuron for binary recommendation prediction, with all weights and biases explicitly initialised.</div>
+                        <div class="cs-step-title">Network definition</div>
+                        <div class="cs-step-desc">A 2-2-1 network with given weights and biases: two inputs (the course's recommendation scenario), a two-neuron ReLU hidden layer and a sigmoid output.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Forward Propagation</div>
-                        <div class="cs-step-desc">Manually implemented the forward pass, computing hidden-layer activations via ReLU and the final prediction via Sigmoid, entirely with NumPy matrix operations.</div>
+                        <div class="cs-step-title">Forward pass</div>
+                        <div class="cs-step-desc">Hidden activations via ReLU and the prediction via sigmoid for the input [0.3, 0.4], giving an output of 0.9209 against a target of 1.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Manual Backpropagation</div>
-                        <div class="cs-step-desc">Derived and coded the loss gradient with respect to the output, then propagated gradients backward through the output and hidden layers by hand, computing every derivative explicitly rather than relying on autodiff.</div>
+                        <div class="cs-step-title">Backward pass</div>
+                        <div class="cs-step-desc">Loss gradient derived and propagated through both layers by hand.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Gradient Descent</div>
-                        <div class="cs-step-desc">Updated all weights and biases using the computed gradients at a learning rate of 0.02, closing the loop from prediction to error to parameter update with no framework involved.</div>
+                        <div class="cs-step-title">Update</div>
+                        <div class="cs-step-desc">One gradient-descent update of all weights and biases at a learning rate of 0.02.</div>
                     </div>
                 </div>
             </div>
@@ -244,26 +244,20 @@
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">2-2-1</div>
-                    <div class="cs-outcome-label">Network architecture: input, hidden, and output layers implemented entirely from scratch</div>
+                    <div class="cs-outcome-label">Network computed entirely by hand</div>
+                </div>
+                <div class="cs-outcome-card">
+                    <div class="cs-outcome-value">0.9209</div>
+                    <div class="cs-outcome-label">Prediction before the update (target 1)</div>
                 </div>
                 <div class="cs-outcome-card">
                     <div class="cs-outcome-value">0</div>
-                    <div class="cs-outcome-label">Deep learning framework dependencies - pure NumPy forward and backward pass</div>
-                </div>
-                <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">ReLU + Sigmoid</div>
-                    <div class="cs-outcome-label">Activation functions and their derivatives implemented and verified by hand</div>
+                    <div class="cs-outcome-label">Deep-learning frameworks used</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>The exercise successfully traced a full training step end-to-end: a customer feature vector flows forward through ReLU and Sigmoid activations to a prediction, the loss gradient is computed against a target label, and that error is propagated backward through both layers to produce weight updates via gradient descent.</p>
-                <p>Working through the maths manually surfaces exactly why frameworks like TensorFlow and PyTorch exist, and exactly what they're automating underneath their abstractions. That distinction matters directly for architecture decisions on real projects: knowing what backpropagation is actually computing makes it much easier to reason about vanishing gradients, activation choice, and learning rate sensitivity when scaling a model up.</p>
+            <p>Working through the maths shows what frameworks automate, which helps when diagnosing problems such as vanishing gradients, poor activation choices or learning-rate sensitivity in larger models.</p>
             </div>
-        </section>
-
-        <section class="cs-section">
-            <h2 class="cs-section-title">Business Impact</h2>
-            <p>For a retail recommendation engine specifically, this foundation supports better-informed architecture decisions when scaling from a toy 2-2-1 network to a production system serving millions of customers and products, more personalised recommendations translate fairly directly into higher engagement, conversion, and customer lifetime value, and being able to reason about the mechanics rather than just calling <code>model.fit()</code> is a genuine differentiator when diagnosing why a production model isn't learning as expected.</p>
         </section>
 
 
@@ -272,7 +266,6 @@
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
                 <span class="cs-tech-pill">NumPy</span>
-                <span class="cs-tech-pill">Matplotlib</span>
                 <span class="cs-tech-pill">Manual Backpropagation</span>
                 <span class="cs-tech-pill">Gradient Descent</span>
             </div>

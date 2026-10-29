@@ -12,11 +12,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Automated PDF Compliance Test Harness | RJ Data Voyage</title>
-    <meta name="description" content="Multi-layer automated validation framework testing 300 PDF documents against structural and content compliance rules, achieving 100% true positive and true negative rates.">
+    <meta name="description" content="Layout and content validation of generated PDF letters with PyMuPDF and regex rules, per-file diagnosis and a colour-coded Excel report; verdicts matched ground truth for all 300 letters in a synthetic test corpus.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rjdatavoyage.co.uk/projects/pdf-test-harness">
     <meta property="og:title" content="Automated PDF Compliance Test Harness | RJ Data Voyage">
-    <meta property="og:description" content="Multi-layer automated validation framework testing 300 PDF documents against structural and content compliance rules, achieving 100% true positive and true negative rates.">
+    <meta property="og:description" content="Layout and content validation of generated PDF letters with PyMuPDF and regex rules, per-file diagnosis and a colour-coded Excel report; verdicts matched ground truth for all 300 letters in a synthetic test corpus.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,9 +220,9 @@
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "Automated PDF Compliance Test Harness",
-  "about": "Multi-layer validation framework testing 300 PDF documents",
+  "about": "Layout and content validation of generated PDF letters",
   "author": { "@id": "https://rjdatavoyage.co.uk/#raquel" },
-  "keywords": "test automation, QA engineering, validation, Python",
+  "keywords": "PyMuPDF, regex, test automation, document compliance, QA",
   "url": "https://rjdatavoyage.co.uk/projects/pdf-test-harness",
   "isPartOf": { "@id": "https://rjdatavoyage.co.uk/#business" }
 }
@@ -259,7 +259,7 @@
 
         <div class="cs-domain">QA Engineering / Test Automation</div>
         <h1 class="cs-title">Automated PDF Compliance Test Harness</h1>
-        <p class="cs-summary">Multi-layer validation framework that programmatically tests 300 PDF documents against structural and content compliance rules - achieving 100% true positive and true negative rates across a controlled ground-truth corpus - with per-file failure diagnosis and a colour-coded Excel compliance report.</p>
+        <p class="cs-summary">A two-check validation harness that tests generated PDF letters against layout and content rules, with per-file failure reasons and a colour-coded Excel report.</p>
 
         <div class="cs-meta">
             <div class="cs-meta-item">
@@ -272,20 +272,19 @@
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Methods</div>
-                <div class="cs-meta-value">PDF parsing, regex validation, structural analysis, ground-truth testing</div>
+                <div class="cs-meta-value">PDF parsing, regex validation, ground-truth testing</div>
             </div>
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Test Corpus</div>
-                <div class="cs-meta-value">300 documents - 210 known-good, 90 known-defective</div>
+                <div class="cs-meta-value">300 synthetic letters - 210 valid, 90 with one seeded defect</div>
             </div>
         </div>
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
-            <p><strong>A two-layer compliance test harness achieved 100% true positive and true negative rates across 300 documents - zero misclassifications - catching defects automated PDF generation would otherwise let through silently.</strong></p>
-            <p>Automated document generation pipelines produce outputs at scale - but without systematic validation, defects accumulate silently. A PDF generator producing thousands of letters, certificates, or regulated notices may drift from specification without triggering any visible error: spacing breaks, required fields go missing, formatting rules are violated.</p>
-            <p><strong>The question is not whether the documents were generated, but whether they are compliant.</strong> Answering that reliably requires a test harness that defines compliance precisely, executes deterministically, and distinguishes true defects from false alarms - the same standard applied to any quality-critical system.</p>
-            <p>This project built exactly that: a two-layer automated framework capable of parsing generated PDFs, asserting compliance against a defined specification, and reporting results at both aggregate and per-file granularity.</p>
+            <p><strong>The harness's pass/fail verdicts matched the known answer for all 300 letters in a synthetic test corpus, with a specific reason logged for every failure.</strong></p>
+            <p>Automated document generation can drift from its specification without raising an error: a missing field, a broken layout, a lost bold line. The question is not whether documents were generated, but whether they are compliant, and that needs a harness that defines compliance precisely, runs deterministically and reports at file level.</p>
+            <p><strong>Why this matters in regulated settings:</strong> in financial services, insurance and legal work, document compliance is an audit obligation, and manual spot checks do not scale.</p>
         </section>
 
         <div class="cs-callout">
@@ -298,29 +297,29 @@
                 <div class="cs-step">
                     <div class="cs-step-num">01</div>
                     <div>
-                        <div class="cs-step-title">Ground-Truth Corpus Design</div>
-                        <div class="cs-step-desc">Constructed a controlled test corpus of 300 synthetic PDF letters: 210 known-good (conforming to all specification rules) and 90 known-defective (containing deliberate, categorised violations). This separation is essential - without a ground truth, test accuracy cannot be measured, only assumed.</div>
+                        <div class="cs-step-title">Ground-truth corpus</div>
+                        <div class="cs-step-desc">Generated 300 synthetic letters: 210 valid and 90 with one seeded defect each (missing salutation, wrong weather lines, missing bold line, missing company line or missing date). A known answer for every file is what makes accuracy measurable.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">02</div>
                     <div>
-                        <div class="cs-step-title">Layer 1 - Structural Validation (Y-Gap)</div>
-                        <div class="cs-step-desc">Implemented paragraph spacing analysis using PyMuPDF (fitz), extracting the vertical positions of text blocks and asserting that inter-paragraph gaps conform to the defined layout specification. Each document is evaluated against a configurable y-gap threshold, with the exact failure reason logged when the rule is violated.</div>
+                        <div class="cs-step-title">Layout check</div>
+                        <div class="cs-step-desc">PyMuPDF extracts text-line positions and asserts ten lines at the specified 10.8 pt spacing, logging the exact reason when a letter fails.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">03</div>
                     <div>
-                        <div class="cs-step-title">Layer 2 - Content Integrity Validation</div>
-                        <div class="cs-step-desc">Applied a sequential regex-based assertion engine that validates required content fields in strict top-to-bottom order: salutation format, date, property address, order reference, phone, website, bold formatting markers, and two weather-line phrases. Presence, format, and ordering are all checked - partial compliance is not accepted.</div>
+                        <div class="cs-step-title">Content check</div>
+                        <div class="cs-step-desc">Ordered regex rules for company, address, phone, website, date, order number, property line, salutation, two weather lines and bold formatting.</div>
                     </div>
                 </div>
                 <div class="cs-step">
                     <div class="cs-step-num">04</div>
                     <div>
-                        <div class="cs-step-title">Reporting and Diagnosis</div>
-                        <div class="cs-step-desc">Generated a per-file validation report with individual PASS/FAIL verdicts, specific failure reasons, and a cross-tabulation of structural vs content failures. Final output: a colour-coded Excel workbook (green = PASS, red = FAIL) combining both validation layers, plus an executive summary with aggregate metrics and a breakdown of the most frequent failure modes.</div>
+                        <div class="cs-step-title">Reporting</div>
+                        <div class="cs-step-desc">Colour-coded Excel workbook (green PASS, red FAIL), per-file text reports, an executive summary and an accuracy report against ground truth.</div>
                     </div>
                 </div>
             </div>
@@ -332,11 +331,11 @@
             <div class="cs-hero-metric">300 DOCS</div>
             <div class="harness-terminal">
                 <div><span class="t-label">GROUND TRUTH &nbsp;&nbsp;&nbsp;</span><span class="t-dim">Known-good: 210 &nbsp;&nbsp; Known-defective: 90 &nbsp;&nbsp; Total: 300</span></div>
-                <div><span class="t-label">TRUE POSITIVES &nbsp;</span><span class="t-pass">210 / 210 &nbsp; (good → PASS)</span></div>
-                <div><span class="t-label">TRUE NEGATIVES &nbsp;</span><span class="t-pass">90 / 90 &nbsp;&nbsp; (bad → FAIL)</span></div>
-                <div><span class="t-label">FALSE POSITIVES </span><span class="t-pass">0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (bad → PASS)</span></div>
-                <div><span class="t-label">FALSE NEGATIVES </span><span class="t-pass">0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (good → FAIL)</span></div>
-                <div style="margin-top:6px"><span class="t-label">OVERALL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-pass">100% TRUE POSITIVE RATE &nbsp; 100% TRUE NEGATIVE RATE</span></div>
+                <div><span class="t-label">VALID → PASS &nbsp;&nbsp;</span><span class="t-pass">210 / 210 &nbsp; (good → PASS)</span></div>
+                <div><span class="t-label">DEFECTIVE → FAIL</span><span class="t-pass">90 / 90 &nbsp;&nbsp; (bad → FAIL)</span></div>
+                <div><span class="t-label">DEFECTIVE → PASS</span><span class="t-pass">0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (bad → PASS)</span></div>
+                <div><span class="t-label">VALID → FAIL &nbsp;&nbsp;</span><span class="t-pass">0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (good → FAIL)</span></div>
+                <div style="margin-top:6px"><span class="t-label">OVERALL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-pass">300 / 300 AGREE WITH GROUND TRUTH (SYNTHETIC)</span></div>
                 <div class="harness-bar"><div class="harness-bar-fill"></div></div>
             </div>
         </div>
@@ -345,63 +344,40 @@
             <h2 class="cs-section-title">Results</h2>
             <div class="cs-outcomes">
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">100%</div>
-                    <div class="cs-outcome-label">True positive rate - all 210 compliant documents correctly passed</div>
+                    <div class="cs-outcome-value">300 / 300</div>
+                    <div class="cs-outcome-label">Overall verdicts matching ground truth, reproduced in three runs</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">100%</div>
-                    <div class="cs-outcome-label">True negative rate - all 90 defective documents correctly failed</div>
+                    <div class="cs-outcome-value">210</div>
+                    <div class="cs-outcome-label">Valid letters passed</div>
                 </div>
                 <div class="cs-outcome-card">
-                    <div class="cs-outcome-value">0</div>
-                    <div class="cs-outcome-label">False positives and false negatives - zero misclassifications across 300 documents</div>
+                    <div class="cs-outcome-value">90</div>
+                    <div class="cs-outcome-label">Defective letters failed, each with a logged reason</div>
                 </div>
             </div>
             <div style="margin-top: 24px;">
-                <p>The harness achieved <strong>perfect classification across all 300 documents</strong> - 210 true positives and 90 true negatives, with zero false positives and zero false negatives. The two validation layers were complementary: structural validation (y-gap) flagged 58 failures, content integrity flagged 90, with the combined verdict correctly identifying all defective documents.</p>
-                <p>Failure diagnosis identified the most common root causes, enabling the document generator to be targeted for fixes rather than requiring broad rework. Weather-line content was the highest-frequency failure mode (74 instances), followed by salutation format errors (58) - findings that directly informed prioritised corrections upstream.</p>
+            <p>Every letter failed by the layout check was also failed by the content check: the layout check only fires when a defect removes a line, so it acts as a secondary safeguard rather than an independent detector.</p>
             </div>
-
-            <div class="failure-table-wrap">
-                <table class="failure-table">
-                    <thead>
-                        <tr>
-                            <th>Failure Mode</th>
-                            <th>Count</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Weather line 1 - missing required phrase</td><td>74</td></tr>
-                        <tr><td>Weather line 2 - missing required phrase</td><td>74</td></tr>
-                        <tr><td>Salutation - incorrect format or missing</td><td>58</td></tr>
-                        <tr><td>Order number - absent or malformed</td><td>36</td></tr>
-                        <tr><td>Date - absent or malformed</td><td>36</td></tr>
-                        <tr><td>Property line - absent or malformed</td><td>36</td></tr>
-                        <tr><td>Phone - absent or incorrect</td><td>20</td></tr>
-                        <tr><td>Website - absent or incorrect</td><td>20</td></tr>
-                        <tr><td>Bold formatting - expected markers missing</td><td>16</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class="cs-callout"><p><strong>Read with care:</strong> the corpus and the rules come from the same specification and only five defect types are seeded, so full agreement is expected by construction. It shows the harness works as designed, not how it would perform on real-world drift. An early version reported every later field as missing once one field was absent; this was fixed so that per-file reasons point to the actual defect.</p></div>
         </section>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Relevance to Production Contexts</h2>
-            <p>This harness demonstrates capabilities that translate directly to production quality engineering: structured test design with explicit ground truth, multi-layer validation with independent failure modes, per-document failure attribution rather than aggregate-only reporting, and machine-readable output (Excel) for downstream audit processes.</p>
-            <p>The same architecture - parse, assert, report - scales to any document type where compliance rules can be formalised: regulated financial notices, insurance certificates, legal contracts, or automated correspondence systems. The pattern is domain-agnostic; only the assertion rules change.</p>
-            <p><strong>For organisations running AI-assisted document generation pipelines</strong>, this kind of post-generation compliance testing is the QA layer that makes the pipeline auditable - not just functional.</p>
+            <p>The same pattern, parse, assert and report, applies to any document type whose rules can be written down: regulated notices, certificates, contracts or automated correspondence. Moving to production would mean testing against real generated output, adding defect types seen in practice and tracking false-alarm rates over time.</p>
         </section>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
+                <span class="cs-tech-pill">ReportLab</span>
                 <span class="cs-tech-pill">PyMuPDF (fitz)</span>
+                <span class="cs-tech-pill">regex</span>
                 <span class="cs-tech-pill">pandas</span>
                 <span class="cs-tech-pill">openpyxl</span>
-                <span class="cs-tech-pill">regex</span>
+                <span class="cs-tech-pill">Graphviz</span>
                 <span class="cs-tech-pill">logging</span>
-                <span class="cs-tech-pill">pathlib</span>
             </div>
         </section>
 
