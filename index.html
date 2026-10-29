@@ -1322,19 +1322,19 @@
                 <!-- Impact counters -->
                 <div class="impact-counters">
                     <div class="impact-counter">
-                        <div class="impact-counter-value" data-target="25" data-suffix="%">0%</div>
+                        <div class="impact-counter-value" data-target="25" data-suffix="%">25%</div>
                         <div class="impact-counter-label">Resource demand reduction at Sky</div>
                     </div>
                     <div class="impact-counter">
-                        <div class="impact-counter-value" data-target="81" data-suffix="">0</div>
+                        <div class="impact-counter-value" data-target="81" data-suffix="">81</div>
                         <div class="impact-counter-label">Public bank reports and transcripts analysed (G-SIB team project)</div>
                     </div>
                     <div class="impact-counter">
-                        <div class="impact-counter-value" data-target="19" data-suffix="">0</div>
+                        <div class="impact-counter-value" data-target="19" data-suffix="">19</div>
                         <div class="impact-counter-label">Published case studies</div>
                     </div>
                     <div class="impact-counter">
-                        <div class="impact-counter-value" data-target="14" data-suffix="+">0</div>
+                        <div class="impact-counter-value" data-target="14" data-suffix="+">14+</div>
                         <div class="impact-counter-label">Years in technology at Sky</div>
                     </div>
                 </div>
@@ -1960,6 +1960,14 @@
             });
         }
         
+        // Real values stay in the HTML for no-JS readers and crawlers; reset to 0 only if the counters start off-screen
+        (function() {
+            const section = document.querySelector('.impact-counters');
+            if (section && section.getBoundingClientRect().top > window.innerHeight * 0.85) {
+                counters.forEach(function(c) { c.textContent = '0' + (c.getAttribute('data-suffix') || ''); });
+            }
+        })();
+
         window.addEventListener('scroll', animateCounters, { passive: true });
         // Also check on load in case already in view
         animateCounters();
