@@ -22,3 +22,26 @@
     }, 250 + idx * 180);
   });
 })();
+
+/* split-flap figure captions: scramble once when the figure comes into view, then settle */
+(function () {
+  if (window.__figFlaps) return; window.__figFlaps = 1;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var G = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  function run(head) {
+    head.querySelectorAll('.flap').forEach(function (fl, idx) {
+      var t = fl.querySelector('.ft > span'), b = fl.querySelector('.fb > span'), target = fl.getAttribute('data-t') || t.textContent, n = target.length, frame = 0;
+      fl.setAttribute('data-t', target);
+      setTimeout(function step() {
+        var settled = Math.max(0, frame - 6), out = '';
+        for (var i = 0; i < n; i++) { var ch = target[i]; out += (i < settled || /[\s,.\/%\-+&·()]/.test(ch)) ? ch : G[(Math.random() * G.length) | 0]; }
+        t.textContent = out; b.textContent = out;
+        if (frame++ < n + 6) setTimeout(step, 38);
+      }, 120 + idx * 160);
+    });
+  }
+  var heads = document.querySelectorAll('.fig-head.flaps');
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); run(e.target); } }); }, { threshold: .4 });
+  heads.forEach(function (h) { io.observe(h); });
+})();

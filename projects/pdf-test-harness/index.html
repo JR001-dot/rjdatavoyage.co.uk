@@ -240,7 +240,7 @@
             <ul class="nav-links">
                 <li><a href="/#about">About</a></li>
                 <li><a href="/#services">Services</a></li>
-                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/projects/">Projects</a></li>
                 <li><a href="/insights/">Insights</a></li>
                 <li><a href="/#expertise">Expertise</a></li>
                 <li><a href="/#contact">Contact</a></li>
@@ -251,7 +251,7 @@
     </nav>
 
     <main class="case-study">
-        <a href="/#projects" class="back-link">
+        <a href="/projects/" class="back-link">
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Back to Projects
         </a>
@@ -261,7 +261,19 @@
         <h1 class="cs-title">Automated PDF Compliance Test Harness</h1>
         <p class="cs-summary">A two-check validation harness that tests generated PDF letters against layout and content rules, with per-file failure reasons and a colour-coded Excel report.</p>
 
-        <div class="cs-meta">
+        <div class="cs-hero">
+            <div class="cs-hero-head"><div class="cs-hero-label">TEST HARNESS - FINAL ACCURACY REPORT</div></div>
+            <div class="harness-terminal">
+                <div><span class="t-label">GROUND TRUTH &nbsp;&nbsp;&nbsp;</span><span class="t-dim">Known-good: 210 &nbsp;&nbsp; Known-defective: 90 &nbsp;&nbsp; Total: 300</span></div>
+                <div><span class="t-label">VALID → PASS &nbsp;&nbsp;</span><span class="t-pass">210 / 210 &nbsp; (good → PASS)</span></div>
+                <div><span class="t-label">DEFECTIVE → FAIL</span><span class="t-pass">90 / 90 &nbsp;&nbsp; (bad → FAIL)</span></div>
+                <div><span class="t-label">DEFECTIVE → PASS</span><span class="t-pass">0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (bad → PASS)</span></div>
+                <div><span class="t-label">VALID → FAIL &nbsp;&nbsp;</span><span class="t-pass">0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (good → FAIL)</span></div>
+                <div style="margin-top:6px"><span class="t-label">OVERALL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-pass">300 / 300 AGREE WITH GROUND TRUTH (SYNTHETIC)</span></div>
+                <div class="harness-bar"><div class="harness-bar-fill"></div></div>
+            </div>
+        </div>
+<div class="cs-meta">
             <div class="cs-meta-item">
                 <div class="cs-meta-label">Type</div>
                 <div class="cs-meta-value">Test Automation / QA Engineering</div>
@@ -279,6 +291,7 @@
                 <div class="cs-meta-value">300 synthetic letters - 210 valid, 90 with one seeded defect</div>
             </div>
         </div>
+
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
@@ -326,19 +339,7 @@
         </section>
 
         <!-- Animated terminal hero -->
-        <div class="cs-hero">
-            <div class="cs-hero-label">TEST HARNESS - FINAL ACCURACY REPORT</div>
-            <div class="cs-hero-metric">300 DOCS</div>
-            <div class="harness-terminal">
-                <div><span class="t-label">GROUND TRUTH &nbsp;&nbsp;&nbsp;</span><span class="t-dim">Known-good: 210 &nbsp;&nbsp; Known-defective: 90 &nbsp;&nbsp; Total: 300</span></div>
-                <div><span class="t-label">VALID → PASS &nbsp;&nbsp;</span><span class="t-pass">210 / 210 &nbsp; (good → PASS)</span></div>
-                <div><span class="t-label">DEFECTIVE → FAIL</span><span class="t-pass">90 / 90 &nbsp;&nbsp; (bad → FAIL)</span></div>
-                <div><span class="t-label">DEFECTIVE → PASS</span><span class="t-pass">0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (bad → PASS)</span></div>
-                <div><span class="t-label">VALID → FAIL &nbsp;&nbsp;</span><span class="t-pass">0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (good → FAIL)</span></div>
-                <div style="margin-top:6px"><span class="t-label">OVERALL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-pass">300 / 300 AGREE WITH GROUND TRUTH (SYNTHETIC)</span></div>
-                <div class="harness-bar"><div class="harness-bar-fill"></div></div>
-            </div>
-        </div>
+        
 
         <section class="cs-section">
             <h2 class="cs-section-title">Results</h2>
@@ -385,7 +386,7 @@
             <div class="cs-cta-text">Need document compliance testing or QA automation?</div>
             <div class="cs-cta-links">
                 <a href="/#contact" class="btn btn-primary">Get in Touch</a>
-                <a href="/#projects" class="btn btn-secondary">View All Projects</a>
+                <a href="/projects/" class="btn btn-secondary">View All Projects</a>
             </div>
         </div>
     </main>

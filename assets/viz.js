@@ -20,9 +20,25 @@
     g.fillText(s, x, y);
     if ('letterSpacing' in g) g.letterSpacing = '0px';
   }
+  /* caption as a split-flap tile, like the departures board: it scrambles once, then settles left to right */
+  var FT = 999, GL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  function flapText(s, T) {
+    var settled = Math.floor((T - .2) / .035) - 6; if (settled >= s.length) return s;
+    var tick = Math.floor(T * 24), out = '';
+    for (var i = 0; i < s.length; i++) { var ch = s[i]; out += (i < settled || /[\s,.\/%\-+&·()]/.test(ch)) ? ch : GL[((i * 7919 + tick * 104729) >>> 0) % GL.length]; }
+    return out;
+  }
   function frame(g, w, h, caption, tag) {
     g.fillStyle = C.bg; g.fillRect(0, 0, w, h);
-    txt(g, caption, 14, 20, { size: 9.5, color: C.mute, spacing: 0.8 });
+    var size = 9.5, sp = .8, pad = 8, x = 10, y = 7, th = 22, tw;
+    do { g.font = '600 ' + size + 'px ' + MONO; if ('letterSpacing' in g) g.letterSpacing = sp + 'px'; tw = g.measureText(caption).width + pad * 2; if ('letterSpacing' in g) g.letterSpacing = '0px'; if (tw <= w - 20) break; size -= .5; } while (size > 7);
+    var top = g.createLinearGradient(0, y, 0, y + th / 2); top.addColorStop(0, '#22242E'); top.addColorStop(1, '#1B1D25');
+    var bot = g.createLinearGradient(0, y + th / 2, 0, y + th); bot.addColorStop(0, '#17181F'); bot.addColorStop(1, '#121319');
+    g.save(); rrect(g, x, y, tw, th, 5); g.clip();
+    g.fillStyle = top; g.fillRect(x, y, tw, th / 2); g.fillStyle = bot; g.fillRect(x, y + th / 2, tw, th / 2);
+    txt(g, flapText(caption, FT), x + pad, y + th / 2, { size: size, color: '#F5F6FA', weight: 600, spacing: sp, base: 'middle' });
+    g.fillStyle = 'rgba(0,0,0,.5)'; g.fillRect(x, y + th / 2 - .5, tw, 1);
+    g.restore(); rrect(g, x + .5, y + .5, tw - 1, th - 1, 5); g.strokeStyle = 'rgba(255,255,255,.06)'; g.lineWidth = 1; g.stroke();
   }
   function rrect(g, x, y, w, h, r) { g.beginPath(); g.roundRect ? g.roundRect(x, y, w, h, r) : g.rect(x, y, w, h); }
   function glowDot(g, x, y, r, col, a) {
@@ -171,17 +187,18 @@
         if (i < 2) { g.strokeStyle = C.line; g.beginPath(); g.moveTo(x + bw + 2, 55); g.lineTo(x + bw + 8, 55); g.stroke(); }
         g.globalAlpha = 1;
       });
-      var cy = 86 + (h - 112) / 2, R = Math.min(34, (h - 112) / 2), cx = 14 + R + 6;
+      var narrow = w < 480;
+      var cy = narrow ? 86 + Math.min(30, (h - 190) / 2) + 4 : 86 + (h - 112) / 2, R = narrow ? Math.max(18, Math.min(30, (h - 190) / 2)) : Math.min(34, (h - 112) / 2), cx = 14 + R + 6;
       var p = ease(seq(t, 1.8, 3.4)) * .66;
       g.lineWidth = 11; g.strokeStyle = C.grid; g.beginPath(); g.arc(cx, cy, R, 0, 7); g.stroke();
       g.strokeStyle = C.cob; g.beginPath(); g.arc(cx, cy, R, -Math.PI / 2, -Math.PI / 2 + p * Math.PI * 2); g.stroke();
       txt(g, '66%', cx, cy + 4, { size: 12, color: C.white, align: 'center', weight: 600, font: SANS });
       txt(g, 'IN THE LARGEST', cx + R + 16, cy - 6, { size: 8, color: C.mute, spacing: .3 });
       txt(g, 'CLUSTER (K = 5)', cx + R + 16, cy + 6, { size: 8, color: C.mute, spacing: .3 });
-      var sx = w * .58, sw = w - 14 - sx;
-      txt(g, 'SILHOUETTE', sx, cy - 22, { size: 8, color: C.mute, spacing: .4 });
+      var sx = narrow ? 14 : w * .58, sw = w - 14 - sx, sy = narrow ? cy + R + 30 : cy - 12;
+      txt(g, 'SILHOUETTE', sx, sy - 10, { size: 8, color: C.mute, spacing: .4 });
       [['K = 2', .266, '0.266'], ['K = 5', .255, '0.255']].forEach(function (s, i) {
-        var y = cy - 12 + i * 22;
+        var y = sy + i * 20;
         txt(g, s[0], sx, y + 7, { size: 8.5, color: C.text });
         bar(g, sx + 38, y, sw - 76, 7, s[1] * ease(seq(t, 2.2 + i * .2, 3.4 + i * .2)), i ? '#8C93A8' : C.cob);
         txt(g, s[2], w - 14, y + 7, { size: 9, color: C.white, align: 'right', weight: 600 });
@@ -298,7 +315,7 @@
       [LL, LR, RL, RR].forEach(function (p, i) { rrect(g, p[0] - (i ? 6 : 30), p[1] - 7, i ? 12 : 60, 14, 7); g.fillStyle = i ? C.dim : C.cob; g.fill(); });
       txt(g, 'HIGH RISK', LL[0], LL[1] + 3, { size: 7.5, color: '#fff', align: 'center', spacing: .3 });
       var rows = [['RECALL', [['FOREST', .52, '0.52'], ['BALANCED TREE', .70, '0.70']]], ['F1', [['FOREST', .61, '0.61'], ['BALANCED TREE', .59, '0.59']]]];
-      var y0 = 124, cw = (w - 28 - 16) / 2;
+      var y0 = Math.max(124, h - 96), cw = (w - 28 - 16) / 2;
       rows.forEach(function (blk, bi) {
         var x = 14 + bi * (cw + 16);
         txt(g, blk[0], x, y0, { size: 8, color: C.mute, spacing: .4 });
@@ -328,14 +345,18 @@
         txt(g, 'STAGE ' + (i + 1), x + bw / 2, base + 13, { size: 8.5, color: C.mute, align: 'center', spacing: .4 });
         txt(g, s[0], x + bw / 2, base + 24, { size: 8, color: C.mute, align: 'center' });
       });
-      g.globalAlpha = seq(t, 2.4, 2.8); txt(g, 'LEAKAGE CHECK', w - 14, top - 4, { size: 8.5, color: C.amb, align: 'right', spacing: .5 }); g.globalAlpha = 1;
+      // flag sits inside the dashed stage-3 box, clear of the value label above it
+      var lx = 14 + 2 * cw + cw * .5, ly = base - (base - top) * .879 * ease(seq(t, 1.0, 2.3)) / 2;
+      g.globalAlpha = seq(t, 2.4, 2.8);
+      txt(g, 'LEAKAGE', lx, ly - 3, { size: 8.5, color: C.amb, align: 'center', spacing: .5 });
+      txt(g, 'CHECK', lx, ly + 9, { size: 8.5, color: C.amb, align: 'center', spacing: .5 }); g.globalAlpha = 1;
     }
   };
 
   /* 11. Movie reviews: bidirectional recurrent chain; five-class test accuracy (axis 0-50%) */
   V.movie = {
     period: 5, draw: function (g, w, h, t) {
-      frame(g, w, h, 'FIVE-CLASS SENTIMENT · 2,210 TEST SENTENCES', '');
+      frame(g, w, h, w < 440 ? 'FIVE-CLASS · 2,210 TEST SENTENCES' : 'FIVE-CLASS SENTIMENT · 2,210 TEST SENTENCES', '');
       var n = 7, y = 52, x0 = 24, x1 = w - 24, step = (x1 - x0) / (n - 1);
       for (var i = 0; i < n; i++) {
         var x = x0 + i * step;
@@ -399,7 +420,7 @@
   V.pdf = {
     period: 8, draw: function (g, w, h, t) {
       frame(g, w, h, 'LAYOUT + CONTENT CHECKS', 'TO SCALE');
-      var px = 14, py = 32, pw = w * .3, ph = h - 46;
+      var px = 14, py = 38, pw = w * .3, ph = h - 52;
       rrect(g, px, py, pw, ph, 6); g.fillStyle = '#E9EBF2'; g.fill();
       var lh = (ph - 24) / 10, scan = (t % 4) / 4;
       for (var i = 0; i < 10; i++) {
@@ -443,22 +464,24 @@
         test MSE SARIMA(1,0,1)(1,1,1,52) 139.98 vs auto_arima 160.46 */
   V.crime = {
     period: 6, draw: function (g, w, h, t) {
+      // on wide frames, enlarge the whole drawing so it fills the space instead of floating small
+      var k = Math.max(1, Math.min(w / 440, h / 260)); if (k > 1) { g.scale(k, k); w /= k; h /= k; }
       frame(g, w, h, 'MONTHLY INCIDENTS · 2011-2015');
-      var x0 = 14, x1 = w - 14, lo = 2478, hi = 4776, y = 62, a = ease(seq(t, .2, 1.6));
+      var x0 = 14, x1 = w - 14, lo = 2478, hi = 4776, y = Math.max(62, 54 + ((h - 50) - 142) / 2), a = ease(seq(t, .2, 1.6));
       var X = function (v) { return lerp(x0 + 6, x1 - 6, (v - lo) / (hi - lo)); };
       var grad = g.createLinearGradient(x0, 0, x1, 0); grad.addColorStop(0, '#2A2D38'); grad.addColorStop(1, C.cob);
       rrect(g, x0, y - 6, (x1 - x0) * a, 12, 6); g.fillStyle = grad; g.fill();
       txt(g, 'FEB LOW', x0, y - 14, { size: 8, color: C.mute, spacing: .3 }); txt(g, '2,478', x0, y + 22, { size: 11, color: C.white, weight: 600, font: SANS });
       txt(g, 'JUL HIGH', x1, y - 14, { size: 8, color: C.mute, align: 'right', spacing: .3 }); txt(g, '4,776', x1, y + 22, { size: 11, color: C.white, align: 'right', weight: 600, font: SANS });
       if (a > .99) { var mx = X(3940); g.strokeStyle = C.amb; g.lineWidth = 1.5; g.beginPath(); g.moveTo(mx, y - 9); g.lineTo(mx, y + 9); g.stroke(); txt(g, 'AVG 3,940', mx, y + 22, { size: 8.5, color: C.amb, align: 'center' }); }
-      txt(g, 'TEST MSE · FINAL 52 WEEKS', 14, y + 50, { size: 8, color: C.mute, spacing: .4 });
+      txt(g, 'TEST MSE · FINAL 52 WEEKS · LOWER IS BETTER', 14, y + 50, { size: 8, color: C.mute, spacing: .4 });
       [['SARIMA (HAND-SPECIFIED)', 139.98, '139.98', C.cob], ['AUTO_ARIMA', 160.46, '160.46', '#8C93A8']].forEach(function (r, i) {
         var yy = y + 58 + i * 22;
         txt(g, r[0], 14, yy + 7, { size: 8, color: i ? C.text : C.white, spacing: .2 });
         txt(g, r[2], w - 14, yy + 7, { size: 9.5, color: i ? C.text : C.cobS, align: 'right', weight: 600 });
         bar(g, 14, yy + 11, w - 28, 5, r[1] / 160.46 * ease(seq(t, 1.4 + i * .25, 2.6 + i * .25)), r[3]);
       });
-      g.globalAlpha = seq(t, 2.8, 3.2); txt(g, 'CYCLE IS 52 WEEKS (THE BRIEF SAID 70)', 14, h - 12, { size: 8.5, color: C.amb, spacing: .3 }); g.globalAlpha = 1;
+      g.globalAlpha = seq(t, 2.8, 3.2); txt(g, 'CYCLE IS 52 WEEKS (THE BRIEF SAID 70)', 14, Math.min(h - 12, y + 132), { size: 8.5, color: C.amb, spacing: .3 }); g.globalAlpha = 1;
     }
   };
 
@@ -469,20 +492,29 @@
     items.push({ cv: cv, def: def, st: {}, on: false, t0: 0, inited: false });
   });
   function size(it) {
-    var r = it.cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
-    it.w = r.width; it.h = r.height;
+    // Draw on a logical canvas at least MIN wide; narrower containers scale it down uniformly,
+    // so labels never collide and text stays legible on the smallest phones.
+    var r = it.cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 3), MIN = 340;
+    var s = r.width > 0 && r.width < MIN ? r.width / MIN : 1;
+    it.w = r.width / s; it.h = r.height / s;
     it.cv.width = Math.round(r.width * d); it.cv.height = Math.round(r.height * d);
-    it.g = it.cv.getContext('2d'); it.g.setTransform(d, 0, 0, d, 0, 0);
+    it.g = it.cv.getContext('2d'); it.g.setTransform(d * s, 0, 0, d * s, 0, 0);
     if (!it.inited && it.w > 0) { it.def.init && it.def.init(it.st, it.w, it.h); it.inited = true; }
   }
   function paint(it, now) {
     if (!it.w) return;
-    var t = reduce ? 999 : ((now - it.t0) / 1000);
+    var t = reduce ? 999 : ((now - it.t0) / 1000); FT = t;
     if (it.def.period < 999 && !reduce) t = t % it.def.period;
     if (reduce && it.def.period < 999) t = it.def.period - .01;
     it.g.save(); it.def.draw(it.g, it.w, it.h, t, it.st); it.g.restore();
   }
   items.forEach(size);
+  // re-measure whenever a canvas box changes size (late CSS, font swap, mobile toolbar), so the
+  // drawing buffer always matches the box and text is never stretched
+  if ('ResizeObserver' in window) {
+    var ro = new ResizeObserver(function (es) { es.forEach(function (e) { var it = items.find(function (x) { return x.cv === e.target; }); if (it) { size(it); paint(it, performance.now()); } }); });
+    items.forEach(function (it) { ro.observe(it.cv); });
+  }
   window.addEventListener('resize', function () { items.forEach(function (it) { size(it); paint(it, performance.now()); }); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { items.forEach(function (it) { paint(it, performance.now()); }); });
   if (reduce || !('IntersectionObserver' in window)) { items.forEach(function (it) { paint(it, performance.now()); }); if (reduce) return; }
@@ -494,4 +526,27 @@
     if (!document.hidden) items.forEach(function (it) { if (it.on) paint(it, now); });
     requestAnimationFrame(loop);
   })(performance.now());
+})();
+
+/* split-flap figure captions: scramble once when the figure comes into view, then settle */
+(function () {
+  if (window.__figFlaps) return; window.__figFlaps = 1;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var G = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  function run(head) {
+    head.querySelectorAll('.flap').forEach(function (fl, idx) {
+      var t = fl.querySelector('.ft > span'), b = fl.querySelector('.fb > span'), target = fl.getAttribute('data-t') || t.textContent, n = target.length, frame = 0;
+      fl.setAttribute('data-t', target);
+      setTimeout(function step() {
+        var settled = Math.max(0, frame - 6), out = '';
+        for (var i = 0; i < n; i++) { var ch = target[i]; out += (i < settled || /[\s,.\/%\-+&·()]/.test(ch)) ? ch : G[(Math.random() * G.length) | 0]; }
+        t.textContent = out; b.textContent = out;
+        if (frame++ < n + 6) setTimeout(step, 38);
+      }, 120 + idx * 160);
+    });
+  }
+  var heads = document.querySelectorAll('.fig-head.flaps');
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); run(e.target); } }); }, { threshold: .4 });
+  heads.forEach(function (h) { io.observe(h); });
 })();

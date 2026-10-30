@@ -215,6 +215,7 @@ a.brow:focus-visible{outline-offset:4px}
 .fig-hero{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:22px 0 22px}
 .fig-hero b{font-family:var(--font);font-size:clamp(44px,5.2vw,72px);font-weight:500;letter-spacing:-.05em;line-height:.95}
 .fig-hero span{font-size:12.5px;color:#A9AEC0;letter-spacing:.02em}
+.fig-hero.words b{font-size:clamp(30px,3.6vw,46px);letter-spacing:-.035em;line-height:1.05}
 .stack{display:flex;gap:3px;height:44px}
 .stack i{display:block;flex:var(--g) 1 0;min-width:4px;border-radius:4px;transform-origin:left;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
 .s1{background:#3A3E4E}.s2{background:#6C7389}.s3{background:var(--cobalt)}
@@ -281,7 +282,7 @@ a.brow:focus-visible{outline-offset:4px}
   .pgrid > .pcard:last-child:nth-child(3n+1){grid-column:span 1;display:flex}
   .pgrid > .pcard:last-child:nth-child(3n+1) > .pcard-viz{margin:-10px -10px 22px}
   .pgrid > .pcard:last-child:nth-child(odd){grid-column:span 2}}
-@media (max-width:620px){.pgrid{grid-template-columns:1fr}.pgrid > .pcard:last-child:nth-child(odd){grid-column:auto}}
+@media (max-width:620px){.pgrid{grid-template-columns:1fr}.pgrid > .pcard:last-child:nth-child(odd){grid-column:auto}.pcard-viz{aspect-ratio:4/3}}
 
 /* expertise */
 .expertise{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
@@ -347,6 +348,60 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
 }
 @media print{.nav,.board-shell,.hero::before{display:none}.contact,.footer{background:#fff;color:#000}}
 
+/* featured figures on narrow screens: stack labels instead of squeezing them */
+@media (max-width:560px){
+  .tier{grid-template-columns:2.4em 1fr;row-gap:2px;padding:12px 14px}
+  .tier:nth-child(2),.tier:nth-child(3){margin-left:0}
+  .tier .td{grid-column:2;text-align:left;font-size:11.5px}
+  .hb-top{flex-wrap:wrap;gap:2px 10px}
+  .hb-top > span{flex:1 1 auto;min-width:0}
+  .hb-note{display:block;margin-left:0;margin-top:2px}
+  .legend span{display:inline;line-height:1.6}
+  .legend em{vertical-align:-1px;margin-right:6px}
+  .fig-head{flex-wrap:wrap}
+}
+
+/* figure captions as split-flap tiles, matching the departures board */
+.fig-head.flaps{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:6px;letter-spacing:0;color:inherit}
+.fig-head.flaps .flap{display:inline-block;width:calc(var(--w) * (1ch + .06em) + 1.4em);max-width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+@media (max-width:380px){.fig-head.flaps .flap{font-size:10px}}
+
+/* ===== curated homepage: Featured Work as a full-bleed dark band, lighter supporting cards ===== */
+#projects.band{background:#07080B;color:#fff;border-top:0;position:relative;overflow:hidden}
+#projects.band::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 40% at 80% 0%,rgba(36,51,255,.22),transparent 70%),radial-gradient(50% 30% at 0% 60%,rgba(36,51,255,.10),transparent 70%)}
+#projects.band .wrap{position:relative}
+#projects.band .section-label{color:#8F9BFF}
+#projects.band .section-subtitle,#projects.band .project-problem{color:#A9AEC0}
+#projects.band .project-domain{color:#8F9BFF}
+#projects.band .project-metric{color:#A9AEC0}
+#projects.band .metric-value{color:#fff}
+#projects.band .project-outcome{background:rgba(67,82,255,.14);color:#C9CEFF}
+#projects.band .tag{border-color:#2A2D38;color:#C9CEDB}
+#projects.band .pill.dark{background:#fff;color:#0A0B10}
+#projects.band .pill.dark:hover{background:var(--cobalt);color:#fff}
+#projects.band .fig{background:#0E1016;box-shadow:0 0 0 1px #1C1F29,0 40px 80px -40px rgba(0,0,0,.8)}
+#projects.band .features{gap:clamp(64px,8vw,120px)}
+#projects.band .subhead{border-top-color:#2A2D38}
+#projects.band .subhead p{color:#A9AEC0}
+#projects.band .pcard{background:#12141B}
+#projects.band .pcard:hover{background:#181B24}
+#projects.band .pcard-title{color:#fff}
+#projects.band .pcard-desc,#projects.band .pcard-metric{color:#A9AEC0}
+#projects.band .pcard-metric{border-top-color:#2A2D38}
+#projects.band .pcard-metric strong{color:#fff}
+#projects.band .pcard-domain{color:#8F9BFF}
+#projects.band .pcard-viz{box-shadow:0 0 0 1px #1C1F29}
+.all-link{margin-top:clamp(56px,7vw,96px);display:flex;justify-content:center}
+.pill.light{background:#fff;color:#0A0B10}
+.pill.light:hover{background:var(--cobalt);color:#fff}
+/* lighter impact counters: one cobalt anchor, the rest on light tiles */
+.impact-counter{background:var(--tile)!important;color:var(--ink)}
+.impact-counter .impact-counter-label{color:var(--ink-2)}
+.impact-counter:first-child{background:var(--cobalt)!important;color:#fff}
+.impact-counter:first-child .impact-counter-label{color:rgba(255,255,255,.75)}
+/* the quote after a dark band needs its own breathing room */
+#expertise{border-top:0}
+
     </style>
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
@@ -401,7 +456,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="/projects/">Projects</a></li>
         <li><a href="/insights/">Insights</a></li>
         <li><a href="#expertise">Expertise</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -503,7 +558,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
     </div>
   </section>
 
-  <section id="projects" class="section">
+  <section id="projects" class="section band">
     <div class="wrap">
       <div class="section-header">
         <div class="section-label mono">Featured Work</div>
@@ -521,18 +576,18 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
           <div class="project-tech"><span class="tag">FinBERT</span><span class="tag">VADER</span><span class="tag">GPT-2</span></div>
           <a href="/projects/gsib-risk-assessment" class="pill dark">View Case Study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a>
         </div>
-        <div class="feature-viz"><figure class="fig" role="img" aria-label="FinBERT: 65.2% neutral, 19.1% positive, 15.8% negative across 17,292 chunks; negative share by bank 20.0%, 11.2%, 9.2%"><div class="fig-head"><span>FINBERT SENTIMENT · 81 REPORTS AND TRANSCRIPTS</span></div><div class="fig-hero"><b>17,292</b><span>text chunks scored</span></div><div class="fig-body" aria-hidden="true"><div class="stack"><i class="s1" style="--g:65.2"></i><i class="s2" style="--g:19.1"></i><i class="s3" style="--g:15.8"></i></div><div class="legend"><span><em class="k1"></em>Neutral <b>65.2%</b></span><span><em class="k2"></em>Positive <b>19.1%</b></span><span><em class="k3"></em>Negative <b>15.8%</b></span></div><div class="sub">NEGATIVE SHARE BY BANK</div><div class="hb hi"><div class="hb-top"><span>Bank 1</span><b>20.0%</b></div><div class="hb-track"><i style="--v:80.00%"></i></div></div><div class="hb "><div class="hb-top"><span>Bank 2</span><b>11.2%</b></div><div class="hb-track"><i style="--v:44.80%"></i></div></div><div class="hb "><div class="hb-top"><span>Bank 3</span><b>9.2%</b></div><div class="hb-track"><i style="--v:36.80%"></i></div></div><div class="axis"><span>0%</span><span>25%</span></div></div></figure></div>
+        <div class="feature-viz"><figure class="fig" role="img" aria-label="FinBERT: 65.2% neutral, 19.1% positive, 15.8% negative across 17,292 chunks; negative share by bank 20.0%, 11.2%, 9.2%"><div class="fig-head flaps"><span class="flap" style="--w:17"><span class="ft"><span>FINBERT SENTIMENT</span></span><span class="fb"><span>FINBERT SENTIMENT</span></span></span><span class="flap" style="--w:26"><span class="ft"><span>81 REPORTS AND TRANSCRIPTS</span></span><span class="fb"><span>81 REPORTS AND TRANSCRIPTS</span></span></span></div><div class="fig-hero"><b>17,292</b><span>text chunks scored</span></div><div class="fig-body" aria-hidden="true"><div class="stack"><i class="s1" style="--g:65.2"></i><i class="s2" style="--g:19.1"></i><i class="s3" style="--g:15.8"></i></div><div class="legend"><span><em class="k1"></em>Neutral <b>65.2%</b></span><span><em class="k2"></em>Positive <b>19.1%</b></span><span><em class="k3"></em>Negative <b>15.8%</b></span></div><div class="sub">NEGATIVE LANGUAGE BY BANK · SHARE OF EACH BANK'S CHUNKS</div><div class="hb hi"><div class="hb-top"><span>Bank 1</span><b>20.0%</b></div><div class="hb-track"><i style="--v:80.00%"></i></div></div><div class="hb hi"><div class="hb-top"><span>Bank 2</span><b>11.2%</b></div><div class="hb-track"><i style="--v:44.80%"></i></div></div><div class="hb hi"><div class="hb-top"><span>Bank 3</span><b>9.2%</b></div><div class="hb-track"><i style="--v:36.80%"></i></div></div><div class="axis"><span>0%</span><span>25%</span></div></div></figure></div>
       </article><article class="feature flip">
         <div class="feature-text">
                     <div class="project-domain">Natural Language Processing</div>
           <h3 class="project-title">Customer Review Topic Modelling and Emotion Analysis</h3>
           <div class="project-metric"><span class="metric-value">27,585</span> reviews analysed <span class="metric-dot"></span> <span class="metric-value">2,031</span> anger-led reviews</div>
-          <p class="project-problem">A UK gym chain had thousands of free-text reviews across two public platforms and no systematic way to see what was driving negative feedback.</p>
+          <p class="project-problem">A UK wellness centre chain had thousands of free-text reviews across two public platforms and no systematic way to see what was driving negative feedback.</p>
           <div class="project-outcome"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Topic modelling and emotion classification surfaced four main anger drivers: cleanliness, staff, equipment and fees</span></div>
           <div class="project-tech"><span class="tag">BERTopic</span><span class="tag">Transformers</span><span class="tag">LLM</span><span class="tag">NLTK</span></div>
           <a href="/projects/sentiment-analysis" class="pill dark">View Case Study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a>
         </div>
-        <div class="feature-viz"><figure class="fig" role="img" aria-label="27,585 reviews from two platforms, 11,857 and 15,728; 2,031 anger-led; drivers cleanliness, staff, equipment and fees"><div class="fig-head"><span>TOPIC MODELLING · EMOTION CLASSIFICATION</span></div><div class="fig-hero"><b>27,585</b><span>reviews analysed</span></div><div class="fig-body" aria-hidden="true"><div class="stack"><i class="s2" style="--g:11857"></i><i class="s1" style="--g:15728"></i></div><div class="legend"><span><em class="k2"></em>Platform 1 <b>11,857</b></span><span><em class="k1"></em>Platform 2 <b>15,728</b></span></div><div class="sub">ANGER-LED REVIEWS, SHARE OF ALL 27,585</div><div class="hb hi"><div class="hb-top"><span>Anger dominant</span><b>2,031</b></div><div class="hb-track"><i style="--v:7.36%"></i></div></div><div class="axis"><span>0</span><span>27,585</span></div><div class="chips"><span>cleanliness</span><span>staff</span><span>equipment</span><span>fees</span></div></div></figure></div>
+        <div class="feature-viz"><figure class="fig" role="img" aria-label="27,585 reviews from two platforms, 11,857 and 15,728; 2,031 anger-led (7.4%); drivers cleanliness, staff, equipment and fees"><div class="fig-head flaps"><span class="flap" style="--w:15"><span class="ft"><span>TOPIC MODELLING</span></span><span class="fb"><span>TOPIC MODELLING</span></span></span><span class="flap" style="--w:22"><span class="ft"><span>EMOTION CLASSIFICATION</span></span><span class="fb"><span>EMOTION CLASSIFICATION</span></span></span></div><div class="fig-hero"><b>27,585</b><span>reviews analysed</span></div><div class="fig-body" aria-hidden="true"><div class="stack"><i class="s2" style="--g:11857"></i><i class="s1" style="--g:15728"></i></div><div class="legend"><span><em class="k2"></em>Platform 1 <b>11,857</b></span><span><em class="k1"></em>Platform 2 <b>15,728</b></span></div><div class="sub">ANGER-LED REVIEWS, SHARE OF ALL 27,585</div><div class="hb hi"><div class="hb-top"><span>Anger dominant</span><b>2,031 · 7.4%</b></div><div class="hb-track"><i style="--v:7.36%"></i></div></div><div class="axis"><span>0</span><span>27,585</span></div><div class="chips"><span>cleanliness</span><span>staff</span><span>equipment</span><span>fees</span></div></div></figure></div>
       </article><article class="feature">
         <div class="feature-text">
                     <div class="project-domain">Anomaly Detection / Operations</div>
@@ -543,7 +598,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
           <div class="project-tech"><span class="tag">IQR</span><span class="tag">Isolation Forest</span><span class="tag">One-Class SVM</span><span class="tag">PCA</span></div>
           <a href="/projects/maritime-anomaly-detection" class="pill dark">View Case Study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a>
         </div>
-        <div class="feature-viz"><figure class="fig" role="img" aria-label="Six sensors, 19,535 readings. Readings flagged: IQR rule 422 (2.16%), One-Class SVM 980 (5.02%), Isolation Forest 977 (5.0%) at contamination 0.05 and 2,892 (14.8%) at auto"><div class="fig-head"><span>SIX SENSORS · 19,535 READINGS · NO FAULT LABELS</span></div><div class="fig-hero"><b>422</b><span>readings flagged by the IQR rule</span></div><div class="fig-body" aria-hidden="true"><div class="chips sensors"><span>engine speed</span><span>lub-oil pressure</span><span>lub-oil temperature</span><span>fuel pressure</span><span>coolant pressure</span><span>coolant temperature</span></div><div class="sub">READINGS FLAGGED, BY METHOD</div><div class="hb hi"><div class="hb-top"><span>IQR rule <em class="hb-note">2+ sensors out of range</em></span><b>422 (2.16%)</b></div><div class="hb-track"><i style="--v:14.59%"></i></div></div><div class="hb "><div class="hb-top"><span>One-Class SVM <em class="hb-note">nu = 0.05</em></span><b>980 (5.02%)</b></div><div class="hb-track"><i style="--v:33.89%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = 0.05</em></span><b>977 (5.0%)</b></div><div class="hb-track"><i style="--v:33.78%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = auto</em></span><b>2,892 (14.8%)</b></div><div class="hb-track"><i style="--v:100.00%"></i></div></div><div class="legend"><span><em class="k3"></em>Only the IQR result is not fixed in advance by a setting</span></div></div></figure></div>
+        <div class="feature-viz"><figure class="fig" role="img" aria-label="Six sensors, 19,535 readings. Readings flagged: IQR rule 422 (2.16%), One-Class SVM 980 (5.02%), Isolation Forest 977 (5.0%) at contamination 0.05 and 2,892 (14.8%) at auto"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>SIX SENSORS</span></span><span class="fb"><span>SIX SENSORS</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>19,535 READINGS</span></span><span class="fb"><span>19,535 READINGS</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>NO FAULT LABELS</span></span><span class="fb"><span>NO FAULT LABELS</span></span></span></div><div class="fig-hero"><b>422</b><span>readings flagged by the IQR rule</span></div><div class="fig-body" aria-hidden="true"><div class="chips sensors"><span>engine speed</span><span>lub-oil pressure</span><span>lub-oil temperature</span><span>fuel pressure</span><span>coolant pressure</span><span>coolant temperature</span></div><div class="sub">READINGS FLAGGED, BY METHOD</div><div class="hb hi"><div class="hb-top"><span>IQR rule <em class="hb-note">2+ sensors out of range</em></span><b>422 (2.16%)</b></div><div class="hb-track"><i style="--v:14.59%"></i></div></div><div class="hb "><div class="hb-top"><span>One-Class SVM <em class="hb-note">nu = 0.05</em></span><b>980 (5.02%)</b></div><div class="hb-track"><i style="--v:33.89%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = 0.05</em></span><b>977 (5.0%)</b></div><div class="hb-track"><i style="--v:33.78%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = auto</em></span><b>2,892 (14.8%)</b></div><div class="hb-track"><i style="--v:100.00%"></i></div></div><div class="legend"><span><em class="k3"></em>Only the IQR result is not fixed in advance by a setting</span></div></div></figure></div>
       </article><article class="feature flip">
         <div class="feature-text">
                     <div class="project-domain">Applied AI / RAG / Privacy</div>
@@ -554,130 +609,12 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
           <div class="project-tech"><span class="tag">Local LLM</span><span class="tag">RAG</span><span class="tag">Semantic Search</span><span class="tag">GPU</span><span class="tag">Python</span></div>
           <a href="/projects/private-document-ai" class="pill dark">View Case Study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a>
         </div>
-        <div class="feature-viz"><figure class="fig" role="img" aria-label="Three-tier query engine: deterministic logic with 16 patterns, schema engine with no AI, AI plus RAG with 6 specialist routes; zero document content sent to external AI providers"><div class="fig-head"><span>THREE-TIER QUERY ENGINE · 25+ FILE FORMATS</span></div><div class="fig-hero"><b>0</b><span>document content sent to external AI providers</span></div><div class="fig-body" aria-hidden="true"><div class="tiers"><div class="tier"><span class="tn">T1</span><span class="tt">Deterministic</span><span class="td">16 patterns · instant</span></div><div class="tier"><span class="tn">T2</span><span class="tt">Schema engine</span><span class="td">no AI</span></div><div class="tier hi"><span class="tn">T3</span><span class="tt">AI + RAG</span><span class="td">6 specialist routes</span></div></div><div class="legend"><span><em class="k3"></em>Tiers 1 and 2 validated on <b>96 test queries</b></span></div></div></figure></div>
+        <div class="feature-viz"><figure class="fig" role="img" aria-label="Three-tier query engine: deterministic logic with 16 patterns, schema engine with no AI, AI plus RAG with 6 specialist routes; no document content sent to external AI services"><div class="fig-head flaps"><span class="flap" style="--w:23"><span class="ft"><span>THREE-TIER QUERY ENGINE</span></span><span class="fb"><span>THREE-TIER QUERY ENGINE</span></span></span><span class="flap" style="--w:16"><span class="ft"><span>25+ FILE FORMATS</span></span><span class="fb"><span>25+ FILE FORMATS</span></span></span></div><div class="fig-hero words"><b>No document content</b><span>sent to external AI services</span></div><div class="fig-body" aria-hidden="true"><div class="tiers"><div class="tier"><span class="tn">T1</span><span class="tt">Deterministic</span><span class="td">16 patterns · instant</span></div><div class="tier"><span class="tn">T2</span><span class="tt">Schema engine</span><span class="td">no AI</span></div><div class="tier hi"><span class="tn">T3</span><span class="tt">AI + RAG</span><span class="td">6 specialist routes</span></div></div><div class="legend"><span><em class="k3"></em>Tiers 1 and 2 validated on <b>96 test queries</b></span></div></div></figure></div>
       </article>
       </div>
 
-      <div class="subhead">
-        <h3>Additional Projects</h3>
-        <p>Further work spanning forecasting, deep learning, predictive analytics, and QA engineering.</p>
-      </div>
-      <div class="pgrid">
-        <a href="/projects/time-series-forecasting" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="books" role="img" aria-label="Title B mean absolute error on the 32-week test: SARIMA 382.3, LSTM 592.2, sequential hybrid 1,096.5, parallel hybrid 1,174.4"></canvas></div>
-          <div class="pcard-domain">Forecasting</div>
-          <div class="pcard-title">Book Sales Demand Forecasting</div>
-          <div class="pcard-desc">Weekly demand for two long-selling titles forecast with SARIMA, XGBoost, LSTM and hybrids on a 32-week hold-out. A well-specified seasonal model was the strongest default; the hybrids did not beat it.</div>
-          <div class="pcard-metric"><strong>19.6%</strong> MAPE, SARIMA (Title B)</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/student-dropout-prediction" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="student" role="img" aria-label="XGBoost F1 by stage: 0.614 application, 0.650 with engagement, 0.879 with academic results, flagged for leakage check"></canvas></div>
-          <div class="pcard-domain">Predictive Analytics</div>
-          <div class="pcard-title">Student Non-Completion Prediction</div>
-          <div class="pcard-desc">XGBoost at three stages of the student journey. Adding engagement data gave the best balance of accuracy and lead time; the final-stage result is flagged for a leakage check.</div>
-          <div class="pcard-metric"><strong>0.650</strong> F1, engagement stage</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/crime-forecasting" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="crime" role="img" aria-label="Monthly incidents from 2,478 in February to 4,776 in July, average 3,940; test MSE 139.98 for the hand-specified SARIMA against 160.46 for auto_arima"></canvas></div>
-          <div class="pcard-domain">Time Series</div>
-          <div class="pcard-title">Crime Incident Forecasting with SARIMA</div>
-          <div class="pcard-desc">Daily incident data for a US city resampled, tested for stationarity and modelled with seasonal ARIMA, with a 52-week cycle confirmed and models compared on a hold-out year.</div>
-          <div class="pcard-metric"><strong>139.98</strong> test MSE, best SARIMA</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/bank-churn-prediction" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="churn" role="img" aria-label="Decision tree path to the high-risk leaf; recall 0.52 random forest against 0.70 balanced tree, F1 0.61 against 0.59"></canvas></div>
-          <div class="pcard-domain">Financial Services</div>
-          <div class="pcard-title">Bank Customer Churn Classification</div>
-          <div class="pcard-desc">Decision tree and random forest models predicting which retail bank customers will leave, with the trade-off between catching churners and raising false alarms made explicit.</div>
-          <div class="pcard-metric"><strong>0.61</strong> churner F1, random forest</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/statistical-hypothesis-testing" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="hypo" role="img" aria-label="Six hypothesis tests at alpha 0.05: three nulls rejected, three retained"></canvas></div>
-          <div class="pcard-domain">Statistical Analysis</div>
-          <div class="pcard-title">Statistical Hypothesis Testing Framework</div>
-          <div class="pcard-desc">Six business questions tested with t-tests, ANOVA, chi-square and Mann-Whitney U, with normality checks driving test choice and three nulls honestly retained.</div>
-          <div class="pcard-metric"><strong>6</strong> hypothesis tests at &alpha; = 0.05</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/neural-network-architecture" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="nnarch" role="img" aria-label="Network of 57 inputs, 64 and 32 hidden units and a sigmoid output"></canvas></div>
-          <div class="pcard-domain">Deep Learning</div>
-          <div class="pcard-title">Neural Network Design and Hyperparameter Search</div>
-          <div class="pcard-desc">A Keras spam classifier built, tuned and evaluated over three exercises. Grid search over epochs and batch size did not beat the simple 64-32 baseline.</div>
-          <div class="pcard-metric"><strong>94.6%</strong> baseline test accuracy</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/pdf-test-harness" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="pdf" role="img" aria-label="Letter layout check at 10.8 pt line spacing and 300 verdicts, 210 pass and 90 fail, all matching ground truth"></canvas></div>
-          <div class="pcard-domain">QA Engineering / Test Automation</div>
-          <div class="pcard-title">Automated PDF Compliance Test Harness</div>
-          <div class="pcard-desc">Layout and content checks for generated PDF letters, with per-file failure reasons and a colour-coded Excel report. Verdicts matched ground truth on a synthetic 300-letter corpus with five seeded defect types.</div>
-          <div class="pcard-metric"><strong>300 / 300</strong> verdicts matched (synthetic corpus)</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/customer-segmentation" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="segment" role="img" aria-label="951,669 order lines to 68,300 customers, 3,415 outliers removed; largest cluster 66% at k = 5; silhouette 0.266 at k = 2 and 0.255 at k = 5"></canvas></div>
-          <div class="pcard-domain">Business Analytics / ML</div>
-          <div class="pcard-title">Customer Segmentation with Clustering</div>
-          <div class="pcard-desc">K-Means and hierarchical clustering of 68,300 retail customers, published as a learning exercise: silhouette scores were modest and one cluster held two-thirds of customers.</div>
-          <div class="pcard-metric"><strong>0.266</strong> best silhouette score</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/medical-insurance-correlation-analysis" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="insurance" role="img" aria-label="Correlation with charges: BMI 0.709 strong, age 0.080 weak, children 0.031 not significant"></canvas></div>
-          <div class="pcard-domain">Statistical Analysis / Insurance</div>
-          <div class="pcard-title">Medical Insurance Cost Correlation Analysis</div>
-          <div class="pcard-desc">Pearson correlation analysis of what drives insurance charges across 1,000 anonymised records, set in a scenario where an employer weighs a BMI-linked benefits scheme.</div>
-          <div class="pcard-metric"><strong>r = 0.709</strong> BMI correlation, strongest predictor identified</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/decision-tree-bank-marketing" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="marketing" role="img" aria-label="Test ROC AUC for seven models, Gradient Boosting highest at 0.9485; call duration the top SHAP feature"></canvas></div>
-          <div class="pcard-domain">Marketing Analytics / ML</div>
-          <div class="pcard-title">Decision Trees and SHAP: Bank Marketing</div>
-          <div class="pcard-desc">Tree-based models and SHAP on a public bank telemarketing dataset. Call duration dominated, but it is only known after the call, so the score describes outcomes rather than pre-call targeting.</div>
-          <div class="pcard-metric"><strong>0.9485</strong> ROC AUC, Gradient Boosting (with leakage caveat)</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a>
-      </div>
+      <div class="all-link"><a href="/projects/" class="pill light">All 19 case studies <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
 
-      <div class="subhead">
-        <h3>Additional Work</h3>
-        <p>Broader technical exploration outside my core financial services focus - methodology deep-dives and applied ML across other domains.</p>
-      </div>
-      <div class="pgrid">
-        <a href="/projects/movie-sentiment-analysis" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="movie" role="img" aria-label="Bidirectional recurrent network; five-class accuracy 38.5% against 26.4% and 23.1%, majority class about 23%"></canvas></div>
-          <div class="pcard-domain">Natural Language Processing</div>
-          <div class="pcard-title">Movie Review Sentiment Analysis</div>
-          <div class="pcard-desc">A classical baseline on binary sentiment, where Bag-of-Words and TF-IDF tied, then four recurrent networks on a harder five-class task, where the LSTM and GRU failed to learn.</div>
-          <div class="pcard-metric"><strong>38.5%</strong> five-class accuracy, Bidirectional LSTM</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/customer-loyalty-analysis" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="loyalty" role="img" aria-label="Correlation with loyalty: quality 0.713, negative publicity -0.449, brand awareness 0.18; model R squared 0.628"></canvas></div>
-          <div class="pcard-domain">Business Analytics / Retail</div>
-          <div class="pcard-title">Customer Loyalty Analysis</div>
-          <div class="pcard-desc">Regression and correlation analysis across 1,711 customers isolating which of quality, brand awareness and negative publicity actually drives loyalty.</div>
-          <div class="pcard-metric"><strong>r = 0.713</strong> quality-loyalty correlation</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/automobile-price-prediction" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="auto" role="img" aria-label="Feature pipeline 26 to 60 to 25 features; R squared 0.894 random forest against 0.717 linear"></canvas></div>
-          <div class="pcard-domain">Feature Engineering / Automotive</div>
-          <div class="pcard-title">Automobile Price Prediction</div>
-          <div class="pcard-desc">Feature engineering, feature selection and PCA/t-SNE on a 205-vehicle dataset, comparing Random Forest and linear regression on a held-out test set.</div>
-          <div class="pcard-metric"><strong>R&sup2; 0.894</strong> Random Forest, held-out test</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/neural-network-manual-backpropagation" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="backprop" role="img" aria-label="Animated forward and backward pass through a 2-2-1 network: prediction 0.9209, target 1, learning rate 0.02"></canvas></div>
-          <div class="pcard-domain">Deep Learning Fundamentals</div>
-          <div class="pcard-title">Neural Network Manual Backpropagation</div>
-          <div class="pcard-desc">One forward and backward pass of a small network written by hand in NumPy, without a framework, to show exactly what TensorFlow or PyTorch automates.</div>
-          <div class="pcard-metric"><strong>0</strong> framework dependencies</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a><a href="/projects/optimiser-comparison" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="optim" role="img" aria-label="Same 64-32 network trained with RMSprop, 86.0%, and Adam, 83.2%; about five passengers apart, too close for one split"></canvas></div>
-          <div class="pcard-domain">Deep Learning / Model Evaluation</div>
-          <div class="pcard-title">Optimiser Comparison: Adam vs RMSprop</div>
-          <div class="pcard-desc">Adam and RMSprop compared on the same small network for historical passenger-survival data, then regularisation, dropout and early stopping explored.</div>
-          <div class="pcard-metric"><strong>86.0%</strong> vs <strong>83.2%</strong> test accuracy, RMSprop vs Adam</div>
-          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
-        </a>
-      </div>
     </div>
   </section>
 
@@ -994,9 +931,25 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
     g.fillText(s, x, y);
     if ('letterSpacing' in g) g.letterSpacing = '0px';
   }
+  /* caption as a split-flap tile, like the departures board: it scrambles once, then settles left to right */
+  var FT = 999, GL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  function flapText(s, T) {
+    var settled = Math.floor((T - .2) / .035) - 6; if (settled >= s.length) return s;
+    var tick = Math.floor(T * 24), out = '';
+    for (var i = 0; i < s.length; i++) { var ch = s[i]; out += (i < settled || /[\s,.\/%\-+&·()]/.test(ch)) ? ch : GL[((i * 7919 + tick * 104729) >>> 0) % GL.length]; }
+    return out;
+  }
   function frame(g, w, h, caption, tag) {
     g.fillStyle = C.bg; g.fillRect(0, 0, w, h);
-    txt(g, caption, 14, 20, { size: 9.5, color: C.mute, spacing: 0.8 });
+    var size = 9.5, sp = .8, pad = 8, x = 10, y = 7, th = 22, tw;
+    do { g.font = '600 ' + size + 'px ' + MONO; if ('letterSpacing' in g) g.letterSpacing = sp + 'px'; tw = g.measureText(caption).width + pad * 2; if ('letterSpacing' in g) g.letterSpacing = '0px'; if (tw <= w - 20) break; size -= .5; } while (size > 7);
+    var top = g.createLinearGradient(0, y, 0, y + th / 2); top.addColorStop(0, '#22242E'); top.addColorStop(1, '#1B1D25');
+    var bot = g.createLinearGradient(0, y + th / 2, 0, y + th); bot.addColorStop(0, '#17181F'); bot.addColorStop(1, '#121319');
+    g.save(); rrect(g, x, y, tw, th, 5); g.clip();
+    g.fillStyle = top; g.fillRect(x, y, tw, th / 2); g.fillStyle = bot; g.fillRect(x, y + th / 2, tw, th / 2);
+    txt(g, flapText(caption, FT), x + pad, y + th / 2, { size: size, color: '#F5F6FA', weight: 600, spacing: sp, base: 'middle' });
+    g.fillStyle = 'rgba(0,0,0,.5)'; g.fillRect(x, y + th / 2 - .5, tw, 1);
+    g.restore(); rrect(g, x + .5, y + .5, tw - 1, th - 1, 5); g.strokeStyle = 'rgba(255,255,255,.06)'; g.lineWidth = 1; g.stroke();
   }
   function rrect(g, x, y, w, h, r) { g.beginPath(); g.roundRect ? g.roundRect(x, y, w, h, r) : g.rect(x, y, w, h); }
   function glowDot(g, x, y, r, col, a) {
@@ -1145,17 +1098,18 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
         if (i < 2) { g.strokeStyle = C.line; g.beginPath(); g.moveTo(x + bw + 2, 55); g.lineTo(x + bw + 8, 55); g.stroke(); }
         g.globalAlpha = 1;
       });
-      var cy = 86 + (h - 112) / 2, R = Math.min(34, (h - 112) / 2), cx = 14 + R + 6;
+      var narrow = w < 480;
+      var cy = narrow ? 86 + Math.min(30, (h - 190) / 2) + 4 : 86 + (h - 112) / 2, R = narrow ? Math.max(18, Math.min(30, (h - 190) / 2)) : Math.min(34, (h - 112) / 2), cx = 14 + R + 6;
       var p = ease(seq(t, 1.8, 3.4)) * .66;
       g.lineWidth = 11; g.strokeStyle = C.grid; g.beginPath(); g.arc(cx, cy, R, 0, 7); g.stroke();
       g.strokeStyle = C.cob; g.beginPath(); g.arc(cx, cy, R, -Math.PI / 2, -Math.PI / 2 + p * Math.PI * 2); g.stroke();
       txt(g, '66%', cx, cy + 4, { size: 12, color: C.white, align: 'center', weight: 600, font: SANS });
       txt(g, 'IN THE LARGEST', cx + R + 16, cy - 6, { size: 8, color: C.mute, spacing: .3 });
       txt(g, 'CLUSTER (K = 5)', cx + R + 16, cy + 6, { size: 8, color: C.mute, spacing: .3 });
-      var sx = w * .58, sw = w - 14 - sx;
-      txt(g, 'SILHOUETTE', sx, cy - 22, { size: 8, color: C.mute, spacing: .4 });
+      var sx = narrow ? 14 : w * .58, sw = w - 14 - sx, sy = narrow ? cy + R + 30 : cy - 12;
+      txt(g, 'SILHOUETTE', sx, sy - 10, { size: 8, color: C.mute, spacing: .4 });
       [['K = 2', .266, '0.266'], ['K = 5', .255, '0.255']].forEach(function (s, i) {
-        var y = cy - 12 + i * 22;
+        var y = sy + i * 20;
         txt(g, s[0], sx, y + 7, { size: 8.5, color: C.text });
         bar(g, sx + 38, y, sw - 76, 7, s[1] * ease(seq(t, 2.2 + i * .2, 3.4 + i * .2)), i ? '#8C93A8' : C.cob);
         txt(g, s[2], w - 14, y + 7, { size: 9, color: C.white, align: 'right', weight: 600 });
@@ -1272,7 +1226,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
       [LL, LR, RL, RR].forEach(function (p, i) { rrect(g, p[0] - (i ? 6 : 30), p[1] - 7, i ? 12 : 60, 14, 7); g.fillStyle = i ? C.dim : C.cob; g.fill(); });
       txt(g, 'HIGH RISK', LL[0], LL[1] + 3, { size: 7.5, color: '#fff', align: 'center', spacing: .3 });
       var rows = [['RECALL', [['FOREST', .52, '0.52'], ['BALANCED TREE', .70, '0.70']]], ['F1', [['FOREST', .61, '0.61'], ['BALANCED TREE', .59, '0.59']]]];
-      var y0 = 124, cw = (w - 28 - 16) / 2;
+      var y0 = Math.max(124, h - 96), cw = (w - 28 - 16) / 2;
       rows.forEach(function (blk, bi) {
         var x = 14 + bi * (cw + 16);
         txt(g, blk[0], x, y0, { size: 8, color: C.mute, spacing: .4 });
@@ -1302,14 +1256,18 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
         txt(g, 'STAGE ' + (i + 1), x + bw / 2, base + 13, { size: 8.5, color: C.mute, align: 'center', spacing: .4 });
         txt(g, s[0], x + bw / 2, base + 24, { size: 8, color: C.mute, align: 'center' });
       });
-      g.globalAlpha = seq(t, 2.4, 2.8); txt(g, 'LEAKAGE CHECK', w - 14, top - 4, { size: 8.5, color: C.amb, align: 'right', spacing: .5 }); g.globalAlpha = 1;
+      // flag sits inside the dashed stage-3 box, clear of the value label above it
+      var lx = 14 + 2 * cw + cw * .5, ly = base - (base - top) * .879 * ease(seq(t, 1.0, 2.3)) / 2;
+      g.globalAlpha = seq(t, 2.4, 2.8);
+      txt(g, 'LEAKAGE', lx, ly - 3, { size: 8.5, color: C.amb, align: 'center', spacing: .5 });
+      txt(g, 'CHECK', lx, ly + 9, { size: 8.5, color: C.amb, align: 'center', spacing: .5 }); g.globalAlpha = 1;
     }
   };
 
   /* 11. Movie reviews: bidirectional recurrent chain; five-class test accuracy (axis 0-50%) */
   V.movie = {
     period: 5, draw: function (g, w, h, t) {
-      frame(g, w, h, 'FIVE-CLASS SENTIMENT · 2,210 TEST SENTENCES', '');
+      frame(g, w, h, w < 440 ? 'FIVE-CLASS · 2,210 TEST SENTENCES' : 'FIVE-CLASS SENTIMENT · 2,210 TEST SENTENCES', '');
       var n = 7, y = 52, x0 = 24, x1 = w - 24, step = (x1 - x0) / (n - 1);
       for (var i = 0; i < n; i++) {
         var x = x0 + i * step;
@@ -1373,7 +1331,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
   V.pdf = {
     period: 8, draw: function (g, w, h, t) {
       frame(g, w, h, 'LAYOUT + CONTENT CHECKS', 'TO SCALE');
-      var px = 14, py = 32, pw = w * .3, ph = h - 46;
+      var px = 14, py = 38, pw = w * .3, ph = h - 52;
       rrect(g, px, py, pw, ph, 6); g.fillStyle = '#E9EBF2'; g.fill();
       var lh = (ph - 24) / 10, scan = (t % 4) / 4;
       for (var i = 0; i < 10; i++) {
@@ -1417,22 +1375,24 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
         test MSE SARIMA(1,0,1)(1,1,1,52) 139.98 vs auto_arima 160.46 */
   V.crime = {
     period: 6, draw: function (g, w, h, t) {
+      // on wide frames, enlarge the whole drawing so it fills the space instead of floating small
+      var k = Math.max(1, Math.min(w / 440, h / 260)); if (k > 1) { g.scale(k, k); w /= k; h /= k; }
       frame(g, w, h, 'MONTHLY INCIDENTS · 2011-2015');
-      var x0 = 14, x1 = w - 14, lo = 2478, hi = 4776, y = 62, a = ease(seq(t, .2, 1.6));
+      var x0 = 14, x1 = w - 14, lo = 2478, hi = 4776, y = Math.max(62, 54 + ((h - 50) - 142) / 2), a = ease(seq(t, .2, 1.6));
       var X = function (v) { return lerp(x0 + 6, x1 - 6, (v - lo) / (hi - lo)); };
       var grad = g.createLinearGradient(x0, 0, x1, 0); grad.addColorStop(0, '#2A2D38'); grad.addColorStop(1, C.cob);
       rrect(g, x0, y - 6, (x1 - x0) * a, 12, 6); g.fillStyle = grad; g.fill();
       txt(g, 'FEB LOW', x0, y - 14, { size: 8, color: C.mute, spacing: .3 }); txt(g, '2,478', x0, y + 22, { size: 11, color: C.white, weight: 600, font: SANS });
       txt(g, 'JUL HIGH', x1, y - 14, { size: 8, color: C.mute, align: 'right', spacing: .3 }); txt(g, '4,776', x1, y + 22, { size: 11, color: C.white, align: 'right', weight: 600, font: SANS });
       if (a > .99) { var mx = X(3940); g.strokeStyle = C.amb; g.lineWidth = 1.5; g.beginPath(); g.moveTo(mx, y - 9); g.lineTo(mx, y + 9); g.stroke(); txt(g, 'AVG 3,940', mx, y + 22, { size: 8.5, color: C.amb, align: 'center' }); }
-      txt(g, 'TEST MSE · FINAL 52 WEEKS', 14, y + 50, { size: 8, color: C.mute, spacing: .4 });
+      txt(g, 'TEST MSE · FINAL 52 WEEKS · LOWER IS BETTER', 14, y + 50, { size: 8, color: C.mute, spacing: .4 });
       [['SARIMA (HAND-SPECIFIED)', 139.98, '139.98', C.cob], ['AUTO_ARIMA', 160.46, '160.46', '#8C93A8']].forEach(function (r, i) {
         var yy = y + 58 + i * 22;
         txt(g, r[0], 14, yy + 7, { size: 8, color: i ? C.text : C.white, spacing: .2 });
         txt(g, r[2], w - 14, yy + 7, { size: 9.5, color: i ? C.text : C.cobS, align: 'right', weight: 600 });
         bar(g, 14, yy + 11, w - 28, 5, r[1] / 160.46 * ease(seq(t, 1.4 + i * .25, 2.6 + i * .25)), r[3]);
       });
-      g.globalAlpha = seq(t, 2.8, 3.2); txt(g, 'CYCLE IS 52 WEEKS (THE BRIEF SAID 70)', 14, h - 12, { size: 8.5, color: C.amb, spacing: .3 }); g.globalAlpha = 1;
+      g.globalAlpha = seq(t, 2.8, 3.2); txt(g, 'CYCLE IS 52 WEEKS (THE BRIEF SAID 70)', 14, Math.min(h - 12, y + 132), { size: 8.5, color: C.amb, spacing: .3 }); g.globalAlpha = 1;
     }
   };
 
@@ -1443,20 +1403,29 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
     items.push({ cv: cv, def: def, st: {}, on: false, t0: 0, inited: false });
   });
   function size(it) {
-    var r = it.cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
-    it.w = r.width; it.h = r.height;
+    // Draw on a logical canvas at least MIN wide; narrower containers scale it down uniformly,
+    // so labels never collide and text stays legible on the smallest phones.
+    var r = it.cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 3), MIN = 340;
+    var s = r.width > 0 && r.width < MIN ? r.width / MIN : 1;
+    it.w = r.width / s; it.h = r.height / s;
     it.cv.width = Math.round(r.width * d); it.cv.height = Math.round(r.height * d);
-    it.g = it.cv.getContext('2d'); it.g.setTransform(d, 0, 0, d, 0, 0);
+    it.g = it.cv.getContext('2d'); it.g.setTransform(d * s, 0, 0, d * s, 0, 0);
     if (!it.inited && it.w > 0) { it.def.init && it.def.init(it.st, it.w, it.h); it.inited = true; }
   }
   function paint(it, now) {
     if (!it.w) return;
-    var t = reduce ? 999 : ((now - it.t0) / 1000);
+    var t = reduce ? 999 : ((now - it.t0) / 1000); FT = t;
     if (it.def.period < 999 && !reduce) t = t % it.def.period;
     if (reduce && it.def.period < 999) t = it.def.period - .01;
     it.g.save(); it.def.draw(it.g, it.w, it.h, t, it.st); it.g.restore();
   }
   items.forEach(size);
+  // re-measure whenever a canvas box changes size (late CSS, font swap, mobile toolbar), so the
+  // drawing buffer always matches the box and text is never stretched
+  if ('ResizeObserver' in window) {
+    var ro = new ResizeObserver(function (es) { es.forEach(function (e) { var it = items.find(function (x) { return x.cv === e.target; }); if (it) { size(it); paint(it, performance.now()); } }); });
+    items.forEach(function (it) { ro.observe(it.cv); });
+  }
   window.addEventListener('resize', function () { items.forEach(function (it) { size(it); paint(it, performance.now()); }); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { items.forEach(function (it) { paint(it, performance.now()); }); });
   if (reduce || !('IntersectionObserver' in window)) { items.forEach(function (it) { paint(it, performance.now()); }); if (reduce) return; }
@@ -1468,6 +1437,29 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
     if (!document.hidden) items.forEach(function (it) { if (it.on) paint(it, now); });
     requestAnimationFrame(loop);
   })(performance.now());
+})();
+
+/* split-flap figure captions: scramble once when the figure comes into view, then settle */
+(function () {
+  if (window.__figFlaps) return; window.__figFlaps = 1;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var G = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  function run(head) {
+    head.querySelectorAll('.flap').forEach(function (fl, idx) {
+      var t = fl.querySelector('.ft > span'), b = fl.querySelector('.fb > span'), target = fl.getAttribute('data-t') || t.textContent, n = target.length, frame = 0;
+      fl.setAttribute('data-t', target);
+      setTimeout(function step() {
+        var settled = Math.max(0, frame - 6), out = '';
+        for (var i = 0; i < n; i++) { var ch = target[i]; out += (i < settled || /[\s,.\/%\-+&·()]/.test(ch)) ? ch : G[(Math.random() * G.length) | 0]; }
+        t.textContent = out; b.textContent = out;
+        if (frame++ < n + 6) setTimeout(step, 38);
+      }, 120 + idx * 160);
+    });
+  }
+  var heads = document.querySelectorAll('.fig-head.flaps');
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); run(e.target); } }); }, { threshold: .4 });
+  heads.forEach(function (h) { io.observe(h); });
 })();
 
   </script>

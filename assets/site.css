@@ -182,6 +182,7 @@ th{color:var(--ink)!important;font-family:var(--mono);font-size:12px;letter-spac
 .fig-hero{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:22px 0 22px}
 .fig-hero b{font-family:var(--font);font-size:clamp(44px,5.2vw,72px);font-weight:500;letter-spacing:-.05em;line-height:.95}
 .fig-hero span{font-size:12.5px;color:#A9AEC0;letter-spacing:.02em}
+.fig-hero.words b{font-size:clamp(30px,3.6vw,46px);letter-spacing:-.035em;line-height:1.05}
 .stack{display:flex;gap:3px;height:44px}
 .stack i{display:block;flex:var(--g) 1 0;min-width:4px;border-radius:4px;transform-origin:left;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
 .s1{background:#3A3E4E}.s2{background:#6C7389}.s3{background:var(--cobalt)}
@@ -221,3 +222,38 @@ th{color:var(--ink)!important;font-family:var(--mono);font-size:12px;letter-spac
 .fig.pre .cellgrid i.on{opacity:0}
 .fig.pre .tier{transform:scaleX(.6)}
 
+.cs-meta + .cs-figure,.cs-meta + .cs-hero{margin-top:8px}
+
+.cs-meta + .cs-figure,.cs-meta + .cs-hero{margin-top:8px}
+
+.cs-summary + .cs-figure,.cs-summary + .cs-hero{margin-top:8px;margin-bottom:40px!important}
+
+/* featured figures on narrow screens: stack labels instead of squeezing them */
+@media (max-width:560px){
+  .tier{grid-template-columns:2.4em 1fr;row-gap:2px;padding:12px 14px}
+  .tier:nth-child(2),.tier:nth-child(3){margin-left:0}
+  .tier .td{grid-column:2;text-align:left;font-size:11.5px}
+  .hb-top{flex-wrap:wrap;gap:2px 10px}
+  .hb-top > span{flex:1 1 auto;min-width:0}
+  .hb-note{display:block;margin-left:0;margin-top:2px}
+  .legend span{display:inline;line-height:1.6}
+  .legend em{vertical-align:-1px;margin-right:6px}
+  .fig-head{flex-wrap:wrap}
+}
+/* PDF harness readout: header and rows reflow instead of overlapping or clipping on phones */
+.cs-hero{padding-top:28px!important}
+.cs-hero-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid #1C1F29}
+.cs-hero-head .cs-hero-label,.cs-hero-head .cs-hero-metric{position:static!important;inset:auto!important}
+.cs-hero-head .cs-hero-metric{font-size:clamp(22px,3vw,30px)!important;letter-spacing:-.02em;line-height:1}
+.harness-terminal{white-space:normal!important;overflow-x:visible!important}
+.harness-terminal>div:not(.harness-bar){display:grid;grid-template-columns:19ch 1fr;column-gap:12px;align-items:baseline}
+@media (max-width:620px){
+.harness-terminal{font-size:12px!important;line-height:1.55!important}
+.harness-terminal>div:not(.harness-bar){grid-template-columns:1fr;margin-bottom:10px}
+.harness-terminal .t-label{min-width:0!important;font-size:10.5px;letter-spacing:.08em}
+}
+
+/* figure captions as split-flap tiles, matching the departures board */
+.fig-head.flaps{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:6px;letter-spacing:0;color:inherit}
+.fig-head.flaps .flap{display:inline-block;width:calc(var(--w) * (1ch + .06em) + 1.4em);max-width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+@media (max-width:380px){.fig-head.flaps .flap{font-size:10px}}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | RJ Data Voyage</title>
+<meta name="description" content="All RJ Data Voyage case studies: NLP, forecasting, anomaly detection, applied AI, machine learning, deep learning, statistics and QA engineering.">
+<link rel="canonical" href="https://rjdatavoyage.co.uk/projects/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+main{padding:clamp(28px,4vw,48px) 0 40px}
+.kick{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt)}
+h1{margin:14px 0 0;font-size:clamp(38px,5.6vw,72px);line-height:1;letter-spacing:-.05em;font-weight:500}
+.lede{margin-top:18px;max-width:40em;font-size:clamp(16px,1.4vw,19px);color:var(--ink-2);line-height:1.6}
+.filters{position:sticky;top:68px;z-index:20;margin:32px 0 8px;padding:12px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;background:linear-gradient(#fff 80%,rgba(255,255,255,0))}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font:inherit;font-size:14px;color:var(--ink);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip > span{font-family:var(--mono);font-size:11px;color:var(--mute)}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip[aria-pressed="true"] > span{color:#9AA4FF}
+.group-h{margin:48px 0 20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 32px;border-top:1px solid var(--ink);padding-top:20px}
+.group-h h2{margin:0;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.035em;font-weight:500}
+.group-h p{margin:0;max-width:36em;font-size:15px;color:var(--ink-2)}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fcard{display:flex;flex-direction:column;border-radius:24px;background:#07080B;color:#fff;text-decoration:none;overflow:hidden;transition:transform .25s}
+.fcard:hover{transform:translateY(-3px)}
+.fcard-viz .fig{border-radius:0;box-shadow:none}
+.fcard-body{padding:4px clamp(20px,2.6vw,34px) 28px}
+.fcard .pcard-domain{color:#8F9BFF;padding-right:0}
+.fcard-title{margin-top:8px;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.03em;line-height:1.2}
+.fcard .project-metric{margin-top:12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;font-size:14px;color:#A9AEC0}
+.fcard .metric-value{font-size:22px;font-weight:500;color:#fff;letter-spacing:-.03em}
+.fcard .metric-dot{width:4px;height:4px;border-radius:50%;background:#6E758B;align-self:center}
+.empty{display:none;margin:40px 0;color:var(--ink-2)}
+[hidden],.pgrid > .pcard[hidden],.fgrid > .fcard[hidden]{display:none!important}
+@media (max-width:860px){.fgrid{grid-template-columns:1fr}}
+/* project grids */
+.subhead{margin:clamp(72px,8vw,112px) 0 28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 32px;border-top:1px solid var(--ink);padding-top:22px}
+.subhead h3{font-size:clamp(24px,2.4vw,30px);letter-spacing:-.035em}
+.subhead p{max-width:36em;font-size:15px;color:var(--ink-2)}
+.pgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.pgrid > .pcard{grid-column:span 2}
+.pgrid > .pcard:nth-last-child(2):nth-child(3n+1),.pgrid > .pcard:last-child:nth-child(3n+2){grid-column:span 3}
+.pgrid > .pcard:last-child:nth-child(3n+1){grid-column:span 6;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:36px;align-content:start}
+.pgrid > .pcard:last-child:nth-child(3n+1) > .pcard-viz{grid-row:1 / span 5;margin:-10px 0 -10px -10px}
+.pcard{position:relative;display:flex;flex-direction:column;padding:24px;border-radius:var(--r);background:var(--tile);text-decoration:none;transition:background .25s}
+.pcard:hover{background:var(--tile-2)}
+.pcard-viz{position:relative;aspect-ratio:16/10;margin:-10px -10px 22px;border-radius:14px;overflow:hidden;background:#07080B;box-shadow:0 20px 40px -28px rgba(12,18,110,.6)}
+.pcard-viz canvas{display:block;width:100%;height:100%}
+.pcard-viz text{font-family:var(--mono)}
+.pcard-domain{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);padding-right:44px}
+.pcard-title{margin-top:8px;font-size:19px;font-weight:500;letter-spacing:-.02em;line-height:1.25}
+.pcard-desc{margin-top:10px;font-size:14px;color:var(--ink-2);line-height:1.6;flex:1}
+.pcard-metric{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
+.pcard-metric strong{font-size:22px;font-weight:500;color:var(--ink);letter-spacing:-.03em;margin-right:4px;font-variant-numeric:tabular-nums}
+.pcard .pcard-go{top:auto;bottom:18px;right:18px;background:#fff}
+.pcard-metric{padding-right:48px}
+@media (max-width:1024px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pgrid > .pcard,.pgrid > .pcard:nth-last-child(2):nth-child(3n+1),.pgrid > .pcard:last-child:nth-child(3n+2){grid-column:span 1}
+  .pgrid > .pcard:last-child:nth-child(3n+1){grid-column:span 1;display:flex}
+  .pgrid > .pcard:last-child:nth-child(3n+1) > .pcard-viz{margin:-10px -10px 22px}
+  .pgrid > .pcard:last-child:nth-child(odd){grid-column:span 2}}
+@media (max-width:620px){.pgrid{grid-template-columns:1fr}.pgrid > .pcard:last-child:nth-child(odd){grid-column:auto}.pcard-viz{aspect-ratio:4/3}}
+
+
+.pcard-go{position:absolute;top:22px;right:22px;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--ink);transition:background .25s,color .25s,transform .25s}.pcard:hover .pcard-go{background:var(--cobalt);color:#fff}
+.pgrid > .pcard{grid-column:span 2!important;display:flex!important}
+.pgrid > .pcard > .pcard-viz{grid-row:auto!important;margin:-10px -10px 22px!important}
+@media (max-width:1024px){.pgrid > .pcard{grid-column:span 1!important}}
+</style>
+<!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q5YEF5Y9F2');
+    </script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+<nav class="nav" aria-label="Main navigation"><div class="nav-inner">
+  <a href="/" class="nav-logo"><i aria-hidden="true"></i>RJ Data<span>Voyage</span></a>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="19" y2="7"/><line x1="3" y1="15" x2="19" y2="15"/></svg></button>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li><li><a href="/#services">Services</a></li><li><a href="/projects/">Projects</a></li><li><a href="/insights/">Insights</a></li>
+    <li><a href="/#expertise">Expertise</a></li><li><a href="/#contact">Contact</a></li>
+    <li><a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a></li>
+  </ul></div></nav>
+<main class="wrap">
+  <div class="dep-strip" aria-hidden="true"><span class="dep-head"><b>RJ DATA VOYAGE</b> · DEPARTURES</span><div class="dep-flaps"><span class="flap f-proj" style="--w:8"><span class="ft"><span>PROJECTS</span></span><span class="fb"><span>PROJECTS</span></span></span><span class="flap f-res" style="--w:15"><span class="ft"><span>ALL CASE STUDIES</span></span><span class="fb"><span>ALL CASE STUDIES</span></span></span></div></div>
+  <div class="kick">Featured Work</div>
+  <h1>Selected projects</h1>
+  <p class="lede">Client work and Cambridge coursework. Each case study states the method, the measured result and its limitations.</p>
+  <div class="filters" role="group" aria-label="Filter by area"><button type="button" class="chip" data-f="all" aria-pressed="true">All<span>19</span></button><button type="button" class="chip" data-f="nlp" aria-pressed="false">NLP<span>3</span></button><button type="button" class="chip" data-f="forecasting" aria-pressed="false">Forecasting<span>2</span></button><button type="button" class="chip" data-f="anomaly" aria-pressed="false">Anomaly detection<span>1</span></button><button type="button" class="chip" data-f="ai" aria-pressed="false">Applied AI / RAG<span>1</span></button><button type="button" class="chip" data-f="ml" aria-pressed="false">Machine learning<span>5</span></button><button type="button" class="chip" data-f="dl" aria-pressed="false">Deep learning<span>3</span></button><button type="button" class="chip" data-f="stats" aria-pressed="false">Statistics<span>3</span></button><button type="button" class="chip" data-f="qa" aria-pressed="false">QA engineering<span>1</span></button></div>
+
+  <section class="group" data-group>
+    <div class="group-h"><h2>Featured</h2></div>
+    <div class="fgrid"><a href="/projects/gsib-risk-assessment" class="fcard" data-area="nlp"><div class="fcard-viz"><figure class="fig" role="img" aria-label="FinBERT: 65.2% neutral, 19.1% positive, 15.8% negative across 17,292 chunks; negative share by bank 20.0%, 11.2%, 9.2%"><div class="fig-head flaps"><span class="flap" style="--w:17"><span class="ft"><span>FINBERT SENTIMENT</span></span><span class="fb"><span>FINBERT SENTIMENT</span></span></span><span class="flap" style="--w:26"><span class="ft"><span>81 REPORTS AND TRANSCRIPTS</span></span><span class="fb"><span>81 REPORTS AND TRANSCRIPTS</span></span></span></div><div class="fig-hero"><b>17,292</b><span>text chunks scored</span></div><div class="fig-body" aria-hidden="true"><div class="stack"><i class="s1" style="--g:65.2"></i><i class="s2" style="--g:19.1"></i><i class="s3" style="--g:15.8"></i></div><div class="legend"><span><em class="k1"></em>Neutral <b>65.2%</b></span><span><em class="k2"></em>Positive <b>19.1%</b></span><span><em class="k3"></em>Negative <b>15.8%</b></span></div><div class="sub">NEGATIVE LANGUAGE BY BANK · SHARE OF EACH BANK'S CHUNKS</div><div class="hb hi"><div class="hb-top"><span>Bank 1</span><b>20.0%</b></div><div class="hb-track"><i style="--v:80.00%"></i></div></div><div class="hb hi"><div class="hb-top"><span>Bank 2</span><b>11.2%</b></div><div class="hb-track"><i style="--v:44.80%"></i></div></div><div class="hb hi"><div class="hb-top"><span>Bank 3</span><b>9.2%</b></div><div class="hb-track"><i style="--v:36.80%"></i></div></div><div class="axis"><span>0%</span><span>25%</span></div></div></figure></div><div class="fcard-body"><div class="pcard-domain">Financial Regulation / NLP</div><div class="fcard-title">G-SIB Disclosure Analysis Prototype</div><div class="project-metric"><span class="metric-value">81</span> reports and transcripts <span class="metric-dot"></span> <span class="metric-value">17,292</span> text chunks scored</div></div></a><a href="/projects/sentiment-analysis" class="fcard" data-area="nlp"><div class="fcard-viz"><figure class="fig" role="img" aria-label="27,585 reviews from two platforms, 11,857 and 15,728; 2,031 anger-led (7.4%); drivers cleanliness, staff, equipment and fees"><div class="fig-head flaps"><span class="flap" style="--w:15"><span class="ft"><span>TOPIC MODELLING</span></span><span class="fb"><span>TOPIC MODELLING</span></span></span><span class="flap" style="--w:22"><span class="ft"><span>EMOTION CLASSIFICATION</span></span><span class="fb"><span>EMOTION CLASSIFICATION</span></span></span></div><div class="fig-hero"><b>27,585</b><span>reviews analysed</span></div><div class="fig-body" aria-hidden="true"><div class="stack"><i class="s2" style="--g:11857"></i><i class="s1" style="--g:15728"></i></div><div class="legend"><span><em class="k2"></em>Platform 1 <b>11,857</b></span><span><em class="k1"></em>Platform 2 <b>15,728</b></span></div><div class="sub">ANGER-LED REVIEWS, SHARE OF ALL 27,585</div><div class="hb hi"><div class="hb-top"><span>Anger dominant</span><b>2,031 · 7.4%</b></div><div class="hb-track"><i style="--v:7.36%"></i></div></div><div class="axis"><span>0</span><span>27,585</span></div><div class="chips"><span>cleanliness</span><span>staff</span><span>equipment</span><span>fees</span></div></div></figure></div><div class="fcard-body"><div class="pcard-domain">Natural Language Processing</div><div class="fcard-title">Customer Review Topic Modelling and Emotion Analysis</div><div class="project-metric"><span class="metric-value">27,585</span> reviews analysed <span class="metric-dot"></span> <span class="metric-value">2,031</span> anger-led reviews</div></div></a><a href="/projects/maritime-anomaly-detection" class="fcard" data-area="anomaly"><div class="fcard-viz"><figure class="fig" role="img" aria-label="Six sensors, 19,535 readings. Readings flagged: IQR rule 422 (2.16%), One-Class SVM 980 (5.02%), Isolation Forest 977 (5.0%) at contamination 0.05 and 2,892 (14.8%) at auto"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>SIX SENSORS</span></span><span class="fb"><span>SIX SENSORS</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>19,535 READINGS</span></span><span class="fb"><span>19,535 READINGS</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>NO FAULT LABELS</span></span><span class="fb"><span>NO FAULT LABELS</span></span></span></div><div class="fig-hero"><b>422</b><span>readings flagged by the IQR rule</span></div><div class="fig-body" aria-hidden="true"><div class="chips sensors"><span>engine speed</span><span>lub-oil pressure</span><span>lub-oil temperature</span><span>fuel pressure</span><span>coolant pressure</span><span>coolant temperature</span></div><div class="sub">READINGS FLAGGED, BY METHOD</div><div class="hb hi"><div class="hb-top"><span>IQR rule <em class="hb-note">2+ sensors out of range</em></span><b>422 (2.16%)</b></div><div class="hb-track"><i style="--v:14.59%"></i></div></div><div class="hb "><div class="hb-top"><span>One-Class SVM <em class="hb-note">nu = 0.05</em></span><b>980 (5.02%)</b></div><div class="hb-track"><i style="--v:33.89%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = 0.05</em></span><b>977 (5.0%)</b></div><div class="hb-track"><i style="--v:33.78%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = auto</em></span><b>2,892 (14.8%)</b></div><div class="hb-track"><i style="--v:100.00%"></i></div></div><div class="legend"><span><em class="k3"></em>Only the IQR result is not fixed in advance by a setting</span></div></div></figure></div><div class="fcard-body"><div class="pcard-domain">Anomaly Detection / Operations</div><div class="fcard-title">Ship Engine Anomaly Detection</div><div class="project-metric"><span class="metric-value">422</span> readings flagged (2.16%) <span class="metric-dot"></span> IQR rule</div></div></a><a href="/projects/private-document-ai" class="fcard" data-area="ai"><div class="fcard-viz"><figure class="fig" role="img" aria-label="Three-tier query engine: deterministic logic with 16 patterns, schema engine with no AI, AI plus RAG with 6 specialist routes; no document content sent to external AI services"><div class="fig-head flaps"><span class="flap" style="--w:23"><span class="ft"><span>THREE-TIER QUERY ENGINE</span></span><span class="fb"><span>THREE-TIER QUERY ENGINE</span></span></span><span class="flap" style="--w:16"><span class="ft"><span>25+ FILE FORMATS</span></span><span class="fb"><span>25+ FILE FORMATS</span></span></span></div><div class="fig-hero words"><b>No document content</b><span>sent to external AI services</span></div><div class="fig-body" aria-hidden="true"><div class="tiers"><div class="tier"><span class="tn">T1</span><span class="tt">Deterministic</span><span class="td">16 patterns · instant</span></div><div class="tier"><span class="tn">T2</span><span class="tt">Schema engine</span><span class="td">no AI</span></div><div class="tier hi"><span class="tn">T3</span><span class="tt">AI + RAG</span><span class="td">6 specialist routes</span></div></div><div class="legend"><span><em class="k3"></em>Tiers 1 and 2 validated on <b>96 test queries</b></span></div></div></figure></div><div class="fcard-body"><div class="pcard-domain">Applied AI / RAG / Privacy</div><div class="fcard-title">Private Local Documents AI</div><div class="project-metric"><span class="metric-value">25+</span> file formats <span class="metric-dot"></span> no third-party AI provider</div></div></a></div>
+  </section>
+  <section class="group" data-group>
+    <div class="group-h"><h2>Additional Projects</h2><p>Further work spanning forecasting, deep learning, predictive analytics, and QA engineering.</p></div>
+    <div class="pgrid"><a href="/projects/time-series-forecasting" class="pcard" data-area="forecasting">
+          <div class="pcard-viz"><canvas data-viz="books" role="img" aria-label="Title B mean absolute error on the 32-week test: SARIMA 382.3, LSTM 592.2, sequential hybrid 1,096.5, parallel hybrid 1,174.4"></canvas></div>
+          <div class="pcard-domain">Forecasting</div>
+          <div class="pcard-title">Book Sales Demand Forecasting</div>
+          <div class="pcard-desc">Weekly demand for two long-selling titles forecast with SARIMA, XGBoost, LSTM and hybrids on a 32-week hold-out. A well-specified seasonal model was the strongest default; the hybrids did not beat it.</div>
+          <div class="pcard-metric"><strong>19.6%</strong> MAPE, SARIMA (Title B)</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/student-dropout-prediction" class="pcard" data-area="ml">
+          <div class="pcard-viz"><canvas data-viz="student" role="img" aria-label="XGBoost F1 by stage: 0.614 application, 0.650 with engagement, 0.879 with academic results, flagged for leakage check"></canvas></div>
+          <div class="pcard-domain">Predictive Analytics</div>
+          <div class="pcard-title">Student Non-Completion Prediction</div>
+          <div class="pcard-desc">XGBoost at three stages of the student journey. Adding engagement data gave the best balance of accuracy and lead time; the final-stage result is flagged for a leakage check.</div>
+          <div class="pcard-metric"><strong>0.650</strong> F1, engagement stage</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/crime-forecasting" class="pcard" data-area="forecasting">
+          <div class="pcard-viz"><canvas data-viz="crime" role="img" aria-label="Monthly incidents from 2,478 in February to 4,776 in July, average 3,940; test MSE 139.98 for the hand-specified SARIMA against 160.46 for auto_arima"></canvas></div>
+          <div class="pcard-domain">Time Series</div>
+          <div class="pcard-title">Crime Incident Forecasting with SARIMA</div>
+          <div class="pcard-desc">Daily incident data for a US city resampled, tested for stationarity and modelled with seasonal ARIMA, with a 52-week cycle confirmed and models compared on a hold-out year.</div>
+          <div class="pcard-metric"><strong>139.98</strong> test MSE, best SARIMA</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/bank-churn-prediction" class="pcard" data-area="ml">
+          <div class="pcard-viz"><canvas data-viz="churn" role="img" aria-label="Decision tree path to the high-risk leaf; recall 0.52 random forest against 0.70 balanced tree, F1 0.61 against 0.59"></canvas></div>
+          <div class="pcard-domain">Financial Services</div>
+          <div class="pcard-title">Bank Customer Churn Classification</div>
+          <div class="pcard-desc">Decision tree and random forest models predicting which retail bank customers will leave, with the trade-off between catching churners and raising false alarms made explicit.</div>
+          <div class="pcard-metric"><strong>0.61</strong> churner F1, random forest</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/statistical-hypothesis-testing" class="pcard" data-area="stats">
+          <div class="pcard-viz"><canvas data-viz="hypo" role="img" aria-label="Six hypothesis tests at alpha 0.05: three nulls rejected, three retained"></canvas></div>
+          <div class="pcard-domain">Statistical Analysis</div>
+          <div class="pcard-title">Statistical Hypothesis Testing Framework</div>
+          <div class="pcard-desc">Six business questions tested with t-tests, ANOVA, chi-square and Mann-Whitney U, with normality checks driving test choice and three nulls honestly retained.</div>
+          <div class="pcard-metric"><strong>6</strong> hypothesis tests at &alpha; = 0.05</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/neural-network-architecture" class="pcard" data-area="dl">
+          <div class="pcard-viz"><canvas data-viz="nnarch" role="img" aria-label="Network of 57 inputs, 64 and 32 hidden units and a sigmoid output"></canvas></div>
+          <div class="pcard-domain">Deep Learning</div>
+          <div class="pcard-title">Neural Network Design and Hyperparameter Search</div>
+          <div class="pcard-desc">A Keras spam classifier built, tuned and evaluated over three exercises. Grid search over epochs and batch size did not beat the simple 64-32 baseline.</div>
+          <div class="pcard-metric"><strong>94.6%</strong> baseline test accuracy</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/pdf-test-harness" class="pcard" data-area="qa">
+          <div class="pcard-viz"><canvas data-viz="pdf" role="img" aria-label="Letter layout check at 10.8 pt line spacing and 300 verdicts, 210 pass and 90 fail, all matching ground truth"></canvas></div>
+          <div class="pcard-domain">QA Engineering / Test Automation</div>
+          <div class="pcard-title">Automated PDF Compliance Test Harness</div>
+          <div class="pcard-desc">Layout and content checks for generated PDF letters, with per-file failure reasons and a colour-coded Excel report. Verdicts matched ground truth on a synthetic 300-letter corpus with five seeded defect types.</div>
+          <div class="pcard-metric"><strong>300 / 300</strong> verdicts matched (synthetic corpus)</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/customer-segmentation" class="pcard" data-area="ml">
+          <div class="pcard-viz"><canvas data-viz="segment" role="img" aria-label="951,669 order lines to 68,300 customers, 3,415 outliers removed; largest cluster 66% at k = 5; silhouette 0.266 at k = 2 and 0.255 at k = 5"></canvas></div>
+          <div class="pcard-domain">Business Analytics / ML</div>
+          <div class="pcard-title">Customer Segmentation with Clustering</div>
+          <div class="pcard-desc">K-Means and hierarchical clustering of 68,300 retail customers, published as a learning exercise: silhouette scores were modest and one cluster held two-thirds of customers.</div>
+          <div class="pcard-metric"><strong>0.266</strong> best silhouette score</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/medical-insurance-correlation-analysis" class="pcard" data-area="stats">
+          <div class="pcard-viz"><canvas data-viz="insurance" role="img" aria-label="Correlation with charges: BMI 0.709 strong, age 0.080 weak, children 0.031 not significant"></canvas></div>
+          <div class="pcard-domain">Statistical Analysis / Insurance</div>
+          <div class="pcard-title">Medical Insurance Cost Correlation Analysis</div>
+          <div class="pcard-desc">Pearson correlation analysis of what drives insurance charges across 1,000 anonymised records, set in a scenario where an employer weighs a BMI-linked benefits scheme.</div>
+          <div class="pcard-metric"><strong>r = 0.709</strong> BMI correlation, strongest predictor identified</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/decision-tree-bank-marketing" class="pcard" data-area="ml">
+          <div class="pcard-viz"><canvas data-viz="marketing" role="img" aria-label="Test ROC AUC for seven models, Gradient Boosting highest at 0.9485; call duration the top SHAP feature"></canvas></div>
+          <div class="pcard-domain">Marketing Analytics / ML</div>
+          <div class="pcard-title">Decision Trees and SHAP: Bank Marketing</div>
+          <div class="pcard-desc">Tree-based models and SHAP on a public bank telemarketing dataset. Call duration dominated, but it is only known after the call, so the score describes outcomes rather than pre-call targeting.</div>
+          <div class="pcard-metric"><strong>0.9485</strong> ROC AUC, Gradient Boosting (with leakage caveat)</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a></div>
+  </section>
+  <section class="group" data-group>
+    <div class="group-h"><h2>Additional Work</h2><p>Broader technical exploration outside my core financial services focus - methodology deep-dives and applied ML across other domains.</p></div>
+    <div class="pgrid"><a href="/projects/movie-sentiment-analysis" class="pcard" data-area="nlp">
+          <div class="pcard-viz"><canvas data-viz="movie" role="img" aria-label="Bidirectional recurrent network; five-class accuracy 38.5% against 26.4% and 23.1%, majority class about 23%"></canvas></div>
+          <div class="pcard-domain">Natural Language Processing</div>
+          <div class="pcard-title">Movie Review Sentiment Analysis</div>
+          <div class="pcard-desc">A classical baseline on binary sentiment, where Bag-of-Words and TF-IDF tied, then four recurrent networks on a harder five-class task, where the LSTM and GRU failed to learn.</div>
+          <div class="pcard-metric"><strong>38.5%</strong> five-class accuracy, Bidirectional LSTM</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/customer-loyalty-analysis" class="pcard" data-area="stats">
+          <div class="pcard-viz"><canvas data-viz="loyalty" role="img" aria-label="Correlation with loyalty: quality 0.713, negative publicity -0.449, brand awareness 0.18; model R squared 0.628"></canvas></div>
+          <div class="pcard-domain">Business Analytics / Retail</div>
+          <div class="pcard-title">Customer Loyalty Analysis</div>
+          <div class="pcard-desc">Regression and correlation analysis across 1,711 customers isolating which of quality, brand awareness and negative publicity actually drives loyalty.</div>
+          <div class="pcard-metric"><strong>r = 0.713</strong> quality-loyalty correlation</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/automobile-price-prediction" class="pcard" data-area="ml">
+          <div class="pcard-viz"><canvas data-viz="auto" role="img" aria-label="Feature pipeline 26 to 60 to 25 features; R squared 0.894 random forest against 0.717 linear"></canvas></div>
+          <div class="pcard-domain">Feature Engineering / Automotive</div>
+          <div class="pcard-title">Automobile Price Prediction</div>
+          <div class="pcard-desc">Feature engineering, feature selection and PCA/t-SNE on a 205-vehicle dataset, comparing Random Forest and linear regression on a held-out test set.</div>
+          <div class="pcard-metric"><strong>R&sup2; 0.894</strong> Random Forest, held-out test</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/neural-network-manual-backpropagation" class="pcard" data-area="dl">
+          <div class="pcard-viz"><canvas data-viz="backprop" role="img" aria-label="Animated forward and backward pass through a 2-2-1 network: prediction 0.9209, target 1, learning rate 0.02"></canvas></div>
+          <div class="pcard-domain">Deep Learning Fundamentals</div>
+          <div class="pcard-title">Neural Network Manual Backpropagation</div>
+          <div class="pcard-desc">One forward and backward pass of a small network written by hand in NumPy, without a framework, to show exactly what TensorFlow or PyTorch automates.</div>
+          <div class="pcard-metric"><strong>0</strong> framework dependencies</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a><a href="/projects/optimiser-comparison" class="pcard" data-area="dl">
+          <div class="pcard-viz"><canvas data-viz="optim" role="img" aria-label="Same 64-32 network trained with RMSprop, 86.0%, and Adam, 83.2%; about five passengers apart, too close for one split"></canvas></div>
+          <div class="pcard-domain">Deep Learning / Model Evaluation</div>
+          <div class="pcard-title">Optimiser Comparison: Adam vs RMSprop</div>
+          <div class="pcard-desc">Adam and RMSprop compared on the same small network for historical passenger-survival data, then regularisation, dropout and early stopping explored.</div>
+          <div class="pcard-metric"><strong>86.0%</strong> vs <strong>83.2%</strong> test accuracy, RMSprop vs Adam</div>
+          <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
+        </a></div>
+  </section>
+</main>
+<footer class="footer"><div class="footer-inner">
+  <div class="footer-left">&copy; 2026 RJ Data Voyage. All rights reserved.</div>
+  <div class="footer-links"><a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a><a href="/#contact">Contact</a></div>
+</div></footer>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/viz.js" defer></script>
+<script>
+(function () {
+  var chips = document.querySelectorAll('.chip'), items = document.querySelectorAll('[data-area]'), groups = document.querySelectorAll('[data-group]');
+  function apply(f) {
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.f === f ? 'true' : 'false'); });
+    items.forEach(function (el) { el.hidden = !(f === 'all' || el.dataset.area === f); });
+    groups.forEach(function (g) { g.hidden = !g.querySelector('[data-area]:not([hidden])'); });
+    window.dispatchEvent(new Event('resize'));
+    try { history.replaceState(null, '', f === 'all' ? location.pathname : '#' + f); } catch (e) {}
+  }
+  chips.forEach(function (c) { c.addEventListener('click', function () { apply(c.dataset.f); }); });
+  var h = location.hash.slice(1); if (h && document.querySelector('.chip[data-f="' + h + '"]')) apply(h);
+})();
+</script>
+</body>
+</html>
