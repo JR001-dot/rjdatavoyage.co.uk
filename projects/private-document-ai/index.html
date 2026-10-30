@@ -140,14 +140,13 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
-            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            </button>
+            <a href="/" class="nav-logo"><i aria-hidden="true"></i>RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="19" y2="7"/><line x1="3" y1="15" x2="19" y2="15"/></svg></button>
             <ul class="nav-links">
                 <li><a href="/#about">About</a></li>
                 <li><a href="/#services">Services</a></li>
@@ -166,6 +165,7 @@
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Back to Projects
         </a>
+<div class="dep-strip" aria-hidden="true"><span class="dep-head"><b>RJ DATA VOYAGE</b> · DEPARTURES</span><div class="dep-flaps"><span class="flap f-proj" style="--w:29"><span class="ft"><span>APPLIED AI / RAG ARCHITECTURE</span></span><span class="fb"><span>APPLIED AI / RAG ARCHITECTURE</span></span></span><span class="flap f-res" style="--w:14"><span class="ft"><span>PRIVATE DOC AI</span></span><span class="fb"><span>PRIVATE DOC AI</span></span></span></div></div>
 
         <div class="cs-domain">Applied AI / RAG Architecture</div>
         <h1 class="cs-title">Private Document Analysis AI</h1>
@@ -190,32 +190,7 @@
             </div>
         </div>
 
-        <div class="cs-hero">
-
-            <div class="cs-hero-label">PRIVATE DOCUMENT AI</div>
-            <div class="cs-hero-metric">3-TIER RAG</div>
-            <div class="cs-doc-float" style="top:15%;left:8%;border-color:rgba(52,211,153,0.2);background:rgba(52,211,153,0.05);animation-delay:0s"></div>
-            <div class="cs-doc-float" style="top:25%;left:85%;border-color:rgba(56,189,248,0.2);background:rgba(56,189,248,0.05);animation-delay:2s"></div>
-            <div class="cs-doc-float" style="top:65%;left:12%;border-color:rgba(139,92,246,0.2);background:rgba(139,92,246,0.05);animation-delay:4s"></div>
-            <div class="cs-doc-float" style="top:55%;left:88%;border-color:rgba(245,158,11,0.2);background:rgba(245,158,11,0.05);animation-delay:6s"></div>
-            <div class="cs-hero-tiers">
-                <div class="cs-tier-row" style="animation-delay:0.3s">
-                    <div class="cs-tier-badge" style="background:rgba(52,211,153,0.15);color:rgba(52,211,153,0.7);border:1px solid rgba(52,211,153,0.2)">T1</div>
-                    <div class="cs-tier-bar" style="width:280px;background:linear-gradient(90deg,rgba(52,211,153,0.08),rgba(52,211,153,0.18));color:rgba(52,211,153,0.5);border:1px solid rgba(52,211,153,0.12)">DETERMINISTIC &bull; INSTANT &bull; NO HALLUCINATION</div>
-                </div>
-                <div class="cs-tier-arrow" style="animation-delay:0.6s">&darr;</div>
-                <div class="cs-tier-row" style="animation-delay:0.8s">
-                    <div class="cs-tier-badge" style="background:rgba(245,158,11,0.15);color:rgba(245,158,11,0.7);border:1px solid rgba(245,158,11,0.2)">T2</div>
-                    <div class="cs-tier-bar" style="width:240px;background:linear-gradient(90deg,rgba(245,158,11,0.08),rgba(245,158,11,0.15));color:rgba(245,158,11,0.5);border:1px solid rgba(245,158,11,0.12)">SCHEMA ENGINE &bull; NO AI</div>
-                </div>
-                <div class="cs-tier-arrow" style="animation-delay:1.1s">&darr;</div>
-                <div class="cs-tier-row" style="animation-delay:1.3s">
-                    <div class="cs-tier-badge" style="background:rgba(139,92,246,0.15);color:rgba(139,92,246,0.7);border:1px solid rgba(139,92,246,0.2)">T3</div>
-                    <div class="cs-tier-bar" style="width:200px;background:linear-gradient(90deg,rgba(139,92,246,0.08),rgba(139,92,246,0.15));color:rgba(139,92,246,0.5);border:1px solid rgba(139,92,246,0.12)">AI + RAG &bull; 6 SPECIALIST ROUTES</div>
-                </div>
-            </div>
-
-        </div>
+        <figure class="cs-figure"><figure class="fig" role="img" aria-label="Three-tier query engine: deterministic logic with 16 patterns, schema engine with no AI, AI plus RAG with 6 specialist routes; zero document content sent to external AI providers"><div class="fig-head"><span>THREE-TIER QUERY ENGINE · 25+ FILE FORMATS</span></div><div class="fig-hero"><b>0</b><span>document content sent to external AI providers</span></div><div class="fig-body" aria-hidden="true"><div class="tiers"><div class="tier"><span class="tn">T1</span><span class="tt">Deterministic</span><span class="td">16 patterns · instant</span></div><div class="tier"><span class="tn">T2</span><span class="tt">Schema engine</span><span class="td">no AI</span></div><div class="tier hi"><span class="tn">T3</span><span class="tt">AI + RAG</span><span class="td">6 specialist routes</span></div></div><div class="legend"><span><em class="k3"></em>Tiers 1 and 2 validated on <b>96 test queries</b></span></div></div></figure></figure>
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
@@ -329,6 +304,7 @@
     <script>
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
     </script>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
 </html>

@@ -136,14 +136,13 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
-            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            </button>
+            <a href="/" class="nav-logo"><i aria-hidden="true"></i>RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="19" y2="7"/><line x1="3" y1="15" x2="19" y2="15"/></svg></button>
             <ul class="nav-links">
                 <li><a href="/#about">About</a></li>
                 <li><a href="/#services">Services</a></li>
@@ -162,6 +161,7 @@
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Back to Projects
         </a>
+<div class="dep-strip" aria-hidden="true"><span class="dep-head"><b>RJ DATA VOYAGE</b> · DEPARTURES</span><div class="dep-flaps"><span class="flap f-proj" style="--w:21"><span class="ft"><span>UNSUPERVISED LEARNING</span></span><span class="fb"><span>UNSUPERVISED LEARNING</span></span></span><span class="flap f-res" style="--w:12"><span class="ft"><span>SEGMENTATION</span></span><span class="fb"><span>SEGMENTATION</span></span></span></div></div>
 
         <div class="cs-domain">Unsupervised Learning</div>
         <h1 class="cs-title">Customer Segmentation with Clustering</h1>
@@ -226,30 +226,7 @@
             </div>
         </section>
 
-        <div class="cs-hero">
-
-            <div class="cs-hero-label">CUSTOMER SEGMENTATION</div>
-            <div class="cs-hero-metric">K-MEANS</div>
-            <div class="cs-hero-clusters">
-                <div class="cs-ring" style="width:140px;height:140px;top:15%;left:12%;border-color:rgba(56,189,248,0.3);animation-delay:0.8s"></div>
-                <div class="cs-ring" style="width:120px;height:120px;top:30%;right:18%;border-color:rgba(245,158,11,0.3);animation-delay:1.0s"></div>
-                <div class="cs-ring" style="width:100px;height:100px;bottom:15%;left:35%;border-color:rgba(52,211,153,0.3);animation-delay:1.2s"></div>
-                <div class="cs-dot" style="width:10px;height:10px;top:22%;left:18%;background:rgba(56,189,248,0.7);animation-delay:0.1s"></div>
-                <div class="cs-dot" style="width:8px;height:8px;top:28%;left:22%;background:rgba(56,189,248,0.5);animation-delay:0.15s"></div>
-                <div class="cs-dot" style="width:12px;height:12px;top:18%;left:26%;background:rgba(56,189,248,0.6);animation-delay:0.2s"></div>
-                <div class="cs-dot" style="width:9px;height:9px;top:32%;left:16%;background:rgba(56,189,248,0.5);animation-delay:0.25s"></div>
-                <div class="cs-dot" style="width:7px;height:7px;top:25%;left:30%;background:rgba(56,189,248,0.4);animation-delay:0.3s"></div>
-                <div class="cs-dot" style="width:11px;height:11px;top:36%;right:24%;background:rgba(245,158,11,0.7);animation-delay:0.35s"></div>
-                <div class="cs-dot" style="width:8px;height:8px;top:42%;right:20%;background:rgba(245,158,11,0.5);animation-delay:0.4s"></div>
-                <div class="cs-dot" style="width:10px;height:10px;top:38%;right:30%;background:rgba(245,158,11,0.6);animation-delay:0.45s"></div>
-                <div class="cs-dot" style="width:9px;height:9px;top:46%;right:26%;background:rgba(245,158,11,0.5);animation-delay:0.5s"></div>
-                <div class="cs-dot" style="width:7px;height:7px;top:34%;right:16%;background:rgba(245,158,11,0.4);animation-delay:0.55s"></div>
-                <div class="cs-dot" style="width:10px;height:10px;bottom:22%;left:38%;background:rgba(52,211,153,0.7);animation-delay:0.6s"></div>
-                <div class="cs-dot" style="width:8px;height:8px;bottom:18%;left:42%;background:rgba(52,211,153,0.5);animation-delay:0.65s"></div>
-                <div class="cs-dot" style="width:11px;height:11px;bottom:26%;left:46%;background:rgba(52,211,153,0.6);animation-delay:0.7s"></div>
-                <div class="cs-dot" style="width:7px;height:7px;bottom:30%;left:40%;background:rgba(52,211,153,0.4);animation-delay:0.75s"></div>
-            </div>
-        </div>
+        <figure class="cs-figure"><div class="cs-canvas"><canvas data-viz="segment" role="img" aria-label="951,669 order lines to 68,300 customers, 3,415 outliers removed; largest cluster 66% at k = 5; silhouette 0.266 at k = 2 and 0.255 at k = 5"></canvas></div></figure>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Results</h2>
@@ -310,5 +287,6 @@
     <script>
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
     </script>
+<script src="/assets/site.js" defer></script><script src="/assets/viz.js" defer></script>
 </body>
 </html>

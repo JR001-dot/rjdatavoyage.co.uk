@@ -149,14 +149,13 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
-            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            </button>
+            <a href="/" class="nav-logo"><i aria-hidden="true"></i>RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="19" y2="7"/><line x1="3" y1="15" x2="19" y2="15"/></svg></button>
             <ul class="nav-links">
                 <li><a href="/#about">About</a></li>
                 <li><a href="/#services">Services</a></li>
@@ -175,6 +174,7 @@
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Back to Projects
         </a>
+<div class="dep-strip" aria-hidden="true"><span class="dep-head"><b>RJ DATA VOYAGE</b> · DEPARTURES</span><div class="dep-flaps"><span class="flap f-proj" style="--w:28"><span class="ft"><span>ANOMALY DETECTION / MARITIME</span></span><span class="fb"><span>ANOMALY DETECTION / MARITIME</span></span></span><span class="flap f-res" style="--w:11"><span class="ft"><span>SHIP ENGINE</span></span><span class="fb"><span>SHIP ENGINE</span></span></span></div></div>
 
         <div class="cs-domain">Anomaly Detection / Maritime</div>
         <h1 class="cs-title">Ship Engine Anomaly Detection</h1>
@@ -199,14 +199,7 @@
             </div>
         </div>
 
-        <div class="cs-hero">
-            <div class="cs-hero-label">ANOMALY DETECTION</div>
-            <div class="cs-hero-metric">ISOLATION FOREST</div>
-            <div class="cs-signal-line"></div>
-            <div class="cs-signal-pulse" style="top:35%;left:25%;animation-delay:0s"></div>
-            <div class="cs-signal-pulse" style="top:42%;left:55%;animation-delay:1s"></div>
-            <div class="cs-signal-pulse" style="top:38%;left:78%;animation-delay:2s"></div>
-        </div>
+        <figure class="cs-figure"><figure class="fig" role="img" aria-label="Six sensors, 19,535 readings. Readings flagged: IQR rule 422 (2.16%), One-Class SVM 980 (5.02%), Isolation Forest 977 (5.0%) at contamination 0.05 and 2,892 (14.8%) at auto"><div class="fig-head"><span>SIX SENSORS · 19,535 READINGS · NO FAULT LABELS</span></div><div class="fig-hero"><b>422</b><span>readings flagged by the IQR rule</span></div><div class="fig-body" aria-hidden="true"><div class="chips sensors"><span>engine speed</span><span>lub-oil pressure</span><span>lub-oil temperature</span><span>fuel pressure</span><span>coolant pressure</span><span>coolant temperature</span></div><div class="sub">READINGS FLAGGED, BY METHOD</div><div class="hb hi"><div class="hb-top"><span>IQR rule <em class="hb-note">2+ sensors out of range</em></span><b>422 (2.16%)</b></div><div class="hb-track"><i style="--v:14.59%"></i></div></div><div class="hb "><div class="hb-top"><span>One-Class SVM <em class="hb-note">nu = 0.05</em></span><b>980 (5.02%)</b></div><div class="hb-track"><i style="--v:33.89%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = 0.05</em></span><b>977 (5.0%)</b></div><div class="hb-track"><i style="--v:33.78%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = auto</em></span><b>2,892 (14.8%)</b></div><div class="hb-track"><i style="--v:100.00%"></i></div></div><div class="legend"><span><em class="k3"></em>Only the IQR result is not fixed in advance by a setting</span></div></div></figure></figure>
 
         <section class="cs-section">
             <h2 class="cs-section-title">The Challenge</h2>
@@ -288,5 +281,6 @@
             </div>
         </div>
     </footer>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>

@@ -138,14 +138,13 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
-            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            </button>
+            <a href="/" class="nav-logo"><i aria-hidden="true"></i>RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="19" y2="7"/><line x1="3" y1="15" x2="19" y2="15"/></svg></button>
             <ul class="nav-links">
                 <li><a href="/#about">About</a></li>
                 <li><a href="/#services">Services</a></li>
@@ -164,6 +163,7 @@
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Back to Projects
         </a>
+<div class="dep-strip" aria-hidden="true"><span class="dep-head"><b>RJ DATA VOYAGE</b> · DEPARTURES</span><div class="dep-flaps"><span class="flap f-proj" style="--w:20"><span class="ft"><span>STATISTICAL ANALYSIS</span></span><span class="fb"><span>STATISTICAL ANALYSIS</span></span></span><span class="flap f-res" style="--w:16"><span class="ft"><span>HYPOTHESIS TESTS</span></span><span class="fb"><span>HYPOTHESIS TESTS</span></span></span></div></div>
 
         <div class="cs-domain">Statistical Analysis</div>
         <h1 class="cs-title">Statistical Hypothesis Testing Framework</h1>
@@ -229,22 +229,7 @@
             </div>
         </section>
 
-        <div class="cs-hero">
-
-            <div class="cs-hero-label">HYPOTHESIS TESTING</div>
-            <div class="cs-hero-metric">&alpha; = 0.05</div>
-            <div class="cs-hero-curve">
-                <svg viewBox="0 0 800 200" preserveAspectRatio="none">
-                    <path class="curve-fill" d="M100,180 C200,178 280,150 340,100 C370,75 390,40 400,20 C410,40 430,75 460,100 C520,150 600,178 700,180 Z"/>
-                    <path class="curve-line" d="M100,180 C200,178 280,150 340,100 C370,75 390,40 400,20 C410,40 430,75 460,100 C520,150 600,178 700,180"/>
-                    <path class="curve-reject" d="M620,180 C640,179 660,177 680,174 L700,180 Z"/>
-                    <path class="curve-reject" d="M100,180 C120,179 140,177 160,174 L100,180 Z"/>
-                    <path class="curve-alpha" d="M620,0 L620,180"/>
-                    <path class="curve-alpha" d="M180,0 L180,180"/>
-                </svg>
-            </div>
-            <div class="cs-hero-h0" style="left:46%">H₀</div>
-        </div>
+        <figure class="cs-figure"><div class="cs-canvas"><canvas data-viz="hypo" role="img" aria-label="Six hypothesis tests at alpha 0.05: three nulls rejected, three retained"></canvas></div></figure>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Results</h2>
@@ -305,5 +290,6 @@
     <script>
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
     </script>
+<script src="/assets/site.js" defer></script><script src="/assets/viz.js" defer></script>
 </body>
 </html>

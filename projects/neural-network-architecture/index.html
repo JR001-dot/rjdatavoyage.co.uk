@@ -136,14 +136,13 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">RJ Data<span>Voyage</span></a>
-            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            </button>
+            <a href="/" class="nav-logo"><i aria-hidden="true"></i>RJ Data<span>Voyage</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="19" y2="7"/><line x1="3" y1="15" x2="19" y2="15"/></svg></button>
             <ul class="nav-links">
                 <li><a href="/#about">About</a></li>
                 <li><a href="/#services">Services</a></li>
@@ -162,6 +161,7 @@
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Back to Projects
         </a>
+<div class="dep-strip" aria-hidden="true"><span class="dep-head"><b>RJ DATA VOYAGE</b> · DEPARTURES</span><div class="dep-flaps"><span class="flap f-proj" style="--w:13"><span class="ft"><span>DEEP LEARNING</span></span><span class="fb"><span>DEEP LEARNING</span></span></span><span class="flap f-res" style="--w:15"><span class="ft"><span>SPAM CLASSIFIER</span></span><span class="fb"><span>SPAM CLASSIFIER</span></span></span></div></div>
 
         <div class="cs-domain">Deep Learning</div>
         <h1 class="cs-title">Neural Network Design and Hyperparameter Search</h1>
@@ -219,38 +219,7 @@
             </div>
         </section>
 
-        <div class="cs-hero">
-
-            <div class="cs-hero-label">NEURAL NETWORK</div>
-            <div class="cs-hero-metric">94.6% BASELINE</div>
-            <div class="cs-hero-nn">
-                <!-- Input layer -->
-                <div class="nn-node" style="width:14px;height:14px;top:15%;left:10%;background:rgba(168,85,247,0.5);animation-delay:0s"></div>
-                <div class="nn-node" style="width:14px;height:14px;top:40%;left:10%;background:rgba(168,85,247,0.5);animation-delay:0.3s"></div>
-                <div class="nn-node" style="width:14px;height:14px;top:65%;left:10%;background:rgba(168,85,247,0.5);animation-delay:0.6s"></div>
-                <!-- Hidden 1 -->
-                <div class="nn-node" style="width:12px;height:12px;top:10%;left:32%;background:rgba(139,92,246,0.5);animation-delay:0.2s"></div>
-                <div class="nn-node" style="width:12px;height:12px;top:30%;left:32%;background:rgba(139,92,246,0.5);animation-delay:0.5s"></div>
-                <div class="nn-node" style="width:12px;height:12px;top:50%;left:32%;background:rgba(139,92,246,0.5);animation-delay:0.8s"></div>
-                <div class="nn-node" style="width:12px;height:12px;top:70%;left:32%;background:rgba(139,92,246,0.5);animation-delay:1.1s"></div>
-                <!-- Hidden 2 -->
-                <div class="nn-node" style="width:12px;height:12px;top:18%;left:55%;background:rgba(99,102,241,0.5);animation-delay:0.4s"></div>
-                <div class="nn-node" style="width:12px;height:12px;top:38%;left:55%;background:rgba(99,102,241,0.5);animation-delay:0.7s"></div>
-                <div class="nn-node" style="width:12px;height:12px;top:58%;left:55%;background:rgba(99,102,241,0.5);animation-delay:1.0s"></div>
-                <!-- Output -->
-                <div class="nn-node" style="width:16px;height:16px;top:30%;left:80%;background:rgba(56,189,248,0.6);animation-delay:0.3s"></div>
-                <div class="nn-node" style="width:16px;height:16px;top:55%;left:80%;background:rgba(56,189,248,0.6);animation-delay:0.9s"></div>
-                <!-- Connections (simplified) -->
-                <div class="nn-conn" style="top:17%;left:12%;width:19%;transform:rotate(-2deg);animation-delay:0.1s"></div>
-                <div class="nn-conn" style="top:42%;left:12%;width:19%;transform:rotate(-4deg);animation-delay:0.3s"></div>
-                <div class="nn-conn" style="top:67%;left:12%;width:19%;transform:rotate(-6deg);animation-delay:0.5s"></div>
-                <div class="nn-conn" style="top:22%;left:34%;width:20%;transform:rotate(-1deg);animation-delay:0.2s"></div>
-                <div class="nn-conn" style="top:42%;left:34%;width:20%;transform:rotate(-2deg);animation-delay:0.4s"></div>
-                <div class="nn-conn" style="top:62%;left:34%;width:20%;transform:rotate(-2deg);animation-delay:0.6s"></div>
-                <div class="nn-conn" style="top:30%;left:57%;width:22%;transform:rotate(2deg);animation-delay:0.3s"></div>
-                <div class="nn-conn" style="top:48%;left:57%;width:22%;transform:rotate(3deg);animation-delay:0.5s"></div>
-            </div>
-        </div>
+        <figure class="cs-figure"><div class="cs-canvas"><canvas data-viz="nnarch" role="img" aria-label="Network of 57 inputs, 64 and 32 hidden units and a sigmoid output"></canvas></div></figure>
 
         <section class="cs-section">
             <h2 class="cs-section-title">Results</h2>
@@ -307,5 +276,6 @@
     <script>
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
     </script>
+<script src="/assets/site.js" defer></script><script src="/assets/viz.js" defer></script>
 </body>
 </html>
