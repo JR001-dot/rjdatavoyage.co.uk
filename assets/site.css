@@ -153,6 +153,9 @@ th{color:var(--ink)!important;font-family:var(--mono);font-size:12px;letter-spac
 .harness-bar-fill{background:var(--cobalt)!important;box-shadow:0 0 12px rgba(61,75,255,.8)}
 .article .cta p{color:rgba(255,255,255,.8)!important}
 .article .cta a{color:#9AA4FF!important}
+.topic-words{margin-top:14px;padding:18px clamp(16px,2.6vw,28px);border-radius:20px;background:#07080B;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.topic-words .tw-h{width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#8E95AA;margin-bottom:4px}
+.topic-words span{font-family:var(--mono);font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid #2A2D38;color:#E6E8EF}
 
 .flap{position:relative;display:block;height:2.15em;font-weight:600;letter-spacing:.03em;color:#F5F6FA;perspective:400px}
 .flap .ft,.flap .fb,.flap .leaf{position:absolute;left:0;right:0;height:50%;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
