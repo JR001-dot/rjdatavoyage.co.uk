@@ -578,7 +578,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
           <div class="pcard-metric"><strong>0.650</strong> F1, engagement stage</div>
           <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
         </a><a href="/projects/crime-forecasting" class="pcard">
-          <div class="pcard-viz"><canvas data-viz="crime" role="img" aria-label="Monthly incidents from 2,478 in February to 4,776 in July, average 3,947; test MSE 139.98 for the hand-specified SARIMA against 160.46 for auto_arima"></canvas></div>
+          <div class="pcard-viz"><canvas data-viz="crime" role="img" aria-label="Monthly incidents from 2,478 in February to 4,776 in July, average 3,940; test MSE 139.98 for the hand-specified SARIMA against 160.46 for auto_arima"></canvas></div>
           <div class="pcard-domain">Time Series</div>
           <div class="pcard-title">Crime Incident Forecasting with SARIMA</div>
           <div class="pcard-desc">Daily incident data for a US city resampled, tested for stationarity and modelled with seasonal ARIMA, with a 52-week cycle confirmed and models compared on a hold-out year.</div>
@@ -1413,7 +1413,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
     }
   };
 
-  /* 15. Crime: monthly incidents 2,478 (Feb) to 4,776 (Jul), average 3,947; 52-week cycle (brief said 70);
+  /* 15. Crime: monthly incidents 2,478 (Feb) to 4,776 (Jul), average 3,940; 52-week cycle (brief said 70);
         test MSE SARIMA(1,0,1)(1,1,1,52) 139.98 vs auto_arima 160.46 */
   V.crime = {
     period: 6, draw: function (g, w, h, t) {
@@ -1424,7 +1424,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
       rrect(g, x0, y - 6, (x1 - x0) * a, 12, 6); g.fillStyle = grad; g.fill();
       txt(g, 'FEB LOW', x0, y - 14, { size: 8, color: C.mute, spacing: .3 }); txt(g, '2,478', x0, y + 22, { size: 11, color: C.white, weight: 600, font: SANS });
       txt(g, 'JUL HIGH', x1, y - 14, { size: 8, color: C.mute, align: 'right', spacing: .3 }); txt(g, '4,776', x1, y + 22, { size: 11, color: C.white, align: 'right', weight: 600, font: SANS });
-      if (a > .99) { var mx = X(3947); g.strokeStyle = C.amb; g.lineWidth = 1.5; g.beginPath(); g.moveTo(mx, y - 9); g.lineTo(mx, y + 9); g.stroke(); txt(g, 'AVG 3,947', mx, y + 22, { size: 8.5, color: C.amb, align: 'center' }); }
+      if (a > .99) { var mx = X(3940); g.strokeStyle = C.amb; g.lineWidth = 1.5; g.beginPath(); g.moveTo(mx, y - 9); g.lineTo(mx, y + 9); g.stroke(); txt(g, 'AVG 3,940', mx, y + 22, { size: 8.5, color: C.amb, align: 'center' }); }
       txt(g, 'TEST MSE · FINAL 52 WEEKS', 14, y + 50, { size: 8, color: C.mute, spacing: .4 });
       [['SARIMA (HAND-SPECIFIED)', 139.98, '139.98', C.cob], ['AUTO_ARIMA', 160.46, '160.46', '#8C93A8']].forEach(function (r, i) {
         var yy = y + 58 + i * 22;

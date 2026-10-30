@@ -439,7 +439,7 @@
     }
   };
 
-  /* 15. Crime: monthly incidents 2,478 (Feb) to 4,776 (Jul), average 3,947; 52-week cycle (brief said 70);
+  /* 15. Crime: monthly incidents 2,478 (Feb) to 4,776 (Jul), average 3,940; 52-week cycle (brief said 70);
         test MSE SARIMA(1,0,1)(1,1,1,52) 139.98 vs auto_arima 160.46 */
   V.crime = {
     period: 6, draw: function (g, w, h, t) {
@@ -450,7 +450,7 @@
       rrect(g, x0, y - 6, (x1 - x0) * a, 12, 6); g.fillStyle = grad; g.fill();
       txt(g, 'FEB LOW', x0, y - 14, { size: 8, color: C.mute, spacing: .3 }); txt(g, '2,478', x0, y + 22, { size: 11, color: C.white, weight: 600, font: SANS });
       txt(g, 'JUL HIGH', x1, y - 14, { size: 8, color: C.mute, align: 'right', spacing: .3 }); txt(g, '4,776', x1, y + 22, { size: 11, color: C.white, align: 'right', weight: 600, font: SANS });
-      if (a > .99) { var mx = X(3947); g.strokeStyle = C.amb; g.lineWidth = 1.5; g.beginPath(); g.moveTo(mx, y - 9); g.lineTo(mx, y + 9); g.stroke(); txt(g, 'AVG 3,947', mx, y + 22, { size: 8.5, color: C.amb, align: 'center' }); }
+      if (a > .99) { var mx = X(3940); g.strokeStyle = C.amb; g.lineWidth = 1.5; g.beginPath(); g.moveTo(mx, y - 9); g.lineTo(mx, y + 9); g.stroke(); txt(g, 'AVG 3,940', mx, y + 22, { size: 8.5, color: C.amb, align: 'center' }); }
       txt(g, 'TEST MSE · FINAL 52 WEEKS', 14, y + 50, { size: 8, color: C.mute, spacing: .4 });
       [['SARIMA (HAND-SPECIFIED)', 139.98, '139.98', C.cob], ['AUTO_ARIMA', 160.46, '160.46', '#8C93A8']].forEach(function (r, i) {
         var yy = y + 58 + i * 22;
