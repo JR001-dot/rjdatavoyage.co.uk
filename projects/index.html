@@ -23,7 +23,7 @@ h1{margin:14px 0 0;font-size:clamp(38px,5.6vw,72px);line-height:1;letter-spacing
 .chip:hover{border-color:var(--ink)}
 .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .chip[aria-pressed="true"] > span{color:#9AA4FF}
-.group-h{margin:48px 0 20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 32px;border-top:1px solid var(--ink);padding-top:20px}
+.group-h{margin:48px 0 20px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;border-top:1px solid var(--ink);padding-top:20px}
 .group-h h2{margin:0;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.035em;font-weight:500}
 .group-h p{margin:0;max-width:36em;font-size:15px;color:var(--ink-2)}
 .fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -207,7 +207,7 @@ h1{margin:14px 0 0;font-size:clamp(38px,5.6vw,72px);line-height:1;letter-spacing
           <div class="pcard-domain">Deep Learning Fundamentals</div>
           <div class="pcard-title">Neural Network Manual Backpropagation</div>
           <div class="pcard-desc">One forward and backward pass of a small network written by hand in NumPy, without a framework, to show exactly what TensorFlow or PyTorch automates.</div>
-          <div class="pcard-metric"><strong>0</strong> framework dependencies</div>
+          <div class="pcard-metric"><strong>Zero</strong> framework dependencies</div>
           <span class="pcard-go" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></span>
         </a><a href="/projects/optimiser-comparison" class="pcard" data-area="dl">
           <div class="pcard-viz"><canvas data-viz="optim" role="img" aria-label="Same 64-32 network trained with RMSprop, 86.0%, and Adam, 83.2%; about five passengers apart, too close for one split"></canvas></div>
