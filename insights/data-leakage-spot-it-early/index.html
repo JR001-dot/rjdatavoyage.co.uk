@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5YEF5Y9F2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q5YEF5Y9F2');</script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data leakage: how to spot it before it ships | RJ Data Voyage</title>
+    <meta name="description" content="Data leakage makes a model look better in testing than it will ever be in use. Five forms of it, each found in real project work, and the check that exposes each one.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rjdatavoyage.co.uk/insights/data-leakage-spot-it-early">
+    <meta property="og:title" content="Data leakage: how to spot it before it ships"><meta property="og:description" content="Data leakage makes a model look better in testing than it will ever be in use. Five forms of it, each found in real project work, and the check that exposes each one."><meta property="og:type" content="article">
+    <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+      :root{--color-bg:#0B1120;--color-bg-card:#151F32;--color-surface:#1E293B;--color-border-subtle:rgba(255,255,255,0.06);--color-text-primary:#F1F5F9;--color-text-secondary:#94A3B8;--color-text-muted:#64748B;--color-accent:#38BDF8;--color-warn:#F5A623;--color-good:#34D399;--font-display:'DM Serif Display',Georgia,serif;--font-body:'IBM Plex Sans',-apple-system,sans-serif;--font-mono:'IBM Plex Mono','Courier New',monospace;--nav-height:72px;--radius:10px;--transition:0.3s cubic-bezier(0.4,0,0.2,1);}
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+      html{scroll-behavior:smooth;}
+      body{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text-primary);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;}
+      .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-height);background:rgba(11,17,32,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--color-border-subtle);}
+      .nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;}
+      .nav-logo{font-family:var(--font-display);font-size:1.25rem;color:var(--color-text-primary);text-decoration:none;}
+      .nav-logo span{color:var(--color-accent);}
+      .nav-links{display:flex;gap:28px;list-style:none;}
+      .nav-links a{color:var(--color-text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color var(--transition);}
+      .nav-links a:hover{color:var(--color-text-primary);}
+      .hero-band{background:linear-gradient(135deg,#0a1628 0%,#0d2137 55%,#0f2a49 100%);border-bottom:1px solid var(--color-border-subtle);}
+      .hero-inner{max-width:760px;margin:0 auto;padding:calc(var(--nav-height) + 56px) 24px 44px;}
+      .back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:500;color:var(--color-text-muted);text-decoration:none;margin-bottom:28px;transition:color var(--transition);}
+      .back-link:hover{color:var(--color-accent);}
+      .kicker{font-family:var(--font-mono);font-size:0.75rem;font-weight:500;color:var(--color-accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
+      .hero-inner h1{font-family:var(--font-display);font-size:clamp(2.1rem,5vw,3.1rem);font-weight:400;line-height:1.14;letter-spacing:-0.02em;margin-bottom:18px;}
+      .meta{font-size:0.85rem;color:var(--color-text-muted);}
+      .article{max-width:720px;margin:0 auto;padding:36px 24px 96px;}
+      .article .lead{font-size:1.3rem;color:var(--color-text-primary);line-height:1.55;font-weight:300;margin-bottom:30px;}
+      .article h2{font-family:var(--font-display);font-size:1.7rem;font-weight:400;margin:52px 0 18px;}
+      .article p{color:var(--color-text-secondary);margin-bottom:20px;font-size:1.05rem;line-height:1.8;}
+      .article p strong{color:var(--color-text-primary);font-weight:600;}
+      .tldr{background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-left:3px solid var(--color-accent);border-radius:var(--radius);padding:22px 24px;margin:8px 0 28px;}
+      .tldr-h{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:12px;}
+      .tldr ul{list-style:none;display:grid;gap:10px;}
+      .tldr li{position:relative;padding-left:22px;color:var(--color-text-secondary);font-size:0.98rem;line-height:1.6;}
+      .tldr li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--color-accent);}
+      .pull{font-family:var(--font-display);font-size:1.45rem;line-height:1.4;color:var(--color-text-primary);border-left:3px solid var(--color-accent);padding:6px 0 6px 22px;margin:26px 0;}
+      .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:6px 0 24px;}
+      .rcard{background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:22px;}
+      .ric{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9px;background:rgba(56,189,248,0.12);color:var(--color-accent);margin-bottom:14px;}
+      .rcard h3{font-size:1rem;font-weight:600;color:var(--color-text-primary);margin-bottom:7px;}
+      .rcard p{color:var(--color-text-muted);font-size:0.92rem;line-height:1.6;margin:0;}
+      .diagram{margin:24px 0 26px;padding:22px 20px 14px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);}
+      .diagram svg{width:100%;height:auto;display:block;}
+      .diagram figcaption{font-size:0.82rem;color:var(--color-text-muted);margin-top:14px;text-align:center;}
+      .stages{list-style:none;display:grid;gap:0;margin:6px 0 8px;}
+      .stages li{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--color-border-subtle);}
+      .stages li:last-child{border-bottom:none;}
+      .stages .snum{flex:none;font-family:var(--font-mono);font-size:0.78rem;font-weight:600;color:var(--color-accent);padding-top:3px;}
+      .stages div{color:var(--color-text-secondary);font-size:1rem;line-height:1.7;}
+      .stages strong{color:var(--color-text-primary);}
+      .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:6px 0 24px;}
+      .wcard{display:flex;gap:14px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:20px;}
+      .wic{flex:none;color:var(--color-warn);padding-top:1px;}
+      .wcard h3{font-size:0.98rem;font-weight:600;color:var(--color-text-primary);margin-bottom:6px;}
+      .wcard p{color:var(--color-text-muted);font-size:0.9rem;line-height:1.6;margin:0;}
+      .fit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:6px 0 24px;}
+      .fit-col{background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);padding:22px;}
+      .fit-good{border-top:3px solid var(--color-good);}
+      .fit-bad{border-top:3px solid rgba(148,163,184,0.5);}
+      .fit-h{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:14px;}
+      .fit ul{list-style:none;display:grid;gap:12px;}
+      .fit li{display:flex;gap:11px;font-size:0.94rem;line-height:1.5;color:var(--color-text-secondary);}
+      .fit li span{flex:none;}
+      .fit li.good span{color:var(--color-good);}
+      .fit li.bad span{color:var(--color-text-muted);}
+      .cta{margin-top:52px;padding:28px 32px;background:var(--color-bg-card);border:1px solid var(--color-border-subtle);border-radius:var(--radius);}
+      .cta p{color:var(--color-text-secondary);font-size:0.98rem;margin:0;}
+      .cta a{color:var(--color-accent);text-decoration:none;font-weight:600;}
+      .footer{padding:48px 24px;border-top:1px solid var(--color-border-subtle);}
+      .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+      .footer-left{font-size:0.825rem;color:var(--color-text-muted);}
+      .footer-links{display:flex;gap:24px;}
+      .footer-links a{color:var(--color-text-muted);text-decoration:none;font-size:0.825rem;}
+      .footer-links a:hover{color:var(--color-accent);}
+      @media(max-width:640px){:root{--nav-height:64px;}.nav-links{display:none;}.fit{grid-template-columns:1fr;}}
+      .caught{background:#F3F4FA;border-radius:10px;padding:12px 16px;font-size:.95rem!important}.caught b{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt,#2433FF);margin-right:8px}.from{font-size:.9rem!important;color:var(--ink-2,#555)}
+    </style>
+
+    
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+    <nav class="nav" role="navigation" aria-label="Main navigation"><div class="nav-inner">
+        <a href="/" class="nav-logo"><i aria-hidden="true"></i>RJ Data<span>Voyage</span></a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="19" y2="7"/><line x1="3" y1="15" x2="19" y2="15"/></svg></button>
+        <ul class="nav-links">
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/#expertise">Expertise</a></li>
+            <li><a href="/#contact">Contact</a></li>
+        </ul>
+    </div></nav>
+
+    <div class="hero-band"><div class="hero-inner">
+        <a href="/insights/" class="back-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> All insights</a>
+<div class="dep-strip" aria-hidden="true"><span class="dep-head"><b>RJ DATA VOYAGE</b> · DEPARTURES</span><div class="dep-flaps"><span class="flap f-proj" style="--w:8"><span class="ft"><span>INSIGHTS</span></span><span class="fb"><span>INSIGHTS</span></span></span><span class="flap f-res" style="--w:12"><span class="ft"><span>DATA LEAKAGE</span></span><span class="fb"><span>DATA LEAKAGE</span></span></span></div></div>
+        <div class="kicker">Testing / Model Evaluation</div>
+        <h1>Data leakage: how to spot it before it ships</h1>
+        <div class="meta">By RJ Data Voyage &middot; 31 October 2026 &middot; 6 min read</div>
+    </div></div>
+    <article class="article">
+        <p class="lead">Leakage is when information that will not be available at prediction time finds its way into training or evaluation. The model is not cheating on purpose; the pipeline is handing it the answer. It is the most common reason a model that tested brilliantly disappoints in use, and every example below comes from my own projects.</p>
+        <div class="tldr"><div class="tldr-h">The short version</div><ul><li>Leakage inflates test results; it never shows up as an error.</li><li>Ask of every feature: would I know this at the moment I need the prediction?</li><li>Ask of every preprocessing step: did it see the test data?</li></ul></div>
+
+        <h2>1. A feature that arrives after the event</h2>
+        <p>In a bank marketing model, call duration was by far the strongest predictor of whether a contact subscribed to a term deposit. Gradient Boosting reached a test ROC AUC of 0.9485. But call duration is only known once the call has ended, so it cannot help decide whom to call. The score describes what successful calls looked like; it does not score leads in advance.</p>
+        <p class="caught"><b>The check</b> for every feature, write down when its value becomes known. Anything known only after the outcome belongs in an explanation, not a predictor.</p>
+        <p class="from">From the project: <a href="/projects/decision-tree-bank-marketing">Decision Trees and SHAP: Bank Marketing</a></p>
+
+        <h2>2. A feature that already contains the outcome</h2>
+        <p>A student non-completion model was built in three stages as more data arrived. With academic results added, the final stage reached a ROC AUC of 0.998. On a hard human outcome, a near-perfect score usually means a feature is a proxy for the answer itself.</p>
+        <p class="caught"><b>The check</b> treat any near-perfect score as a suspected leak. Remove the newest feature group and see how far the score falls before trusting it.</p>
+        <p class="from">From the project: <a href="/projects/student-dropout-prediction">Student Non-Completion Prediction</a></p>
+
+        <h2>3. Preprocessing that saw the test period</h2>
+        <p>In a book sales forecast, one title&rsquo;s weekly series was smoothed before the data was split into training and test periods. A smoothed test period is easier to forecast than the raw sales it stands for, so that title&rsquo;s forecast error looks better than it should.</p>
+        <p class="caught"><b>The check</b> split first, then transform. Smoothing, scaling, imputation and encoding should be fitted on training data only and applied to the test data afterwards.</p>
+        <p class="from">From the project: <a href="/projects/time-series-forecasting">Book Sales Demand Forecasting</a></p>
+
+        <h2>4. The target inside an exploratory step</h2>
+        <p>In a car price project, PCA was fitted on all 190 vehicles with price among the inputs. That is fine for a picture of the data, but the components carry information about the target, so they cannot be used as model inputs. The project treats the PCA and t-SNE views as exploratory only for exactly that reason.</p>
+        <p class="caught"><b>The check</b> keep the target out of anything that will feed a model, including dimensionality reduction and feature selection.</p>
+        <p class="from">From the project: <a href="/projects/automobile-price-prediction">Automobile Price Prediction</a></p>
+
+        <h2>5. Choosing the model on the test set</h2>
+        <p>The quietest form of leakage is in model selection. In a spam classifier, grid-search settings were picked by test accuracy, which makes the reported best result optimistic. A bank churn model had the same issue with its hyperparameters. Every time the test set is used to make a choice, it stops being an honest estimate of performance on new data.</p>
+        <p class="caught"><b>The check</b> hold out a validation split, or use cross-validation, for every choice. Touch the test set once, at the end.</p>
+        <p class="from">From the project: <a href="/projects/neural-network-architecture">Neural Network Design and Hyperparameter Search</a></p>
+
+        <h2>A leakage checklist</h2>
+        <div class="tldr"><div class="tldr-h">Before trusting a result</div><ul><li>Is every feature known at the moment the prediction is needed?</li><li>Does any feature encode the outcome, directly or by proxy?</li><li>Was every transformation fitted on training data only?</li><li>Is the target excluded from exploratory steps that feed the model?</li><li>Was the test set used for any decision before the final evaluation?</li><li>For time series: is the split by time, with no future values in the training window?</li></ul></div>
+
+        <div class="cta"><p>RJ Data Voyage builds and tests data science and AI systems for teams that need to trust the results. If you want a model checked for leakage before it goes live, <a href="/#contact">get in touch</a>.</p></div>
+    </article>
+
+    <footer class="footer"><div class="footer-inner">
+        <div class="footer-left">&copy; 2026 RJ Data Voyage. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="https://github.com/JR001-dot" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/raquel-j-664113153/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="/#contact">Contact</a>
+        </div>
+    </div></footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
