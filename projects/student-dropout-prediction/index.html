@@ -206,6 +206,11 @@
                 <div class="cs-meta-label">Origin</div>
                 <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
+        
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Code</div>
+                <div class="cs-meta-value"><a class="code-link" href="https://github.com/JR001-dot/student-dropout-prediction" target="_blank" rel="noopener">GitHub repository <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
+            </div>
         </div>
 
 
@@ -257,6 +262,11 @@
             <p>Engagement data gave the best balance of accuracy and lead time. SMOTE did not help: it lowered F1 in stages 1 and 2.</p>
             <p>Stage 3's near-perfect AUC suggests the academic-results data may already encode the outcome, so it needs checking for leakage before being used as an early-warning signal.</p>
             <div class="cs-callout"><p><strong>Correction:</strong> an earlier version of this page quoted recall and F1 figures produced by the inverted evaluation; they have been withdrawn. Neural-network and tuned-threshold results need a re-run and are not quoted.</p></div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>STUDENT DROPOUT</span></span><span class="fb"><span>STUDENT DROPOUT</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Every model evaluated on the non-completer class, at each of the three data stages.</li><li>SMOTE oversampling tested against the unbalanced baseline; decision thresholds explored.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found and fixed</span><ul><li>A 2026 review found the threshold-based evaluation had inverted the predicted labels for the non-completer class. The code was corrected and the affected figures were withdrawn.</li></ul></div><div class="tr-row"><span class="tr-tag fail">Did not work</span><ul><li>SMOTE lowered F1 in stages 1 and 2.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>Stage 3's near-perfect AUC (0.998) suggests the academic-results data may already encode the outcome; it needs a leakage check before use as an early warning.</li><li>Neural-network and tuned-threshold results need a re-run and are not quoted.</li></ul></div></div>
         </section>
 
         <section class="cs-section">

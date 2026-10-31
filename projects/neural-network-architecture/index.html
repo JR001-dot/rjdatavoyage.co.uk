@@ -185,6 +185,11 @@
                 <div class="cs-meta-label">Dataset</div>
                 <div class="cs-meta-value">Public spam benchmark - 4,601 emails, 57 features</div>
             </div>
+        
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Code</div>
+                <div class="cs-meta-value"><a class="code-link" href="https://github.com/JR001-dot/neural-network-optimisation" target="_blank" rel="noopener">GitHub repository <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
+            </div>
         </div>
 
 
@@ -243,6 +248,11 @@
             <p>The tuned model scored below the baseline, a useful result: added depth did not help on this tabular dataset, and the simpler network was the better choice.</p>
             </div>
             <div class="cs-callout"><p><strong>Method note:</strong> grid-search configurations were selected on test accuracy, which makes the 94.5% optimistic; a separate validation split should drive selection. The split was not stratified.</p></div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>SPAM CLASSIFIER</span></span><span class="fb"><span>SPAM CLASSIFIER</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>A tuned six-layer model compared with a simple baseline, over 10 runs, on accuracy, precision, recall and F1.</li></ul></div><div class="tr-row"><span class="tr-tag fail">Did not work</span><ul><li>The tuned six-layer model (92.0%) scored below the 64-32 baseline (94.6%): added depth did not help on this tabular data.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>Grid-search configurations were selected on test accuracy, which makes the 94.5% optimistic; a separate validation split should drive selection.</li><li>The train/test split was not stratified.</li></ul></div></div>
         </section>
 
         <section class="cs-section">

@@ -45,3 +45,12 @@
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); run(e.target); } }); }, { threshold: .4 });
   heads.forEach(function (h) { io.observe(h); });
 })();
+
+/* open every page at the top when arriving from a link (back/forward still restores the old position) */
+(function () {
+  if (location.hash) return;
+  var nav = performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+  if (nav && nav.type !== 'navigate') return;
+  var top = function () { window.scrollTo(0, 0); };
+  top(); window.addEventListener('load', top, { once: true });
+})();

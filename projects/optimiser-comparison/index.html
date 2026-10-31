@@ -248,6 +248,11 @@
 
 
         <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>ADAM VS RMSPROP</span></span><span class="fb"><span>ADAM VS RMSPROP</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Identical 64-32 networks trained with each optimiser on the same split: 72% train, 8% validation, 20% test.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>The 3-point gap is roughly five passengers on a 179-record test set, so a single split cannot separate the optimisers reliably.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>The regularisation, early-stopping and cross-validation cells were not saved with outputs, so their results are not quoted until a re-run.</li></ul></div></div>
+        </section>
+
+        <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>

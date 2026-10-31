@@ -187,6 +187,11 @@
                 <div class="cs-meta-label">Status</div>
                 <div class="cs-meta-value">Prototype</div>
             </div>
+        
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Code</div>
+                <div class="cs-meta-value"><a class="code-link" href="https://github.com/JR001-dot/gsib-risk-assessment" target="_blank" rel="noopener">GitHub repository <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
+            </div>
         </div>
 
 
@@ -254,6 +259,11 @@
             <p>The leading themes in negative passages were credit risk (10.0%), treasury and balance-sheet topics (7.1%), cost inflation (4.6%), market volatility (4.1%) and legal risk (3.5%); 36.7% did not match a theme. The pipeline also extracted 358 financial-metric mentions and 345 transcript segments.</p>
             <div class="cs-callout"><p><strong>Prototype limitations:</strong> extracted metrics were not validated against the filings, so they are not used for capital-ratio comparisons. BERTopic was attempted but returned a single topic on this corpus, so themes come from the keyword taxonomy. A forecasting module was drafted but not run; nine quarters per bank is too short for it. Bank names and source files are withheld.</p></div>
             </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:17"><span class="ft"><span>G-SIB DISCLOSURES</span></span><span class="fb"><span>G-SIB DISCLOSURES</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Every chunk scored with two independent methods, FinBERT and VADER.</li><li>Bank, quarter and document metadata kept on every chunk for traceability.</li></ul></div><div class="tr-row"><span class="tr-tag fail">Did not work</span><ul><li>BERTopic returned a single topic on this corpus, so themes come from the keyword taxonomy.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>Extracted financial metrics were not validated against the filings, so they are not used for capital-ratio comparisons.</li><li>A forecasting module was drafted but not run; nine quarters per bank is too short for it.</li><li>36.7% of negative passages did not match a risk theme.</li></ul></div></div>
         </section>
 
         <section class="cs-section">

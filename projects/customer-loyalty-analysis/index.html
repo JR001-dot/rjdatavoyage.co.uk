@@ -253,6 +253,11 @@
 
 
         <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:16"><span class="ft"><span>CUSTOMER LOYALTY</span></span><span class="fb"><span>CUSTOMER LOYALTY</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Linear regression evaluated on a held-out 20% test set with R², adjusted R² and residual sum of squares.</li><li>Four predictor combinations compared to see how much each factor adds.</li><li>Pearson correlations reported with p-values.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>Dropping brand awareness barely changes the model (R² 0.623 against 0.628); dropping quality collapses it to 0.211.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>Three candidate drivers only: product quality, brand awareness and negative publicity.</li></ul></div></div>
+        </section>
+
+        <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>

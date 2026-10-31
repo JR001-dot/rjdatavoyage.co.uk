@@ -290,6 +290,11 @@
                 <div class="cs-meta-label">Test Corpus</div>
                 <div class="cs-meta-value">300 synthetic letters - 210 valid, 90 with one seeded defect</div>
             </div>
+        
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Code</div>
+                <div class="cs-meta-value"><a class="code-link" href="https://github.com/JR001-dot/pdf-compliance-harness" target="_blank" rel="noopener">GitHub repository <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
+            </div>
         </div>
 
 
@@ -366,6 +371,11 @@
         <section class="cs-section">
             <h2 class="cs-section-title">Relevance to Production Contexts</h2>
             <p>The same pattern, parse, assert and report, applies to any document type whose rules can be written down: regulated notices, certificates, contracts or automated correspondence. Moving to production would mean testing against real generated output, adding defect types seen in practice and tracking false-alarm rates over time.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:11"><span class="ft"><span>PDF HARNESS</span></span><span class="fb"><span>PDF HARNESS</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>300 synthetic letters with a known answer for each: 210 valid, 90 with one seeded defect.</li><li>Verdicts matched ground truth for all 300, reproduced in three runs.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found and fixed</span><ul><li>An early version reported every later field as missing once one field was absent. It was fixed so that per-file reasons point to the actual defect.</li><li>The layout check only fires when a defect removes a line, so it acts as a secondary safeguard rather than an independent detector.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>The corpus and the rules come from the same specification and only five defect types are seeded, so full agreement is expected by construction.</li><li>Not yet tested against real generated output or real-world drift.</li></ul></div></div>
         </section>
 
         <section class="cs-section">

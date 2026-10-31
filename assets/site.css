@@ -257,3 +257,49 @@ th{color:var(--ink)!important;font-family:var(--mono);font-size:12px;letter-spac
 .fig-head.flaps{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:6px;letter-spacing:0;color:inherit}
 .fig-head.flaps .flap{display:inline-block;width:calc(var(--w) * (1ch + .06em) + 1.4em);max-width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
 @media (max-width:380px){.fig-head.flaps .flap{font-size:10px}}
+
+/* code link in the case-study facts row */
+.code-link{display:inline-flex;align-items:center;gap:6px;color:var(--cobalt);text-decoration:none;font-weight:500}
+.code-link:hover{text-decoration:underline}
+/* "How it was tested" report */
+.test-report{background:#07080B;border-radius:24px;padding:clamp(18px,3vw,32px);color:#E6E8F0;box-shadow:0 40px 80px -40px rgba(12,18,110,.5)}
+.test-report .fig-head{margin-bottom:8px}
+.tr-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 20px;padding:18px 0;border-top:1px solid #1C1F29}
+.tr-row:first-of-type{border-top:0}
+.tr-tag{align-self:start;justify-self:start;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:6px;background:#15171F}
+.tr-tag.ok{color:#7EE2A8}.tr-tag.warn{color:#FFC24B}.tr-tag.fail{color:#FF8A8A}.tr-tag.lim{color:#9AA4FF}
+.tr-row ul{margin:0;padding:0;list-style:none}
+.tr-row li{position:relative;padding-left:16px;margin:0 0 8px;font-size:15px;line-height:1.6;color:#C9CEDB}
+.tr-row li:last-child{margin-bottom:0}
+.tr-row li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;border-radius:50%;background:#3A3F52}
+@media (max-width:620px){.tr-row{grid-template-columns:1fr}.tr-row li{font-size:14.5px}}
+/* live backpropagation demo */
+.bp{background:#07080B;border-radius:24px;padding:clamp(16px,3vw,32px);color:#E6E8F0;box-shadow:0 40px 80px -40px rgba(12,18,110,.5)}
+.bp-steps{display:flex;gap:6px;overflow-x:auto;margin:14px 0 6px;scrollbar-width:none}
+.bp-steps::-webkit-scrollbar{display:none}
+.bp-steps button{flex:none;font:inherit;font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:9px 12px;border-radius:999px;border:1px solid #2A2D38;background:transparent;color:#A9AEC0;cursor:pointer}
+.bp-steps button[aria-selected="true"]{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.bp-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:center}
+.bp-net{width:100%;height:auto;display:block}
+.bp-e{stroke:#2A2D38;stroke-width:1.5}.bp-e.on{stroke:#4A55FF}.bp-e.back{stroke:#FFC24B;stroke-dasharray:5 4}
+.bp-w{font-family:var(--mono);font-size:11px;fill:#8E95AA;text-anchor:middle}.bp-w.upd{fill:#FFC24B}
+.bp-n{fill:#12141B;stroke:#2A2D38;stroke-width:1.5}.bp-n.on{stroke:#4A55FF}.bp-n.out.on{fill:var(--cobalt);stroke:var(--cobalt)}
+.bp-v{font-family:var(--mono);font-size:13px;font-weight:600;fill:#fff;text-anchor:middle}
+.bp-l{font-family:var(--mono);font-size:10.5px;fill:#8E95AA;text-anchor:middle;letter-spacing:.06em}
+.bp-s{font-family:var(--mono);font-size:10.5px;fill:#6E758B;text-anchor:middle}
+.bp-read h4{margin:0 0 12px;font-size:17px;font-weight:500;letter-spacing:-.02em;color:#fff}
+.bp-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid #1C1F29;font-family:var(--mono);font-size:12.5px;color:#A9AEC0}
+.bp-row b{color:#fff;font-weight:600;text-align:right}
+.bp-read p{margin:12px 0 0;font-size:14px;line-height:1.6;color:#A9AEC0}
+.bp-inputs{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:18px;padding-top:16px;border-top:1px solid #1C1F29;font-family:var(--mono);font-size:12.5px;color:#A9AEC0}
+.bp-inputs label{display:flex;align-items:center;gap:10px}
+.bp-inputs input{accent-color:#4A55FF;width:120px}
+.bp-inputs output{color:#fff;min-width:3ch}
+.bp-reset{font:inherit;font-size:12px;padding:8px 12px;border-radius:999px;border:1px solid #2A2D38;background:transparent;color:#C9CEDB;cursor:pointer}
+.bp-reset:hover{border-color:#4A55FF;color:#fff}
+.bp-note{margin:14px 0 0!important;font-size:13px!important;color:#8E95AA!important;line-height:1.6!important}
+@media (max-width:760px){.bp-grid{grid-template-columns:1fr}}
+@media (max-width:760px){.bp-w,.bp-l,.bp-s{font-size:14px}.bp-v{font-size:16px}}
+.test-report .fig-head + .tr-row{border-top:0}
+.test-report .tr-row li{color:#D3D7E3!important}
+.sub.grp{margin:20px 0 8px;color:#C9CEDB;letter-spacing:.14em}

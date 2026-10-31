@@ -198,6 +198,11 @@
                 <div class="cs-meta-label">Origin</div>
                 <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
+        
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Code</div>
+                <div class="cs-meta-value"><a class="code-link" href="https://github.com/JR001-dot/maritime-anomaly-detection" target="_blank" rel="noopener">GitHub repository <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
+            </div>
         </div>
 
 
@@ -248,6 +253,11 @@
             <div style="overflow-x:auto;margin:16px 0"><table style="width:100%;border-collapse:collapse;font-size:0.9rem"><thead><tr><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Method</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Setting</th><th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--color-border);font-weight:600">Readings flagged</th></tr></thead><tbody><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">IQR rule (2+ sensors out of range)</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">-</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)"><strong>422 (2.16%)</strong></td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">One-Class SVM</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">nu = 0.05</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">980 (5.02%)</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Isolation Forest</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">contamination = auto</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">2,892 (14.8%)</td></tr><tr><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">Isolation Forest</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">contamination = 0.05</td><td style="padding:8px 10px;border-bottom:1px solid var(--color-border-subtle)">977 (5.0%)</td></tr></tbody></table></div>
             <p>The IQR rule is the only result not fixed in advance. For One-Class SVM and Isolation Forest, the nu and contamination settings decide roughly what share of readings is flagged, so their 5% figures reflect the chosen setting rather than a discovery. Readings flagged by several methods are the strongest candidates for review.</p>
             <div class="cs-callout"><p><strong>Limitations:</strong> no labelled faults, so none of the methods can be scored for accuracy; readings are treated independently, without time order.</p></div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:11"><span class="ft"><span>SHIP ENGINE</span></span><span class="fb"><span>SHIP ENGINE</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Data reviewed before modelling: 19,535 readings from six sensors, no missing or duplicate rows.</li><li>A statistical rule compared with two unsupervised models at several settings, and the flagged readings plotted with PCA.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>For One-Class SVM and Isolation Forest, the settings decide roughly what share is flagged, so their 5% figures reflect the chosen setting rather than a discovery. Only the IQR result is not fixed in advance.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>No labelled faults, so none of the methods can be scored for accuracy.</li><li>Readings are treated independently, without time order.</li></ul></div></div>
         </section>
 
         <section class="cs-section">

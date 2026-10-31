@@ -238,6 +238,11 @@
 
 
         <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:14"><span class="ft"><span>BANK MARKETING</span></span><span class="fb"><span>BANK MARKETING</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Six classifiers compared on test ROC AUC, because only 11.3% of contacts subscribed and accuracy alone would mislead.</li><li>Decision tree tuned with grid search and 5-fold cross-validation.</li><li>SHAP used to show which features drove predictions, and in which direction.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>Call duration, the strongest predictor, is only known after the call ends. The high AUC describes successful calls rather than providing pre-call lead scoring.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>A deployable model would be re-trained without call duration and judged on precision among the contacts it ranks highest.</li></ul></div></div>
+        </section>
+
+        <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>

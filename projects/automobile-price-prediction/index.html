@@ -255,6 +255,11 @@
 
 
         <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:10"><span class="ft"><span>CAR PRICES</span></span><span class="fb"><span>CAR PRICES</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Both models evaluated on the same held-out 20% test set with the same 25 selected features.</li><li>Feature selection tested against all features: R² 0.903 against 0.894, so selection cost very little accuracy.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>PCA was fitted on all 190 vehicles with price among the inputs, so the PCA and t-SNE views are treated as exploratory only and not used for modelling.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>With 38 vehicles in the test set, the R² figures will move with a different split; cross-validation is the next step before treating them as stable.</li></ul></div></div>
+        </section>
+
+        <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>

@@ -445,6 +445,22 @@
   };
 
   /* 14. Book sales, Title B, 32-week test MAE: SARIMA 382.3, LSTM 592.2, sequential hybrid 1,096.5, parallel hybrid 1,174.4 */
+  /* Maritime: readings flagged by method out of 19,535 (IQR 422, OCSVM 980, IF 977 at 0.05, IF 2,892 at auto) */
+  V.engine = {
+    period: 6, draw: function (g, w, h, t) {
+      frame(g, w, h, 'READINGS FLAGGED · 19,535 READINGS');
+      var m = [['IQR RULE', 422, '422 (2.16%)', C.cob], ['ONE-CLASS SVM · NU 0.05', 980, '980 (5.02%)', '#8C93A8'], ['ISOLATION FOREST · 0.05', 977, '977 (5.0%)', '#8C93A8'], ['ISOLATION FOREST · AUTO', 2892, '2,892 (14.8%)', '#5B6178']];
+      var top = 40, step = (h - 76) / 4, bw = w - 28;
+      m.forEach(function (r, i) {
+        var y = top + i * step, a = ease(seq(t, .3 + i * .25, 1.8 + i * .25));
+        txt(g, r[0], 14, y + 8, { size: 8.5, color: i ? C.text : C.white, weight: i ? 400 : 600, spacing: .3 });
+        txt(g, r[2], w - 14, y + 8, { size: 9.5, color: i ? C.text : C.cobS, align: 'right', weight: 600 });
+        bar(g, 14, y + 13, bw, 8, r[1] / 2892 * a, r[3]);
+      });
+      g.globalAlpha = seq(t, 2.4, 2.8); txt(g, 'SIX SENSORS · NO FAULT LABELS', 14, h - 12, { size: 8.5, color: C.amb, spacing: .3 }); g.globalAlpha = 1;
+    }
+  };
+
   V.books = {
     period: 6, draw: function (g, w, h, t) {
       frame(g, w, h, 'TITLE B · ERROR ON 32-WEEK TEST (MAE)');

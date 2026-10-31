@@ -187,6 +187,11 @@
                 <div class="cs-meta-label">Origin</div>
                 <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
+        
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Code</div>
+                <div class="cs-meta-value"><a class="code-link" href="https://github.com/JR001-dot/nlp-topic-modelling" target="_blank" rel="noopener">GitHub repository <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
+            </div>
         </div>
 
 
@@ -254,6 +259,11 @@
             <p>Seven locations appeared in both platforms' top-20 lists for negative reviews, giving a short list of sites where problems are consistent rather than platform-specific.</p>
             <div class="cs-callout"><p><strong>Limitations:</strong> the first BERTopic run used the first 1,000 negative reviews rather than a random sample, and the LLM step ran on 50 angry reviews only. The emotion model labelled about 1,700 negative reviews as "joy", a likely misclassification. LLM-generated suggestions are generic and were not validated.</p></div>
             </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:16"><span class="ft"><span>CUSTOMER REVIEWS</span></span><span class="fb"><span>CUSTOMER REVIEWS</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Reviews filtered to English, de-duplicated and stripped of personal names and brand terms before analysis.</li><li>Three approaches compared on the same reviews: BERTopic, Gensim LDA and an instruction-tuned LLM.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>The emotion model labelled about 1,700 negative reviews as "joy", a likely misclassification.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>The first BERTopic run used the first 1,000 negative reviews rather than a random sample.</li><li>The LLM step ran on 50 angry reviews only, and its suggestions are generic and were not validated.</li></ul></div></div>
         </section>
 
         <section class="cs-section">

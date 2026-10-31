@@ -365,6 +365,7 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
 .fig-head.flaps{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:6px;letter-spacing:0;color:inherit}
 .fig-head.flaps .flap{display:inline-block;width:calc(var(--w) * (1ch + .06em) + 1.4em);max-width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
 @media (max-width:380px){.fig-head.flaps .flap{font-size:10px}}
+.sub.grp{margin:20px 0 8px;color:#C9CEDB;letter-spacing:.14em}
 
 /* ===== curated homepage: Featured Work as a full-bleed dark band, lighter supporting cards ===== */
 #projects.band{background:#07080B;color:#fff;border-top:0;position:relative;overflow:hidden}
@@ -590,15 +591,15 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
         <div class="feature-viz"><figure class="fig" role="img" aria-label="27,585 reviews from two platforms, 11,857 and 15,728; 2,031 anger-led (7.4%); drivers cleanliness, staff, equipment and fees"><div class="fig-head flaps"><span class="flap" style="--w:15"><span class="ft"><span>TOPIC MODELLING</span></span><span class="fb"><span>TOPIC MODELLING</span></span></span><span class="flap" style="--w:22"><span class="ft"><span>EMOTION CLASSIFICATION</span></span><span class="fb"><span>EMOTION CLASSIFICATION</span></span></span></div><div class="fig-hero"><b>27,585</b><span>reviews analysed</span></div><div class="fig-body" aria-hidden="true"><div class="stack"><i class="s2" style="--g:11857"></i><i class="s1" style="--g:15728"></i></div><div class="legend"><span><em class="k2"></em>Platform 1 <b>11,857</b></span><span><em class="k1"></em>Platform 2 <b>15,728</b></span></div><div class="sub">ANGER-LED REVIEWS, SHARE OF ALL 27,585</div><div class="hb hi"><div class="hb-top"><span>Anger dominant</span><b>2,031 · 7.4%</b></div><div class="hb-track"><i style="--v:7.36%"></i></div></div><div class="axis"><span>0</span><span>27,585</span></div><div class="chips"><span>cleanliness</span><span>staff</span><span>equipment</span><span>fees</span></div></div></figure></div>
       </article><article class="feature">
         <div class="feature-text">
-                    <div class="project-domain">Anomaly Detection / Operations</div>
-          <h3 class="project-title">Ship Engine Anomaly Detection</h3>
-          <div class="project-metric"><span class="metric-value">422</span> readings flagged (2.16%) <span class="metric-dot"></span> IQR rule</div>
-          <p class="project-problem">Engine sensor data arrives without fault labels, so abnormal readings have to be found without knowing in advance what a fault looks like.</p>
-          <div class="project-outcome"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>An IQR rule across six sensors flagged 422 readings for review, compared against One-Class SVM and Isolation Forest</span></div>
-          <div class="project-tech"><span class="tag">IQR</span><span class="tag">Isolation Forest</span><span class="tag">One-Class SVM</span><span class="tag">PCA</span></div>
-          <a href="/projects/maritime-anomaly-detection" class="pill dark">View Case Study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a>
+                    <div class="project-domain">Forecasting</div>
+          <h3 class="project-title">Book Sales Demand Forecasting</h3>
+          <div class="project-metric"><span class="metric-value">19.6%</span> MAPE, SARIMA (Title B) <span class="metric-dot"></span> 32-week hold-out</div>
+          <p class="project-problem">Publishers decide on reorders, reprints and stock levels months ahead. The question was which forecasting approach gives reliable weekly demand projections for long-selling titles, and whether more complex models are worth their cost.</p>
+          <div class="project-outcome"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>A seasonal SARIMA model forecast 32 weeks of sales with 19.6% MAPE for one title and matched an LSTM on the other, while hybrid models added nothing</span></div>
+          <div class="project-tech"><span class="tag">SARIMA</span><span class="tag">LSTM</span><span class="tag">XGBoost</span><span class="tag">KerasTuner</span><span class="tag">sktime</span></div>
+          <a href="/projects/time-series-forecasting" class="pill dark">View Case Study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a>
         </div>
-        <div class="feature-viz"><figure class="fig" role="img" aria-label="Six sensors, 19,535 readings. Readings flagged: IQR rule 422 (2.16%), One-Class SVM 980 (5.02%), Isolation Forest 977 (5.0%) at contamination 0.05 and 2,892 (14.8%) at auto"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>SIX SENSORS</span></span><span class="fb"><span>SIX SENSORS</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>19,535 READINGS</span></span><span class="fb"><span>19,535 READINGS</span></span></span><span class="flap" style="--w:15"><span class="ft"><span>NO FAULT LABELS</span></span><span class="fb"><span>NO FAULT LABELS</span></span></span></div><div class="fig-hero"><b>422</b><span>readings flagged by the IQR rule</span></div><div class="fig-body" aria-hidden="true"><div class="chips sensors"><span>engine speed</span><span>lub-oil pressure</span><span>lub-oil temperature</span><span>fuel pressure</span><span>coolant pressure</span><span>coolant temperature</span></div><div class="sub">READINGS FLAGGED, BY METHOD</div><div class="hb hi"><div class="hb-top"><span>IQR rule <em class="hb-note">2+ sensors out of range</em></span><b>422 (2.16%)</b></div><div class="hb-track"><i style="--v:14.59%"></i></div></div><div class="hb "><div class="hb-top"><span>One-Class SVM <em class="hb-note">nu = 0.05</em></span><b>980 (5.02%)</b></div><div class="hb-track"><i style="--v:33.89%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = 0.05</em></span><b>977 (5.0%)</b></div><div class="hb-track"><i style="--v:33.78%"></i></div></div><div class="hb "><div class="hb-top"><span>Isolation Forest <em class="hb-note">contamination = auto</em></span><b>2,892 (14.8%)</b></div><div class="hb-track"><i style="--v:100.00%"></i></div></div><div class="legend"><span><em class="k3"></em>Only the IQR result is not fixed in advance by a setting</span></div></div></figure></div>
+        <div class="feature-viz"><figure class="fig" role="img" aria-label="Mean absolute error on the 32-week test. Title A: SARIMA 169.3, LSTM 170.6, parallel hybrid 181.6, sequential hybrid 214.3. Title B: SARIMA 382.3, LSTM 592.2, sequential hybrid 1,096.5, parallel hybrid 1,174.4. SARIMA MAPE 19.6% for Title B"><div class="fig-head flaps"><span class="flap" style="--w:13"><span class="ft"><span>WEEKLY DEMAND</span></span><span class="fb"><span>WEEKLY DEMAND</span></span></span><span class="flap" style="--w:10"><span class="ft"><span>TWO TITLES</span></span><span class="fb"><span>TWO TITLES</span></span></span><span class="flap" style="--w:12"><span class="ft"><span>32-WEEK TEST</span></span><span class="fb"><span>32-WEEK TEST</span></span></span></div><div class="fig-hero"><b>19.6%</b><span>MAPE, SARIMA (Title B)</span></div><div class="fig-body" aria-hidden="true"><div class="sub">MEAN ABSOLUTE ERROR ON THE 32-WEEK TEST · LOWER IS BETTER</div><div class="sub grp">TITLE A</div><div class="hb hi"><div class="hb-top"><span>SARIMA</span><b>169.3</b></div><div class="hb-track"><i style="--v:79.00%"></i></div></div><div class="hb "><div class="hb-top"><span>LSTM</span><b>170.6</b></div><div class="hb-track"><i style="--v:79.61%"></i></div></div><div class="hb "><div class="hb-top"><span>Parallel hybrid</span><b>181.6</b></div><div class="hb-track"><i style="--v:84.74%"></i></div></div><div class="hb "><div class="hb-top"><span>Sequential hybrid</span><b>214.3</b></div><div class="hb-track"><i style="--v:100.00%"></i></div></div><div class="axis"><span>0</span><span>214.3</span></div><div class="sub grp">TITLE B</div><div class="hb hi"><div class="hb-top"><span>SARIMA</span><b>382.3</b></div><div class="hb-track"><i style="--v:32.55%"></i></div></div><div class="hb "><div class="hb-top"><span>LSTM</span><b>592.2</b></div><div class="hb-track"><i style="--v:50.43%"></i></div></div><div class="hb "><div class="hb-top"><span>Sequential hybrid</span><b>1,096.5</b></div><div class="hb-track"><i style="--v:93.37%"></i></div></div><div class="hb "><div class="hb-top"><span>Parallel hybrid</span><b>1,174.4</b></div><div class="hb-track"><i style="--v:100.00%"></i></div></div><div class="axis"><span>0</span><span>1,174.4</span></div><div class="legend"><span><em class="k3"></em>SARIMA, best for Title B and level with the LSTM on Title A</span><span>Neither hybrid beat the single models</span></div></div></figure></div>
       </article><article class="feature flip">
         <div class="feature-text">
                     <div class="project-domain">Applied AI / RAG / Privacy</div>
@@ -1356,6 +1357,22 @@ a.contact-link-item:hover .contact-link-icon{background:var(--cobalt)}
   };
 
   /* 14. Book sales, Title B, 32-week test MAE: SARIMA 382.3, LSTM 592.2, sequential hybrid 1,096.5, parallel hybrid 1,174.4 */
+  /* Maritime: readings flagged by method out of 19,535 (IQR 422, OCSVM 980, IF 977 at 0.05, IF 2,892 at auto) */
+  V.engine = {
+    period: 6, draw: function (g, w, h, t) {
+      frame(g, w, h, 'READINGS FLAGGED · 19,535 READINGS');
+      var m = [['IQR RULE', 422, '422 (2.16%)', C.cob], ['ONE-CLASS SVM · NU 0.05', 980, '980 (5.02%)', '#8C93A8'], ['ISOLATION FOREST · 0.05', 977, '977 (5.0%)', '#8C93A8'], ['ISOLATION FOREST · AUTO', 2892, '2,892 (14.8%)', '#5B6178']];
+      var top = 40, step = (h - 76) / 4, bw = w - 28;
+      m.forEach(function (r, i) {
+        var y = top + i * step, a = ease(seq(t, .3 + i * .25, 1.8 + i * .25));
+        txt(g, r[0], 14, y + 8, { size: 8.5, color: i ? C.text : C.white, weight: i ? 400 : 600, spacing: .3 });
+        txt(g, r[2], w - 14, y + 8, { size: 9.5, color: i ? C.text : C.cobS, align: 'right', weight: 600 });
+        bar(g, 14, y + 13, bw, 8, r[1] / 2892 * a, r[3]);
+      });
+      g.globalAlpha = seq(t, 2.4, 2.8); txt(g, 'SIX SENSORS · NO FAULT LABELS', 14, h - 12, { size: 8.5, color: C.amb, spacing: .3 }); g.globalAlpha = 1;
+    }
+  };
+
   V.books = {
     period: 6, draw: function (g, w, h, t) {
       frame(g, w, h, 'TITLE B · ERROR ON 32-WEEK TEST (MAE)');

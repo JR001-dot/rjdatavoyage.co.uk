@@ -183,6 +183,11 @@
                 <div class="cs-meta-label">Origin</div>
                 <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
+        
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Code</div>
+                <div class="cs-meta-value"><a class="code-link" href="https://github.com/JR001-dot/crime-forecasting" target="_blank" rel="noopener">GitHub repository <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
+            </div>
         </div>
 
 
@@ -249,6 +254,11 @@
             <p>SARIMA(1,0,1)(1,1,1,52) had both the lowest AIC (1528.65) and the lowest test MSE (139.98). auto_arima chose SARIMA(1,0,2)(1,1,0,52), with a higher test MSE of 160.46.</p>
             <div class="cs-callout"><p><strong>Limitations:</strong> city-wide totals only, with no district or crime-type breakdown in the data; a single 52-week hold-out; the best model's seasonal terms were not statistically significant.</p></div>
             </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:14"><span class="ft"><span>CRIME FORECAST</span></span><span class="fb"><span>CRIME FORECAST</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Stationarity with the Augmented Dickey-Fuller test: raw monthly series p = 0.673; after a log transform and differencing p &lt; 0.001.</li><li>No remaining autocorrelation in the residuals (Ljung-Box p &gt; 0.4).</li><li>Five hand-specified SARIMA models and auto_arima compared on AIC and on test MSE over a held-out final 52 weeks.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>The brief asked to confirm a 70-week seasonal period. The ACF showed the cycle is 52 weeks, which was used instead.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>City-wide totals only, with no district or crime-type breakdown in the data.</li><li>A single 52-week hold-out.</li><li>The best model's seasonal terms were not statistically significant.</li></ul></div></div>
         </section>
 
         <section class="cs-section">

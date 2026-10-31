@@ -266,6 +266,11 @@
         </section>
 
         <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:11"><span class="ft"><span>DOCUMENT AI</span></span><span class="fb"><span>DOCUMENT AI</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Tiers 1 and 2 validated against 96 test queries; they use deterministic logic, not probabilistic generation.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Design choice</span><ul><li>Numbers and narrative are kept apart: charts, counts and tables come from Python code, and only the qualitative analysis comes from the AI, so the model cannot invent statistics.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>Client prototype: Tier 3 answers come from the AI model and are grounded in retrieved passages, not deterministic like Tiers 1 and 2.</li></ul></div></div>
+        </section>
+
+        <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>

@@ -202,6 +202,11 @@
                 <div class="cs-meta-label">Origin</div>
                 <div class="cs-meta-value">Cambridge DS Career Accelerator coursework</div>
             </div>
+        
+            <div class="cs-meta-item">
+                <div class="cs-meta-label">Code</div>
+                <div class="cs-meta-value"><a class="code-link" href="https://github.com/JR001-dot/book-sales-forecasting" target="_blank" rel="noopener">GitHub repository <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7M5 5h7v7"/></svg></a></div>
+            </div>
         </div>
 
 
@@ -253,6 +258,11 @@
             <p>SARIMA was the best model for Title B. For Title A, SARIMA and the LSTM were level on absolute error, with the LSTM ahead on percentage error. Neither hybrid improved on the single models; the optimised blend weight came out at zero, meaning one model on its own was preferred.</p>
             <p>For planning, the practical finding is that a well-specified seasonal model is a strong default for long-selling titles, and more complex models should be adopted only where they beat it on held-out data.</p>
             <div class="cs-callout"><p><strong>Known issues:</strong> the weekly XGBoost forecasts stayed flat at about 50 units against actual sales of 1,000-3,500 (a feature-update bug), so XGBoost is excluded. Title B's series was smoothed before the train/test split, which flatters its SARIMA error. Hybrid errors are sMAPE, not MAPE, so they are not directly comparable with the first two rows. Monthly SARIMA failed to produce forecasts; monthly XGBoost MAPE was 48.3% and 27.4%.</p></div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:10"><span class="ft"><span>BOOK SALES</span></span><span class="fb"><span>BOOK SALES</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Every model scored on the same held-out final 32 weeks, on MAE and percentage error, for two titles.</li><li>Decomposition, ACF/PACF and stationarity tests before SARIMA; LSTM tuned with KerasTuner.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>The weekly XGBoost forecasts stayed flat at about 50 units against actual sales of 1,000-3,500, a feature-update bug, so XGBoost is excluded.</li><li>Title B's series was smoothed before the train/test split, which flatters its SARIMA error.</li></ul></div><div class="tr-row"><span class="tr-tag fail">Did not work</span><ul><li>Neither hybrid improved on the single models; the optimised blend weight came out at zero.</li><li>Monthly SARIMA failed to produce forecasts.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>Hybrid errors are sMAPE, not MAPE, so they are not directly comparable with the single models' percentage errors.</li></ul></div></div>
         </section>
 
         <section class="cs-section">

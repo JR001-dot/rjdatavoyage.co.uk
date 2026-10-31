@@ -259,6 +259,11 @@
         </section>
 
         <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:16"><span class="ft"><span>HYPOTHESIS TESTS</span></span><span class="fb"><span>HYPOTHESIS TESTS</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>A null and alternative hypothesis stated for each scenario before any test, at α = 0.05.</li><li>Normality checked with histograms, Q-Q plots and Shapiro-Wilk; both campaign groups failed, so Mann-Whitney U replaced the t-test.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>The social media scenario ran a chi-square test on only five observations, below the test's minimum expected count, so its result (p = 0.441) supports no conclusion.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>Five of the six scenarios used small sample datasets supplied with each brief.</li><li>Fisher's exact test or a larger sample is the right route for the social media question.</li></ul></div></div>
+        </section>
+
+        <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>

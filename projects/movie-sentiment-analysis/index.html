@@ -253,6 +253,11 @@
 
 
         <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:13"><span class="ft"><span>MOVIE REVIEWS</span></span><span class="fb"><span>MOVIE REVIEWS</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Each preprocessing step switched on and off to measure its effect: stopwords, lemmatisation and stemming.</li><li>Five-class models compared with a majority-class baseline of about 23%.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>Keeping stopwords helped by about one point, likely because the standard list removes negations such as "not" and "no".</li><li>The bidirectional LSTM overfitted from the second epoch (validation loss rising from 1.36 to 2.07).</li></ul></div><div class="tr-row"><span class="tr-tag fail">Did not work</span><ul><li>LSTM and GRU scored 23.1% with flat validation accuracy: they predicted a single class and did not learn in five epochs.</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>The one-point stopword gain is about 9 of 872 sentences from one run.</li><li>Five epochs only; early stopping, pre-trained embeddings or a transformer are the next steps.</li></ul></div></div>
+        </section>
+
+        <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>

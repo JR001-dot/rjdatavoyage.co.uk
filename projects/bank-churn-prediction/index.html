@@ -260,6 +260,11 @@
         </section>
 
         <section class="cs-section">
+            <h2 class="cs-section-title">How it was tested</h2>
+            <div class="test-report"><div class="fig-head flaps"><span class="flap" style="--w:11"><span class="ft"><span>TEST REPORT</span></span><span class="fb"><span>TEST REPORT</span></span></span><span class="flap" style="--w:10"><span class="ft"><span>BANK CHURN</span></span><span class="fb"><span>BANK CHURN</span></span></span></div><div class="tr-row"><span class="tr-tag ok">Checked</span><ul><li>Random forest compared with the best single tree on accuracy, precision, recall and F1 for churners.</li><li>Class weighting tested to give the minority churn class more influence.</li></ul></div><div class="tr-row"><span class="tr-tag warn">Found</span><ul><li>The random forest was more accurate but missed about half of the churners (recall 0.52).</li></ul></div><div class="tr-row"><span class="tr-tag lim">Limits</span><ul><li>Hyperparameters were chosen on the test set; a clean re-run would tune on a validation split.</li><li>ROC AUC was computed from hard predictions rather than probabilities, which understates it.</li></ul></div></div>
+        </section>
+
+        <section class="cs-section">
             <h2 class="cs-section-title">Technology Stack</h2>
             <div class="cs-tech-grid">
                 <span class="cs-tech-pill">Python</span>
